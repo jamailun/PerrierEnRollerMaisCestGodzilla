@@ -21,4 +21,12 @@ public class Utils {
 		if(gameObject != null)
 			Object.Destroy(gameObject);
 	}
+
+	// Moi j'aime bien le Java. C'est juste une 'fonction' qui prend aucun argument et qui renvoie void.
+	public delegate void Runnable();
+
+	public static IEnumerator DoAfter(float duration, Runnable runnable) {
+		yield return new WaitForSeconds(duration);
+		runnable();
+	}
 }

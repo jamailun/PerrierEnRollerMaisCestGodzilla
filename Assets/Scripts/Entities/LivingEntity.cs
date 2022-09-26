@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LivingEntity : MonoBehaviour {
+public class LivingEntity : RendererSorter /* Car toutes les entités sont SORT selon le Y. */ {
 
     [Header("Entity attributes")]
 
@@ -58,6 +58,8 @@ public class LivingEntity : MonoBehaviour {
         Destroy(gameObject);
     }
 
+    // Moyen le plus rapide de savoir si une entité est joueur ou pas, plutot que du typeof.
+    // Notons que ça augmente la flexibilité du truc.
     public virtual bool IsPlayer() {
         return false;
 	}

@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerEntity))]
 public class PlayerController : MonoBehaviour {
 
+	[Tooltip("The renderer for the player.")]
+	[SerializeField] private SpriteRenderer spriteRenderer;
+
 	private PlayerEntity _player;
 	private Rigidbody2D _body;
-
 	private float horizontal, vertical;
 
 	private void Start() {
@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour {
 		// Move values
 		horizontal = Input.GetAxisRaw("Horizontal");
 		vertical = Input.GetAxisRaw("Vertical");
+
+		// swap renderer
+		spriteRenderer.flipX = horizontal < 0;
 	}
 
 	private void FixedUpdate() {
