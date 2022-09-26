@@ -79,7 +79,13 @@ public class LivingEntity : RendererSorter /* Car toutes les entités sont SORT s
         }
 
         healthBar?.SetValue(Health);
+        HealthChanged();
     }
+
+    /// <summary>
+    /// Called when the health of the entity changed.
+    /// </summary>
+    protected virtual void HealthChanged() { }
 
     private void SpawnDamageText(float amount) {
         /*var obj = new GameObject();
@@ -105,6 +111,7 @@ public class LivingEntity : RendererSorter /* Car toutes les entités sont SORT s
             Health = MaxHealth;
 
         healthBar?.SetValue(Health);
+        HealthChanged();
     }
 
     public bool IsDead() {
