@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ProceduralGenerator : MonoBehaviour {
+public class ProceduralGenerator {
+
+	private static System.Random RAND = new();
 
 	private readonly Dictionary<Color, Node> pixels = new();
 
@@ -13,8 +15,10 @@ public class ProceduralGenerator : MonoBehaviour {
 			for(int y = 0; y < input.height; y++) {
 				var col = input.GetPixel(x, y);
 				// ajout si on connait pas.
-				if( ! pixels.ContainsKey(col))
-					pixels.Add(col, new Node(col));
+				if(!pixels.ContainsKey(col)) {
+					pixels.Add(col, new Node());
+					Debug.Log("Ok, added " + col + " to the pixels types.");
+				}
 				
 				var node = pixels[col];
 
@@ -29,6 +33,10 @@ public class ProceduralGenerator : MonoBehaviour {
 					node.Top.Add(input.GetPixel(x, y + 1));
 			}
 		}
+
+		// Normalize probas
+		foreach(var node in pixels.Values)
+			node.Normalize();
 	}
 
 	struct Point {
@@ -38,6 +46,16 @@ public class ProceduralGenerator : MonoBehaviour {
 			this.x = x;
 			this.y = y;
 			this.from = from;
+		}
+		public Pos AsPos() {
+			return new Pos(x, y);
+		}
+	}
+	struct Pos {
+		public int x, y;
+		public Pos(int x, int y) {
+			this.x = x;
+			this.y = y;
 		}
 	}
 
@@ -50,44 +68,64 @@ public class ProceduralGenerator : MonoBehaviour {
 		int x = w / 2;
 		int y = h / 2;
 		texture.SetPixel(x, y, first);
+		Debug.Log("FIRST = " + first + ", to (" + x + "," + y + ")");
 
 		HashSet<Point> todo = new();
+		HashSet<Pos> done = new();
 
-		Node node = pixels[first];
-		if(x < w - 1)
-			todo.Add(new Point(x + 1, y, node.Right));
-		if(x > 0)
-			todo.Add(new Point(x - 1, y, node.Left));
-		if(y < h - 1)
-			todo.Add(new Point(x, y + 1, node.Top));
-		if(y > 0)
-			todo.Add(new Point(x, y - 1, node.Bot));
+		GenerateTextute_AddSet(todo, done, first, new Pos(x, y), w, h);
 
 		Point pt;
 		while(todo.Any()) {
-			pt = todo.GetEnumerator().Current;
+			pt = todo.ElementAt(RAND.Next(todo.Count));
+
+			todo.Remove(pt);
+
+			var pos = pt.AsPos();
+
+			if(done.Contains(pos))
+				continue;
+
 			var col = pt.from.Pick();
+
 			texture.SetPixel(pt.x, pt.y, col);
-			//TODO pas fini xdd
+			GenerateTextute_AddSet(todo, done, col, pos, w, h);
+
+			Debug.Log("colored " + pos + " with " + col);
 		}
 
-
-
 		// Apply all SetPixel calls
+		texture.filterMode = FilterMode.Point;
 		texture.Apply();
 
 		// connect texture to material of GameObject this script is attached to
 		return texture;
 	}
 
+	private void GenerateTextute_AddSet(HashSet<Point> set, HashSet<Pos> poss, Color color, Pos pos, int w, int h) {
+		Node node = pixels[color];
+
+		int x = pos.x;
+		int y = pos.y;
+		if(x < w - 1)
+			set.Add(new Point(x + 1, y, node.Right));
+		if(x > 0)
+			set.Add(new Point(x - 1, y, node.Left));
+		if(y < h - 1)
+			set.Add(new Point(x, y + 1, node.Top));
+		if(y > 0)
+			set.Add(new Point(x, y - 1, node.Bot));
+		poss.Add(pos);
+	}
+
 	public Color GetRandomFirst() {
-		return pixels.GetEnumerator().Current.Key;
+		return pixels.ElementAt(RAND.Next(0, pixels.Count)).Key;
 	}
 
 
 	class LinkNode {
 		// associe proba à un type
-		private readonly Dictionary<Color, float> probas = new();
+		private Dictionary<Color, float> probas = new();
 
 		public void Add(Color nodeId) {
 			if(probas.ContainsKey(nodeId))
@@ -100,8 +138,13 @@ public class ProceduralGenerator : MonoBehaviour {
 			float size = 0;
 			foreach(float f in probas.Values)
 				size += f;
-			foreach(var k in probas.Keys)
-				probas[k] /= size;
+
+			Dictionary<Color, float> normalized = new();
+			foreach(var key in probas.Keys) {
+				normalized[key] = probas[key] / size;
+			}
+
+			probas = normalized;
 		}
 
 		public Color Pick() {
@@ -117,14 +160,18 @@ public class ProceduralGenerator : MonoBehaviour {
 	}
 
 	class Node {
-		private Color id;
 		public LinkNode Top, Right, Bot, Left;
-		public Node(Color id) {
-			this.id = id;
+		public Node() {
 			Top = new();
 			Right = new();
 			Bot = new();
 			Left = new();
+		}
+		public void Normalize() {
+			Top.Normalize();
+			Right.Normalize();
+			Bot.Normalize();
+			Left.Normalize();
 		}
 	}
 
