@@ -17,7 +17,6 @@ public class RendererSorter : MonoBehaviour {
 		_renderer = GetComponent<Renderer>();
 		if(_renderer == null)
 			_renderer = GetComponentInChildren<Renderer>();
-		Debug.Log("_renderer = " + _renderer);
 	}
 
 	private void LateUpdate() {
