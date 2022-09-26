@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
 
 	private PlayerEntity _player;
 	private Rigidbody2D _body;
+
+	private Orientation orientation;
 	private float horizontal, vertical;
 
 	private void Start() {
@@ -22,7 +24,12 @@ public class PlayerController : MonoBehaviour {
 		vertical = Input.GetAxisRaw("Vertical");
 
 		// swap renderer
-		spriteRenderer.flipX = horizontal < 0;
+		if(horizontal != 0) // only when it changes
+			spriteRenderer.flipX = horizontal < 0;
+
+		if(Input.GetKeyDown(KeyCode.Space)) {
+			_player.TryAttack(spriteRenderer.flipX ? Orientation.Left : Orientation.Right);
+		}
 	}
 
 	private void FixedUpdate() {

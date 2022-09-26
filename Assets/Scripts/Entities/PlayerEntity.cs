@@ -12,13 +12,32 @@ public class PlayerEntity : LivingEntity {
     [Tooltip("Cooldown between 2 attacks")]
     [SerializeField] private float attackCooldown = 0.25f;
 
-    private float nextAttack; // time à partir duquel on peut attaquer.
+    [Tooltip("The shape of the attacks.")]
+    [SerializeField] private AttackShape attackShape;
 
-    public void TryAttack() {
+    private bool attacking = false;
+    private float nextAttack = 0;
+
+	protected override void Start() {
+        base.Start(); // shitty
+
+		if(attackShape == null) {
+            Debug.LogError("Error, no attackshape for player.");
+            enabled = false;
+		}
+	}
+
+	public void TryAttack(Orientation orientation) {
+        // check cooldown.
         if(Time.time < nextAttack)
-            return;
+                return;
         nextAttack = Time.time + attackCooldown;
-        // spawn attack zone ?
+
+        attacking = true;
+        attackShape.SpawnHurtbox(orientation, transform, attackDamage, attackDuration);
+
+        // reset the boolean after some time.
+        StartCoroutine(Utils.DoAfter(attackDuration, () => attacking = false));
 	}
 
     public override bool IsPlayer() {
@@ -26,6 +45,9 @@ public class PlayerEntity : LivingEntity {
     }
 
     public float GetSpeed() {
+        if(attacking && !attackShape.CanMoveOnAttack)
+            return 0;
+
         // Can be used to do slow/run effects.
         return _speed;
 	}

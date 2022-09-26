@@ -12,8 +12,9 @@ public class Hurtbox : MonoBehaviour {
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision) {
-		Debug.Log(name + " HURTBOX collides with " + collision.gameObject.name);
+	public void Damage(Hitbox hitbox) {
+		Debug.Log("DAMAGE FROM " + hitbox + " : " + hitbox.CurrentDamages);
+		_entity.Damage(hitbox.CurrentDamages);
 	}
 
 }

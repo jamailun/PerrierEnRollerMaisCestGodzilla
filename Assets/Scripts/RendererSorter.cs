@@ -7,10 +7,13 @@ using UnityEngine;
 /// </summary>
 public class RendererSorter : MonoBehaviour {
 
+	[Header("Sorting attributes.")]
 	[SerializeField] private int sortingOrderBase = 5000;
+	[SerializeField] private int sortOffset = 0;
+	[SerializeField] private bool runSortOnlyOnce = true;
 	private Renderer _renderer;
 
-	private void Start() {
+	protected virtual void Start() {
 		_renderer = GetComponent<Renderer>();
 		if(_renderer == null)
 			_renderer = GetComponentInChildren<Renderer>();
@@ -18,7 +21,12 @@ public class RendererSorter : MonoBehaviour {
 	}
 
 	private void LateUpdate() {
-		_renderer.sortingOrder = (int) (sortingOrderBase - transform.position.y);
+		
+		// If this causes performance issues, we can put a timer.
+
+		_renderer.sortingOrder = (int) (sortingOrderBase - transform.position.y - sortOffset);
+		if(runSortOnlyOnce)
+			Destroy(this); // destroy the COMPONENT.
 	}
 
 }

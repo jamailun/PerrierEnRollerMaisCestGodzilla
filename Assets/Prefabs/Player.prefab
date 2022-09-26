@@ -195,6 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase: 5000
+  sortOffset: 0
+  runSortOnlyOnce: 0
   _maxHealth: 100
   _speed: 500
   healthBar: {fileID: 0}
@@ -202,6 +204,7 @@ MonoBehaviour:
   attackDuration: 0.2
   attackDamage: 30
   attackCooldown: 0.25
+  attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
 --- !u!114 &786004580282506673
 MonoBehaviour:
   m_ObjectHideFlags: 0
