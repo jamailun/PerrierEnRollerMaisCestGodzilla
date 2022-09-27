@@ -18,6 +18,9 @@ public class Enemy : LivingEntity {
     [Tooltip("Time between recalculation (in seconds).")]
     [SerializeField] private float recalculateAfter = 0.2f;
 
+    [SerializeField] private float distance_wanted = 2.2f;
+    [SerializeField] private float distance_epsilon = .3f;
+
     private float nextRecalculate; // next time to recalulate trajectory
 
     private void Start() {
@@ -40,6 +43,9 @@ public class Enemy : LivingEntity {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
+        agent.speed = _speed;
+        agent.acceleration = _speed * 1.5f;
+
         if(target == null) {
             var player = FindObjectOfType<PlayerEntity>();
             if(player == null) {
@@ -55,18 +61,36 @@ public class Enemy : LivingEntity {
 	private void Update() {
 		if(enemyType == EnemyType.None || null == target)
 			return; // pas d'IA => on fait rien :)
+            
+        // Change direction
+        spriteRenderer.flipX = target.position.x < transform.position.x;
 
         // Change target
         if(Time.time >= nextRecalculate)
             Recalculate();
 
-        // Change direction
-        spriteRenderer.flipX = target.position.x < transform.position.x;
 
     }
     private void Recalculate() {
-        // Set destination
-        agent.SetDestination(target.position);
+        // Set destination according to the type
+        switch(enemyType) {
+
+            // Melee always rush to the player
+            case EnemyType.Melee:
+                agent.SetDestination(target.position);
+                break;
+
+            case EnemyType.Distance:
+                float d = Vector2.Distance(transform.position, target.position);
+                if((d < distance_wanted - distance_epsilon) || (d > distance_wanted + distance_epsilon)) {
+                    var vec = (transform.position - target.position);
+                    var movement = vec.normalized * (distance_wanted - d);
+
+                    agent.SetDestination(transform.position + movement);
+				}
+                break;
+
+        }
 
         // Change recalculation.
         nextRecalculate = Time.time + recalculateAfter;

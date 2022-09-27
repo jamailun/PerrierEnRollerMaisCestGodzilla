@@ -18,17 +18,25 @@ public class PlayerEntity : LivingEntity {
     private bool attacking = false;
     private float nextAttack = 0;
 
+    [Tooltip("The reference to the experience bar.")]
+    [SerializeField] private BarUI experienceBar;
+    [Tooltip("The reference to the level UI.")]
+    [SerializeField] private TMPro.TMP_Text levelText;
+
     public uint UpgradePoints { get; set; }
     public ulong ExperiencePoints { get; private set; }
     private int level = 1;
-    private ulong nextLevel = 1000;
+    private ulong nextLevel = 100;
+    private ulong previousLevel = 0;
 
     private void Start() {
         if(attackShape == null) {
             Debug.LogError("Error, no attackshape for player.");
             enabled = false;
-		}
-	}
+        }
+        experienceBar.Init(previousLevel, nextLevel, ExperiencePoints);
+        levelText.text = "Lvl " + level;
+    }
 
 	public void TryAttack(Orientation orientation) {
         // check cooldown.
@@ -60,11 +68,15 @@ public class PlayerEntity : LivingEntity {
         while(ExperiencePoints > nextLevel) {
             LevelUp();
 		}
+        experienceBar.Init(previousLevel, nextLevel, ExperiencePoints);
 	}
 
     private void LevelUp() {
         level++;
+        previousLevel = nextLevel;
         nextLevel *= 2;
+
+        levelText.text = "Lvl " + level;
 
         Debug.Log("Level up ! nex level="+level);
         Heal(MaxHealth * 0.2f); // heal de 20% ??
