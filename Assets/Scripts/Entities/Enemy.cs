@@ -21,6 +21,9 @@ public class Enemy : LivingEntity {
     [SerializeField] private float distance_wanted = 2.2f;
     [SerializeField] private float distance_epsilon = .3f;
 
+    [SerializeField] private ExperienceBall experiencePrefab;
+    [SerializeField] private ulong droppedExp = 10;
+
     private float nextRecalculate; // next time to recalulate trajectory
 
     private void Start() {
@@ -95,5 +98,27 @@ public class Enemy : LivingEntity {
         // Change recalculation.
         nextRecalculate = Time.time + recalculateAfter;
     }
+
+	protected override void Die() {
+        // Drop item before delete the gameobject
+        int c = 1;
+        ulong amount = droppedExp / 10;
+        while(amount >= 10) {
+            amount /= 10;
+            c += 2;
+		}
+        c = Mathf.Max(1, c + Random.Range(-1,1));
+
+        ulong perBallExp = droppedExp / (ulong) c;
+
+        for(int i = 0; i < c; i++) {
+            Vector3 pos = Random.insideUnitCircle * 1.2f;
+            var ball = Instantiate(experiencePrefab);
+            ball.transform.position = transform.position + pos;
+            ball.experienceAmount = perBallExp;
+        }
+
+		base.Die();
+	}
 
 }
