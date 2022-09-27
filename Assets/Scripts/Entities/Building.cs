@@ -16,9 +16,7 @@ public class Building : LivingEntity {
 
 	private SpriteRenderer _spriteRenderer;
 
-	protected override void Start() {
-		base.Start(); // still shitty.
-
+	private void Start() {
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 		if(_spriteRenderer == null)
 			_spriteRenderer = GetComponentInChildren<SpriteRenderer>();

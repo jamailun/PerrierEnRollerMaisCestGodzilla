@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 786004580282506673}
   - component: {fileID: 786004580282506672}
   - component: {fileID: 2855141123035875911}
+  - component: {fileID: 2753411813843476881}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -194,9 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5eacd60c236224e9bca547a29b112d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBase: 5000
-  sortOffset: 0
-  runSortOnlyOnce: 0
   _maxHealth: 100
   _speed: 500
   healthBar: {fileID: 0}
@@ -255,3 +253,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.071364634, y: -0.85992575}
   m_Size: {x: 1.4995484, y: 0.56468946}
   m_Direction: 1
+--- !u!114 &2753411813843476881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786004580282506677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a810b7197f939749ae3e69f61821fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  sortOffset: 0
+  runSortOnlyOnce: 0

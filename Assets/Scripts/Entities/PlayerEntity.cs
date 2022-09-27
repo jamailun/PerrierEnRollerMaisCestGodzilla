@@ -18,10 +18,8 @@ public class PlayerEntity : LivingEntity {
     private bool attacking = false;
     private float nextAttack = 0;
 
-	protected override void Start() {
-        base.Start(); // shitty
-
-		if(attackShape == null) {
+    private void Start() {
+        if(attackShape == null) {
             Debug.LogError("Error, no attackshape for player.");
             enabled = false;
 		}

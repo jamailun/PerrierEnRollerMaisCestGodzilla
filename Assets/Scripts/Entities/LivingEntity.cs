@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LivingEntity : RendererSorter /* Car toutes les entités sont SORT selon le Y. */ {
+public class LivingEntity : MonoBehaviour {
 
     [Header("Entity attributes")]
 
