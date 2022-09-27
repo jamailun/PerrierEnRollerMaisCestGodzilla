@@ -18,6 +18,11 @@ public class PlayerEntity : LivingEntity {
     private bool attacking = false;
     private float nextAttack = 0;
 
+    public uint UpgradePoints { get; set; }
+    public ulong ExperiencePoints { get; private set; }
+    private int level = 1;
+    private ulong nextLevel = 1000;
+
     private void Start() {
         if(attackShape == null) {
             Debug.LogError("Error, no attackshape for player.");
@@ -48,6 +53,21 @@ public class PlayerEntity : LivingEntity {
 
         // Can be used to do slow/run effects.
         return _speed;
+	}
+
+    public void AddExperience(ulong amount) {
+        ExperiencePoints += amount;
+        while(ExperiencePoints > nextLevel) {
+            LevelUp();
+		}
+	}
+
+    private void LevelUp() {
+        level++;
+        nextLevel *= 2;
+
+        Debug.Log("Level up ! nex level="+level);
+        Heal(MaxHealth * 0.2f); // heal de 20% ??
 	}
 
 }

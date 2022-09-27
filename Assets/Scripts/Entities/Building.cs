@@ -41,7 +41,7 @@ public class Building : LivingEntity {
 
 		// Change the sprite index
 		int index = Mathf.Max(0, Mathf.Min(sprites.Length-1, sprites.Length - Mathf.FloorToInt(ratio * sprites.Length)));
-		Debug.Log("ratio=" + ratio+", => index="+index+", vfx="+ vfxOverDamage.Evaluate(1f - ratio));
+		//Debug.Log("ratio=" + ratio+", => index="+index+", vfx="+ vfxOverDamage.Evaluate(1f - ratio));
 		_spriteRenderer.sprite = sprites[index];
 
 		// Change the VFX particle output
@@ -59,7 +59,6 @@ public class Building : LivingEntity {
 	}
 
 	protected override void Die() {
-		Debug.LogWarning("allo?");
 		base.Die();
 		//TODO drop points on the ground.
 		Debug.LogWarning("building " + name + " dead. dropped" + rewardPoints);

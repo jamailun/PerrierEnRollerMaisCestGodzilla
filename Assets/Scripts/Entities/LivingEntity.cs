@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LivingEntity : MonoBehaviour {
+public abstract class LivingEntity : MonoBehaviour {
 
     [Header("Entity attributes")]
 
