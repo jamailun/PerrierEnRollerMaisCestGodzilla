@@ -10,14 +10,20 @@ public class PersistentData {
 
 	private static readonly string accountName = "perier";
 
+	// Incremental
+
 	public static float PlayedTime { set; get; }
 	public static int RunsAmount { set; get; }
+	public static int BestLevel { set; get; }
+
+	// Dynamic
 	public static int UpgradePoints { set; get; }
 
 	public void Load() {
 		PlayedTime = PlayerPrefs.GetFloat(Key("playerTime"), 0f);
 		RunsAmount = PlayerPrefs.GetInt(Key("runsAmount"), 0);
 		UpgradePoints = PlayerPrefs.GetInt(Key("upgradePoints"), 0);
+		BestLevel = PlayerPrefs.GetInt(Key("bestLevel"), 0);
 
 		Debug.Log("read " + RunsAmount);
 	}
@@ -26,11 +32,13 @@ public class PersistentData {
 		PlayerPrefs.SetFloat(Key("playerTime"), PlayedTime);
 		PlayerPrefs.SetInt(Key("runsAmount"), RunsAmount);
 		PlayerPrefs.SetInt(Key("upgradePoints"), UpgradePoints);
+		PlayerPrefs.SetInt(Key("bestLevel"), BestLevel);
 	}
 
-	public static void EndRun(float runDuration, int upgradePoints) {
+	public static void EndRun(float runDuration, int level, uint upgradePoints) {
 		PlayedTime += runDuration;
-		UpgradePoints += upgradePoints;
+		UpgradePoints += (int) upgradePoints;
+		BestLevel = Mathf.Max(level, BestLevel);
 		RunsAmount++;
 		// à retirer ? jsp
 		Save();

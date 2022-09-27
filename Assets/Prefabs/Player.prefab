@@ -205,7 +205,11 @@ MonoBehaviour:
   attackCooldown: 0.25
   attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
   experienceBar: {fileID: 0}
+  evolveAllNlevels: 15
   levelText: {fileID: 0}
+  deathScreen: {fileID: 0}
+  deathAnimation: {fileID: 0}
+  deathAnimationDuration: 1.5
 --- !u!114 &786004580282506673
 MonoBehaviour:
   m_ObjectHideFlags: 0

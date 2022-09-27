@@ -11,7 +11,7 @@ public class LoadingManager : MonoBehaviour {
 
 	private void Start() {
 		if(Instance != null) {
-			Debug.LogError("Cannot have multiple LoadingManager. Removing this one.");
+			Debug.LogWarning("Cannot have multiple LoadingManager. Removing this one.");
 			Destroy(this);
 			return;
 		}

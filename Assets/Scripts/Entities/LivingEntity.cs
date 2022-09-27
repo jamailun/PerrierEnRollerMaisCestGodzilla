@@ -21,7 +21,7 @@ public abstract class LivingEntity : MonoBehaviour {
     public float MaxHealth => _maxHealth;
 
     private bool initialized = false;
-    private bool dead = false;
+    protected bool dead = false;
 
     protected virtual float LifeChangeRequest(float oldAmount, float newAmount) {
         if(invincible && newAmount < oldAmount)
