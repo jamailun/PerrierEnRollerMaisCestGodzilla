@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 368685344}
   - component: {fileID: 368685347}
   - component: {fileID: 368685346}
+  - component: {fileID: 368685348}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -185,9 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655879b999b27124781e49cc6496d719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBase: 5000
-  sortOffset: 0
-  runSortOnlyOnce: 0
   _maxHealth: 100
   _speed: 0
   healthBar: {fileID: 7117246351417883988}
@@ -247,6 +245,21 @@ CapsuleCollider2D:
   m_Offset: {x: -0.10210853, y: -0.86025727}
   m_Size: {x: 0.8723737, y: 0.37204126}
   m_Direction: 1
+--- !u!114 &368685348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368685343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a810b7197f939749ae3e69f61821fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  sortOffset: 0
+  runSortOnlyOnce: 1
 --- !u!224 &387536973 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4117331767572342496, guid: b2623ae26dfc8774cb630a6bb1174dd1, type: 3}
@@ -5886,6 +5899,7 @@ GameObject:
   - component: {fileID: 1198995811}
   - component: {fileID: 1198995813}
   - component: {fileID: 1198995812}
+  - component: {fileID: 1198995814}
   m_Layer: 0
   m_Name: Building
   m_TagString: Untagged
@@ -5923,9 +5937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55618e0e73438e49b6bef093d293377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBase: 5000
-  sortOffset: 1
-  runSortOnlyOnce: 1
   _maxHealth: 150
   _speed: 0
   healthBar: {fileID: 0}
@@ -5943,15 +5954,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.05
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2.9967186
+      outSlope: 2.9967186
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.034401886
     - serializedVersion: 3
       time: 0.85
-      value: 1
+      value: 8
       inSlope: 0.45350167
       outSlope: 0.45350167
       tangentMode: 0
@@ -5998,6 +6009,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1198995814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198995808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a810b7197f939749ae3e69f61821fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  sortOffset: 1
+  runSortOnlyOnce: 1
 --- !u!1 &1464372409
 GameObject:
   m_ObjectHideFlags: 0
