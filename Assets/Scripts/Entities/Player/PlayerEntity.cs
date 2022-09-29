@@ -29,6 +29,8 @@ public class PlayerEntity : LivingEntity {
     [SerializeField] private NewSkillScreen newSkillScreen;
     [Tooltip("The reference to the skills display UI.")]
     [SerializeField] private SkillsDisplayer skillsDisplay;
+    [Tooltip("The reference to the evolve UI.")]
+    [SerializeField] private EvolveScreen evolveScreen;
     [Tooltip("The reference to the level UI.")]
     [SerializeField] private TMPro.TMP_Text levelText;
 
@@ -133,7 +135,9 @@ public class PlayerEntity : LivingEntity {
         } else {
             // Elvove.
             if(level % evolveAllNlevels == 0) {
-                Debug.Log("Should evolve right now !");
+                Time.timeScale = 0;
+                evolveScreen.gameObject.SetActive(true);
+                evolveScreen.DisplayForms(currentForm.Descendants, ChangePlayerForm);
             }
         }
 
@@ -148,14 +152,19 @@ public class PlayerEntity : LivingEntity {
     private void LevelUp_Over(Skill skill) {
         Time.timeScale = 1f;
         AddSkill(skill);
-
-        //TODO update stats !
     }
     private void LevelUp_ThenEvolve(Skill skill) {
-        Time.timeScale = 1f;
+        // Check si on PEUT évoluer
+        if(currentForm.Descendants.Count == 0) {
+            LevelUp_Over(skill);
+            return;
+        }
+        // Sinon
+
         AddSkill(skill);
-        //TODO
-        Debug.Log("should evolve right now !");
+
+        evolveScreen.gameObject.SetActive(true);
+        evolveScreen.DisplayForms(currentForm.Descendants, ChangePlayerForm);
     }
 
     private void AddSkill(Skill skill) {
@@ -165,6 +174,8 @@ public class PlayerEntity : LivingEntity {
 
         // Refresh global displayed list
         skillsDisplay.SetSkills(skills.GetPassives());
+
+        //TODO update stats !
     }
 
     protected override void Die() {
@@ -206,6 +217,10 @@ public class PlayerEntity : LivingEntity {
     }
 
     private void ChangePlayerForm(PlayerForm form) {
+        Time.timeScale = 1f;
+        evolveScreen.gameObject.SetActive(false);
+
+
         currentForm = form;
         UpdatePlayerForm();
 	}

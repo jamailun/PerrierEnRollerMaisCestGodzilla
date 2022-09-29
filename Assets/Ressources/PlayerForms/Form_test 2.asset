@@ -10,15 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9509ddd1e297a3c4a87a485c4a74d563, type: 3}
-  m_Name: Form_test
+  m_Name: Form_test 2
   m_EditorClassIdentifier: 
-  _name: Test
-  _descendants:
-  - {fileID: 11400000, guid: 0fa55b75ea2cbd14b9e82f9ad7c072bb, type: 2}
-  - {fileID: 11400000, guid: ae0eb562c1e559442a5edb359b2d845b, type: 2}
-  - {fileID: 11400000, guid: d21a300f56a854e42b0205c6c061ca3d, type: 2}
-  _color: {r: 1, g: 1, b: 1, a: 1}
-  _bannerImage: {fileID: 0}
+  _name: INSECTOID
+  _descendants: []
+  _color: {r: 1, g: 0.07661387, b: 0, a: 1}
+  _bannerImage: {fileID: 21300000, guid: 84d55f0e032eda44aa619afb4c5a6a7f, type: 3}
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
   animation_Idle:
     frameDuration: 0.3

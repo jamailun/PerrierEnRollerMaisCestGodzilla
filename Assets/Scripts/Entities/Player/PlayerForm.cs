@@ -13,8 +13,11 @@ public class PlayerForm : ScriptableObject {
 	[SerializeField] private PlayerForm[] _descendants;
 	public List<PlayerForm> Descendants { get { return new List<PlayerForm>(_descendants); } }
 
-	[SerializeField] private Color _color;
+	[SerializeField] private Color _color = Color.white;
 	public Color Color => _color;
+
+	[SerializeField] private Sprite _bannerImage;
+	public Sprite BannerImage => _bannerImage;
 
 	[SerializeField] private AttackShape _attackShape;
 	public AttackShape AttackShape => _attackShape;
