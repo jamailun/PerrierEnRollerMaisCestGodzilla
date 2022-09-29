@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -20,11 +19,10 @@ public class PlayerForm : ScriptableObject {
 	[SerializeField] private AttackShape _attackShape;
 	public AttackShape AttackShape => _attackShape;
 
-
-	[SerializeField] public Animation animation_Idle;		// 2 frames
-	[SerializeField] public Animation animation_Right;		// 2 frames
-	[SerializeField] public Animation animation_Top;        // 2 frames
-	[SerializeField] public Animation animation_Bottom;     // 2 frames
+	[SerializeField] public CustomAnimation animation_Idle;       // 2 frames
+	[SerializeField] public CustomAnimation animation_Right;      // 2 frames
+	[SerializeField] public CustomAnimation animation_Top;        // 2 frames
+	[SerializeField] public CustomAnimation animation_Bottom;     // 2 frames
 
 	[SerializeField] public Sprite frame_Attack_Right;		// 1 frame
 	[SerializeField] public Sprite frame_Attack_Top;		// 1 frame

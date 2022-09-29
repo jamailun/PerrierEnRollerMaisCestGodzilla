@@ -50,4 +50,11 @@ static class CSharpExtension {
 			GameObject.Destroy(child.gameObject);
 		}
 	}
+
+	public static T GetOrAddComponent<T>(this GameObject obj) where T : Component {
+		var cp = obj.GetComponent<T>();
+		if(cp == null)
+			return obj.AddComponent<T>();
+		return cp;
+	}
 }

@@ -51,12 +51,23 @@ public class PlayerEntity : LivingEntity {
 
     private float startedTime;
 
+    public CustomAnimator Animator { get; private set; }
+    public PlayerForm PlayerForm => currentForm;
+
     private void Start() {
+        Animator = GetComponentInChildren<CustomAnimator>();
+        if(currentForm == null) {
+            Debug.LogError("Error, no Animation for player.");
+            enabled = false;
+            return;
+        }
         if(currentForm == null) {
             Debug.LogError("Error, no currentForm for player.");
             enabled = false;
             return;
         }
+
+        UpdatePlayerForm();
 
         startedTime = Time.time;
         TimerUI.StartTimer();
@@ -192,6 +203,23 @@ public class PlayerEntity : LivingEntity {
         foreach(Transform child in transform) {
             GameObject.Destroy(child.gameObject);
         }
+    }
+
+    private void ChangePlayerForm(PlayerForm form) {
+        currentForm = form;
+        UpdatePlayerForm();
+	}
+
+    public const string ANIM_IDLE = "anim_idle";
+    public const string ANIM_RIGHT = "anim_walk_right";
+    public const string ANIM_TOP = "anim_walk_top";
+    public const string ANIM_DOWN = "anim_walk_down";
+    private void UpdatePlayerForm() {
+        Animator.SetClip(ANIM_IDLE, currentForm.animation_Idle);
+        Animator.SetClip(ANIM_RIGHT, currentForm.animation_Right);
+        Animator.SetClip(ANIM_TOP, currentForm.animation_Top);
+        Animator.SetClip(ANIM_DOWN, currentForm.animation_Bottom);
+
     }
 
 }

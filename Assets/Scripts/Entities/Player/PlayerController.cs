@@ -23,12 +23,22 @@ public class PlayerController : MonoBehaviour {
 		horizontal = Input.GetAxisRaw("Horizontal");
 		vertical = Input.GetAxisRaw("Vertical");
 
-		// swap renderer
-		if(horizontal != 0) // only when it changes
-			spriteRenderer.flipX = horizontal < 0;
+		_player.Animator.Play(PlayerEntity.ANIM_IDLE);
 
+		// swap renderer
+		if(horizontal != 0) { // only when it changes
+			spriteRenderer.flipX = horizontal < 0;
+			_player.Animator.Play(PlayerEntity.ANIM_RIGHT);
+		} else {
+			if(vertical > 0)
+				_player.Animator.Play(PlayerEntity.ANIM_TOP);
+			else if(vertical < 0)
+				_player.Animator.Play(PlayerEntity.ANIM_DOWN);
+		}
+		
 		if(Input.GetKeyDown(KeyCode.Space)) {
 			_player.TryAttack(spriteRenderer.flipX ? Orientation.Left : Orientation.Right);
+			// TODO anim attack
 		}
 	}
 

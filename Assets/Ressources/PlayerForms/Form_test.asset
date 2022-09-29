@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9509ddd1e297a3c4a87a485c4a74d563, type: 3}
+  m_Name: Form_test
+  m_EditorClassIdentifier: 
+  _name: Test
+  _descendants: []
+  _color: {r: 0.03297438, g: 0.5377358, b: 0.25888026, a: 0}
+  _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
+  animation_Idle: {fileID: 7400000, guid: e0d8fa03bc1189e49b37aba67282e56c, type: 2}
+  animation_Right: {fileID: 7400000, guid: 395061a34e56a1c408c06fbd2fe54cf0, type: 2}
+  animation_Top: {fileID: 7400000, guid: f431a9612296f314cbd179e946dbec3e, type: 2}
+  animation_Bottom: {fileID: 7400000, guid: aa5172aaa649c1345989beec05d5a901, type: 2}
+  frame_Attack_Right: {fileID: 1737588782, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
+  frame_Attack_Top: {fileID: 449106069, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
+  frame_Attack_Bottom: {fileID: -1725206562, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}

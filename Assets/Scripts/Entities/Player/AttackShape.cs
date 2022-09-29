@@ -4,13 +4,13 @@
 public class AttackShape : ScriptableObject {
 
 	[SerializeField] private Hitbox rightPrefab;
-	[SerializeField] private Vector2 rightOffset;
+	[SerializeField] private Vector3 rightOffset;
 
 	[SerializeField] private Hitbox bottomPrefab;
-	[SerializeField] private Vector2 bottomOffset;
+	[SerializeField] private Vector3 bottomOffset;
 
 	[SerializeField] private Hitbox topPrefab;
-	[SerializeField] private Vector2 topOffset;
+	[SerializeField] private Vector3 topOffset;
 
 	[Tooltip("If true, the attacker can move while attacking")]
 	[SerializeField] private bool moveOnAttack = false;

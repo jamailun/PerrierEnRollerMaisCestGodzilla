@@ -71,6 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 786004580029304771}
   - component: {fileID: 786004580029304780}
+  - component: {fileID: 8790429531275555222}
   m_Layer: 8
   m_Name: Renderer
   m_TagString: Untagged
@@ -145,6 +146,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8790429531275555222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786004580029304770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b6ba948467a1c439c1918071588854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &786004580282506677
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,13 +216,17 @@ MonoBehaviour:
   attackDuration: 0.2
   attackDamage: 30
   attackCooldown: 0.25
-  attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
+  currentForm: {fileID: 0}
   experienceBar: {fileID: 0}
   evolveAllNlevels: 15
+  skillEveryNLevels: 3
+  newSkillScreen: {fileID: 0}
+  skillsDisplay: {fileID: 0}
   levelText: {fileID: 0}
   deathScreen: {fileID: 0}
   deathAnimation: {fileID: 0}
   deathAnimationDuration: 1.5
+  maxNumberOfPassives: 3
 --- !u!114 &786004580282506673
 MonoBehaviour:
   m_ObjectHideFlags: 0
