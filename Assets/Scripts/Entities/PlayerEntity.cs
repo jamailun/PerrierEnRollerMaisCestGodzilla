@@ -27,6 +27,8 @@ public class PlayerEntity : LivingEntity {
     [SerializeField] private int skillEveryNLevels = 3;
     [Tooltip("The reference to the new skill UI.")]
     [SerializeField] private NewSkillScreen newSkillScreen;
+    [Tooltip("The reference to the skills display UI.")]
+    [SerializeField] private SkillsDisplayer skillsDisplay;
     [Tooltip("The reference to the level UI.")]
     [SerializeField] private TMPro.TMP_Text levelText;
 
@@ -133,17 +135,24 @@ public class PlayerEntity : LivingEntity {
 
     private void LevelUp_Over(Skill skill) {
         Time.timeScale = 1f;
-        newSkillScreen.gameObject.SetActive(false);
-
-        skills.AddSkill(skill);
+        AddSkill(skill);
 
         //TODO update stats !
     }
     private void LevelUp_ThenEvolve(Skill skill) {
         Time.timeScale = 1f;
-        newSkillScreen.gameObject.SetActive(false);
+        AddSkill(skill);
         //TODO
         Debug.Log("should evolve right now !");
+    }
+
+    private void AddSkill(Skill skill) {
+        // add the skill
+        newSkillScreen.gameObject.SetActive(false);
+        skills.AddSkill(skill);
+
+        // Refresh global displayed list
+        skillsDisplay.SetSkills(skills.GetPassives());
     }
 
     protected override void Die() {

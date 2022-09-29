@@ -5,65 +5,48 @@ using System.Linq;
 
 public class SkillsSet {
 
-	private Dictionary<PassiveSkill, int> passives = new();
+	private Dictionary<Skill, int> skills = new();
 
-	private readonly int maxPassives;
+	private readonly int maxSkills;
 
-	public SkillsSet(int maxPassives) {
-		this.maxPassives = maxPassives;
+	public SkillsSet(int maxSkills) {
+		this.maxSkills = maxSkills;
 	}
 
 	public void AddSkill(Skill skill) {
-		if(skill.IsActive()) {
-			//TODO add active
-
+		if(skills.ContainsKey(skill)) {
+			skills[skill] += 1;
 		} else {
-			// Add PASSIVE
-			PassiveSkill passive = (PassiveSkill) skill;
-			if(passives.ContainsKey(passive)) {
-				passives[passive] += 1;
-			} else {
-				passives[passive] = 1;
-			}
+			skills[skill] = 1;
 		}
-		
 	}
 
-	public Dictionary<PassiveSkill, int> GetPassives() {
-		return passives;
+	public Dictionary<Skill, int> GetPassives() {
+		return skills;
 	}
 
-	public List<PassiveSkill> GetPossiblesPassivesSkills() {
+	public List<Skill> GetPossiblesSkills() {
 		// si on a rempli les passifs, on peut que avoir les notres
-		if(passives.Count >= maxPassives) {
+		if(skills.Count >= maxSkills) {
 			// Plus de nouveau skill dispo
-			return new List<PassiveSkill>(
+			return new List<Skill>(
 				// putain quel langage de merde, juste un simple filter+map ...
-				new List<KeyValuePair<PassiveSkill, int>>(passives.AsEnumerable()).FindAll(e => e.Value < e.Key.LevelMax).Select(e => e.Key)
+				new List<KeyValuePair<Skill, int>>(skills.AsEnumerable()).FindAll(e => e.Value < e.Key.LevelMax).Select(e => e.Key)
 			);
 		}
 
 		// il reste des skills dispos. donc on prend tous les skills et on retire ceux qu'on a au niveau max
-		return SkillLibrairy.GetPassiveSkills().FindAll(p => {
-			if(passives.ContainsKey(p)) {
-				return passives[p] < p.LevelMax;
+		return SkillLibrairy.GetSkills().FindAll(p => {
+			if(skills.ContainsKey(p)) {
+				return skills[p] < p.LevelMax;
 			} else {
 				return true;
 			}
 		});
 	}
-	public List<Skill> GetPossiblesActivesSkills() {
-		//TODO
-		return new();
-	}
 
 	public List<Skill> PickSkills(int amount) {
-		List<PassiveSkill> allowedPassives = GetPossiblesPassivesSkills();
-		List<Skill> allowedActives = GetPossiblesActivesSkills();
-
-		List<Skill> allowed = new();
-		allowed.AddRange(allowedPassives);
-		allowed.AddRange(allowedActives);
+		List<Skill> allowed = GetPossiblesSkills();
 
 		allowed.Shuffle();
 

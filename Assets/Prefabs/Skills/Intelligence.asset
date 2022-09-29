@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Intelligence
   m_EditorClassIdentifier: 
   _name: Intelligence
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 332909997, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 5
   _statistic: 8
   isMultiplicative: 1

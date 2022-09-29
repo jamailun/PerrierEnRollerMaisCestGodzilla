@@ -20,6 +20,9 @@ public class SkillLibrairy : MonoBehaviour {
 	public static List<PassiveSkill> GetPassiveSkills() {
 		return new List<PassiveSkill>(Instance.passiveSkills);
 	}
+	public static List<Skill> GetSkills() {
+		return new List<Skill>(Instance.passiveSkills);
+	}
 
 
 }
