@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "PassiveSkill", menuName = "PERMCG/Passive Skill", order = 2)]
+[CreateAssetMenu(fileName = "PassiveSkill", menuName = "PERMCG/Passive Skill", order = 1)]
 public class PassiveSkill : Skill {
 	public override SkillType SkillType { get { return SkillType.Passive; } }
 

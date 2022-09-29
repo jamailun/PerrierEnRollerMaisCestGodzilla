@@ -13,8 +13,8 @@ public class PlayerEntity : LivingEntity {
     [Tooltip("Cooldown between 2 attacks")]
     [SerializeField] private float attackCooldown = 0.25f;
 
-    [Tooltip("The shape of the attacks.")]
-    [SerializeField] private AttackShape attackShape;
+    [Tooltip("The current monster form.")]
+    [SerializeField] private PlayerForm currentForm;
 
     private bool attacking = false;
     private float nextAttack = 0;
@@ -52,9 +52,10 @@ public class PlayerEntity : LivingEntity {
     private float startedTime;
 
     private void Start() {
-        if(attackShape == null) {
-            Debug.LogError("Error, no attackshape for player.");
+        if(currentForm == null) {
+            Debug.LogError("Error, no currentForm for player.");
             enabled = false;
+            return;
         }
 
         startedTime = Time.time;
@@ -74,7 +75,7 @@ public class PlayerEntity : LivingEntity {
         nextAttack = Time.time + attackCooldown;
 
         attacking = true;
-        attackShape.SpawnHurtbox(orientation, transform, attackDamage, attackDuration);
+        currentForm.AttackShape.SpawnHurtbox(orientation, transform, attackDamage, attackDuration);
 
         // reset the boolean after some time.
         StartCoroutine(Utils.DoAfter(attackDuration, () => attacking = false));
@@ -85,7 +86,7 @@ public class PlayerEntity : LivingEntity {
     }
 
     public float GetSpeed() {
-        if(attacking && !attackShape.CanMoveOnAttack)
+        if(attacking && !currentForm.AttackShape.CanMoveOnAttack)
             return 0;
 
         // Can be used to do slow/run effects.

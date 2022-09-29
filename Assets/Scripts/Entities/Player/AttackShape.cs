@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "AttackShape", menuName = "PERMCG/AttackShape", order = 1)]
+[CreateAssetMenu(fileName = "AttackShape", menuName = "PERMCG/AttackShape", order = 3)]
 public class AttackShape : ScriptableObject {
 
 	[SerializeField] private Hitbox rightPrefab;
