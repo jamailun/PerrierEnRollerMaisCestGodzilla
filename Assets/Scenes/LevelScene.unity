@@ -15110,6 +15110,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 656556637}
     - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
+      propertyPath: skillsDisplay
+      value: 
+      objectReference: {fileID: 1091541797}
+    - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
       propertyPath: deathAnimation
       value: 
       objectReference: {fileID: 7867984894950069129, guid: 4b2cc696fd96135418e4eb5b25be0378, type: 3}
