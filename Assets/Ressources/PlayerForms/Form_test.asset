@@ -16,10 +16,26 @@ MonoBehaviour:
   _descendants: []
   _color: {r: 0.03297438, g: 0.5377358, b: 0.25888026, a: 0}
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
-  animation_Idle: {fileID: 7400000, guid: e0d8fa03bc1189e49b37aba67282e56c, type: 2}
-  animation_Right: {fileID: 7400000, guid: 395061a34e56a1c408c06fbd2fe54cf0, type: 2}
-  animation_Top: {fileID: 7400000, guid: f431a9612296f314cbd179e946dbec3e, type: 2}
-  animation_Bottom: {fileID: 7400000, guid: aa5172aaa649c1345989beec05d5a901, type: 2}
+  animation_Idle:
+    frameDuration: 0.3
+    points:
+    - {fileID: 1351697859, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
+    - {fileID: 1354934453, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
+  animation_Right:
+    frameDuration: 0.15
+    points:
+    - {fileID: 931615326, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
+    - {fileID: 9950698, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
+  animation_Top:
+    frameDuration: 0.15
+    points:
+    - {fileID: 841015328, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
+    - {fileID: -1722332707, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
+  animation_Bottom:
+    frameDuration: 0.15
+    points:
+    - {fileID: -232895780, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
+    - {fileID: 653754793, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
   frame_Attack_Right: {fileID: 1737588782, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
   frame_Attack_Top: {fileID: 449106069, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
   frame_Attack_Bottom: {fileID: -1725206562, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}

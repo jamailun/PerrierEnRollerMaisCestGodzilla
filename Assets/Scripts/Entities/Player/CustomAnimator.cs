@@ -29,7 +29,6 @@ public class CustomAnimator : MonoBehaviour {
 	}
 
 	public void Play(string animationName) {
-		Debug.Log("Try to play " + animationName);
 		if(nowPlayingName == animationName)
 			return;
 		if(!clips.ContainsKey(animationName)) {

@@ -220,6 +220,9 @@ public class PlayerEntity : LivingEntity {
         Animator.SetClip(ANIM_TOP, currentForm.animation_Top);
         Animator.SetClip(ANIM_DOWN, currentForm.animation_Bottom);
 
+        // add skill bonus ?
+        // 
+
     }
 
 }
