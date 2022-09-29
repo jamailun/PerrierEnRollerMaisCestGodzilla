@@ -23,6 +23,10 @@ public class PlayerEntity : LivingEntity {
     [SerializeField] private BarUI experienceBar;
     [Tooltip("The number modulo of the evolve trigger.")]
     [SerializeField] private int evolveAllNlevels = 15;
+    [Tooltip("The number modulo of the skill choice trigger.")]
+    [SerializeField] private int skillEveryNLevels = 3;
+    [Tooltip("The reference to the new skill UI.")]
+    [SerializeField] private NewSkillScreen newSkillScreen;
     [Tooltip("The reference to the level UI.")]
     [SerializeField] private TMPro.TMP_Text levelText;
 
@@ -32,6 +36,10 @@ public class PlayerEntity : LivingEntity {
     [SerializeField] private GameObject deathAnimation;
     [Tooltip("The duration of the death animation.")]
     [SerializeField] private float deathAnimationDuration;
+
+    [SerializeField] private int maxNumberOfPassives = 3;
+
+    private SkillsSet skills;
 
     public uint UpgradePoints { get; set; }
     public ulong ExperiencePoints { get; private set; }
@@ -50,8 +58,11 @@ public class PlayerEntity : LivingEntity {
         startedTime = Time.time;
         TimerUI.StartTimer();
 
+        ExperiencePoints = 0;
         experienceBar.Init(previousLevel, nextLevel, ExperiencePoints);
         levelText.text = "Lvl " + level;
+
+        skills = new SkillsSet(maxNumberOfPassives);
     }
 
 	public void TryAttack(Orientation orientation) {
@@ -92,9 +103,25 @@ public class PlayerEntity : LivingEntity {
         previousLevel = nextLevel;
         nextLevel *= 2;
 
-        if(level % evolveAllNlevels == 0) {
-            Debug.Log("Should evolve right now !");
-		}
+        if(level % skillEveryNLevels == 0) {
+            // Skill...
+
+            Time.timeScale = 0; //TODO faire un manager pour ce genre de connerie ?
+            newSkillScreen.gameObject.SetActive(true);
+
+            if(level % evolveAllNlevels == 0) {
+                // Skill + Evolve
+                newSkillScreen.FindSkills(skills, LevelUp_ThenEvolve);
+            } else {
+                // Skill.
+                newSkillScreen.FindSkills(skills, LevelUp_Over);
+            }
+        } else {
+            // Elvove.
+            if(level % evolveAllNlevels == 0) {
+                Debug.Log("Should evolve right now !");
+            }
+        }
 
         levelText.text = "Lvl " + level;
 
@@ -104,7 +131,22 @@ public class PlayerEntity : LivingEntity {
         //TODO vfx & sfx
 	}
 
-	protected override void Die() {
+    private void LevelUp_Over(Skill skill) {
+        Time.timeScale = 1f;
+        newSkillScreen.gameObject.SetActive(false);
+
+        skills.AddSkill(skill);
+
+        //TODO update stats !
+    }
+    private void LevelUp_ThenEvolve(Skill skill) {
+        Time.timeScale = 1f;
+        newSkillScreen.gameObject.SetActive(false);
+        //TODO
+        Debug.Log("should evolve right now !");
+    }
+
+    protected override void Die() {
         // Save data
         PersistentData.EndRun(Time.time - startedTime, level, UpgradePoints);
         TimerUI.Stop();

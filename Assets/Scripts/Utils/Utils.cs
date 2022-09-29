@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Class offering static utils methods.
@@ -27,5 +28,20 @@ public class Utils {
 	public static IEnumerator DoAfter(float duration, Runnable runnable) {
 		yield return new WaitForSeconds(duration);
 		runnable();
+	}
+	
+}
+
+// Quel langage de merde...
+static class CSharpExtension {
+	public static void Shuffle<T>(this IList<T> list) {
+		int n = list.Count;
+		while(n > 1) {
+			n--;
+			int k = Random.Range(0, n);
+			T value = list[k];
+			list[k] = list[n];
+			list[n] = value;
+		}
 	}
 }
