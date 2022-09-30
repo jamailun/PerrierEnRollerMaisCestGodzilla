@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public class Enemy : LivingEntity {
 
 	[Header("Enemy attributes")]
-	[Tooltip("Descries the IA of the Enemy.")]
+	[Tooltip("Describes the IA of the Enemy.")]
 	[SerializeField] private EnemyType enemyType;
 
     // -------------------------------------------------------------
@@ -22,14 +22,57 @@ public class Enemy : LivingEntity {
     [Tooltip("Time between recalculation (in seconds).")]
     [SerializeField] private float recalculateAfter = 0.2f;
 
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    [Tooltip("Amont of damages to deal")]
+    [SerializeField] private float attackDamages = 10f;
+
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    [Tooltip("Time between two attacks of an enemy, in seconds")]
+    [SerializeField] private float attackSpeed = 1f;
+
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    [Tooltip("Percentage of intentional error between two attacks")]
+    [Range(0f, 0.5f)]
+    [SerializeField] private float attackSpeedEpsilon = 0.05f;
+
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    [Tooltip("Attack effect on shot")]
+    [SerializeField] private ParticleSystem attackEffect;
+
+    // Melee
+
+    [SerializeIf("enemyType", EnemyType.Melee)]
+    [Tooltip("The RAnge required to attack the player")]
+    [SerializeField] private float meleeRange = .5f;
+
+    // Distance
+
     [SerializeIf("enemyType", EnemyType.Distance)]
+    [Tooltip("The distance exact to keep from the target")]
     [SerializeField] private float distance_wanted = 2.2f;
+    
     [SerializeIf("enemyType", EnemyType.Distance)]
+    [Tooltip("The allowed error of distance to keep")]
     [SerializeField] private float distance_epsilon = .3f;
+
+    [SerializeIf("enemyType", EnemyType.Distance)]
+    [Tooltip("Time before shoot")]
+    [SerializeField] private float distance_shot_load = .8f;
+
+    [SerializeIf("enemyType", EnemyType.Distance)]
+    [Tooltip("Projectile to shot")]
+    [SerializeField] private Projectile projectile_prefab;
+
+    [SerializeIf("enemyType", EnemyType.Distance)]
+    [Tooltip("Transform to shot projectiles from")]
+    [SerializeField] private Transform projectile_output;
 
     [Space]
 
+    [Tooltip("The experience prefab to use.")]
     [SerializeField] private ExperienceBall experiencePrefab;
+
+    [Tooltip("The amount of experience to drop")]
     [SerializeField] private ulong droppedExp = 10;
 
     // -------------------------------------------------------------
@@ -38,6 +81,7 @@ public class Enemy : LivingEntity {
     private SpriteRenderer spriteRenderer;
 
     private float nextRecalculate; // next time to recalulate trajectory
+    private float nextAttackAllowed; // prochaine attaque.
 
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -84,26 +128,36 @@ public class Enemy : LivingEntity {
         // Change target
         if(Time.time >= nextRecalculate)
             Recalculate();
-
-
     }
+
+
     private void Recalculate() {
         // Set destination according to the type
+        float d = Vector2.Distance(transform.position, target.position);
         switch(enemyType) {
 
             // Melee always rush to the player
             case EnemyType.Melee:
+                if(d <= meleeRange && Time.time >= nextAttackAllowed) {
+                    Attack(false);
+                    break;
+				}
                 agent.SetDestination(target.position);
                 break;
 
             case EnemyType.Distance:
-                float d = Vector2.Distance(transform.position, target.position);
                 if((d < distance_wanted - distance_epsilon) || (d > distance_wanted + distance_epsilon)) {
                     var vec = (transform.position - target.position);
                     var movement = vec.normalized * (distance_wanted - d);
 
                     agent.SetDestination(transform.position + movement);
-				}
+				} else {
+                    // on est dans la range, on attaque
+                    if(Time.time >= nextAttackAllowed) {
+                        Attack(true);
+                        break;
+                    }
+                }
                 break;
 
         }
@@ -111,6 +165,39 @@ public class Enemy : LivingEntity {
         // Change recalculation.
         nextRecalculate = Time.time + recalculateAfter;
     }
+
+    private void Attack(bool distance) {
+        nextAttackAllowed = Time.time + (attackSpeed * (1f + Random.Range(-attackSpeedEpsilon, attackSpeedEpsilon)));
+
+        agent.isStopped = true;
+
+        Debug.Log(gameObject.name + " ATTACK !");
+
+        if(distance) {
+            nextAttackAllowed += distance_shot_load;
+            nextRecalculate += distance_shot_load * 1.1f;
+
+            StartCoroutine(Utils.DoAfter(distance_shot_load * 1.1f, () => agent.isStopped = false));
+            StartCoroutine(Cor_AttackDistance());
+            return;
+        }
+
+
+	}
+
+    private IEnumerator Cor_AttackDistance() {
+        yield return new WaitForSeconds(distance_shot_load);
+
+        if(attackEffect != null) {
+            var vfx = Instantiate(attackEffect);
+            vfx.transform.SetPositionAndRotation(new Vector3(projectile_output.position.x, projectile_output.position.y, -.1f), Quaternion.identity);
+            //SFX ?
+        }
+
+        var proj = Instantiate(projectile_prefab);
+        proj.Init(projectile_output, target.position - transform.position, transform);
+        proj.damages = attackDamages;
+	}
 
 	protected override void Die() {
         // Drop item before delete the gameobject
