@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.AI;
 
 // pour faire un truc avec les boss, il faudrait que cette classe soit abstraite avec juste une methode Getter de enemytype;
@@ -11,18 +12,30 @@ public class Enemy : LivingEntity {
 	[Tooltip("Descries the IA of the Enemy.")]
 	[SerializeField] private EnemyType enemyType;
 
-    private NavMeshAgent agent;
-    private SpriteRenderer spriteRenderer;
+    // -------------------------------------------------------------
 
+    [Space]
+
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [SerializeField] private Transform target;
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Time between recalculation (in seconds).")]
     [SerializeField] private float recalculateAfter = 0.2f;
 
+    [SerializeIf("enemyType", EnemyType.Distance)]
     [SerializeField] private float distance_wanted = 2.2f;
+    [SerializeIf("enemyType", EnemyType.Distance)]
     [SerializeField] private float distance_epsilon = .3f;
+
+    [Space]
 
     [SerializeField] private ExperienceBall experiencePrefab;
     [SerializeField] private ulong droppedExp = 10;
+
+    // -------------------------------------------------------------
+
+    private NavMeshAgent agent;
+    private SpriteRenderer spriteRenderer;
 
     private float nextRecalculate; // next time to recalulate trajectory
 
