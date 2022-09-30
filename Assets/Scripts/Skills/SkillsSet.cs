@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 public class SkillsSet {
 
-	private Dictionary<Skill, int> skills = new();
+	private readonly Dictionary<Skill, int> skills = new();
 
 	private readonly int maxSkills;
 
@@ -21,8 +19,18 @@ public class SkillsSet {
 		}
 	}
 
-	public Dictionary<Skill, int> GetPassives() {
+	public Dictionary<Skill, int> GetSkills() {
 		return skills;
+	}
+
+	public Dictionary<PassiveSkill, int> GetPassiveSkills() {
+		Dictionary<PassiveSkill, int> passives = new();
+		foreach(var en in skills) {
+			if( ! en.Key.IsActive()) {
+				passives.Add((PassiveSkill) en.Key, en.Value);
+			}
+		}
+		return passives;
 	}
 
 	public List<Skill> GetPossiblesSkills() {

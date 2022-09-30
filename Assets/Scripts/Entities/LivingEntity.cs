@@ -7,6 +7,15 @@ public abstract class LivingEntity : MonoBehaviour {
     [Tooltip("The max health of this entity.")]
     [SerializeField] private float _maxHealth = 100f;
 
+    [Tooltip("Regeneration per second.")]
+    [SerializeField] protected float _healthRegen = 0.1f;
+
+    [Tooltip("Flat armor")]
+    [SerializeField] protected float _flatArmor = 0f;
+
+    [Tooltip("Flat damages")]
+    [SerializeField] protected float _flatDamages = 0f;
+
     [Tooltip("The movement speed of this entity.")]
     [SerializeField] protected float _speed = 8f;
 
@@ -22,12 +31,6 @@ public abstract class LivingEntity : MonoBehaviour {
 
     private bool initialized = false;
     protected bool dead = false;
-
-    protected virtual float LifeChangeRequest(float oldAmount, float newAmount) {
-        if(invincible && newAmount < oldAmount)
-            return oldAmount;
-        return newAmount;
-    }
 
 	private void Awake() {
         // If a child overrides #Awake, it has to call the #InitLiving.
@@ -64,8 +67,17 @@ public abstract class LivingEntity : MonoBehaviour {
         return false;
 	}
 
+    public void AddMaxHealth(float amount) {
+        if(IsDead())
+            return;
+        _maxHealth += amount;
+        healthBar.Init(0, _maxHealth, Health);
+	}
+
     public void Damage(float damage) {
         AssertInitialized();
+
+        damage -= GetDamageReduction();
         if(damage < 0 || dead || invincible)
             return;
 
@@ -94,18 +106,28 @@ public abstract class LivingEntity : MonoBehaviour {
         // */
     }
 
-    private void AssertInitialized() {
+    protected virtual float GetDamageReduction() {
+        return _flatArmor;
+	}
+
+	private void LateUpdate() {
+        if(_healthRegen > 0)
+            Heal(_healthRegen * Time.deltaTime, false);
+	}
+
+	private void AssertInitialized() {
         if(!initialized)
             Debug.LogError("LIVING ENTITY " + name + " HASN'T BEEN INITIALIZED.");
     }
 
-    public void Heal(float heal) {
+    public void Heal(float heal, bool showText = true) {
         AssertInitialized();
         if(heal < 0 || dead)
             return;
 
         Health += heal;
-        SpawnDamageText(-heal);
+        if(showText)
+            SpawnDamageText(-heal);
 
         if(Health > MaxHealth)
             Health = MaxHealth;

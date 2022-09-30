@@ -11,7 +11,7 @@ public class AttackShape : ScriptableObject {
 
 	[Tooltip("Damage of an attack")]
 	[SerializeField] private float attackDamage = 30f;
-	public float AttackDamage => attackDamage;
+	public float AttackDamageBonus => attackDamage;
 
 	[Tooltip("Cooldown between 2 attacks")]
 	[SerializeField] private float attackCooldown = 0.25f;

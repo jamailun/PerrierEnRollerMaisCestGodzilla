@@ -28,8 +28,12 @@ public class PlayerEntity : LivingEntity {
     [Tooltip("The duration of the death animation.")]
     [SerializeField] private float deathAnimationDuration;
 
-    // Skill set
+    // Data set
     private SkillsSet skills;
+    private readonly StatisticsSet stats = new();
+    // Buffers, to not recalculate everything 200 times per second.
+    private float buffer_Speed;
+    private float buffer_Armor;
 
     // In case of multiple level up, we ave to keep track of how many skills/evolve we can get.
     private int skillsToGet = 0;
@@ -77,6 +81,9 @@ public class PlayerEntity : LivingEntity {
         UI.ExperienceLabel.text = "Lvl " + level;
 
         skills = new SkillsSet(maxNumberOfPassives);
+
+        // calculate buffers
+        UpdateBufferStats();
     }
 
 	public void TryAttack(Orientation orientation) {
@@ -84,13 +91,16 @@ public class PlayerEntity : LivingEntity {
         if(Time.time < nextAttack)
                 return;
         nextAttack = Time.time + currentForm.AttackShape.AttackCooldown;
-
         attacking = true;
-        float attackDamage = currentForm.AttackShape.AttackDamage; //TODO ajouter les stats
-        currentForm.AttackShape.SpawnHurtbox(orientation, transform, attackDamage, currentForm.AttackShape.AttackDuration);
+
+        // Create the attack itself
+        float attackDuration = currentForm.AttackShape.AttackDuration;
+        float attackDamage = stats.GetPower(Statistic.Attack, _flatDamages + currentForm.AttackShape.AttackDamageBonus);
+        currentForm.AttackShape.SpawnHurtbox(orientation, transform, attackDamage, attackDuration);
+        //TODO ajouter les dmg spécifiques sur batiments et ennemis.
 
         // reset the boolean after some time.
-        StartCoroutine(Utils.DoAfter(currentForm.AttackShape.AttackDuration, () => attacking = false));
+        StartCoroutine(Utils.DoAfter(attackDuration, () => attacking = false));
 	}
 
     public override bool IsPlayer() {
@@ -102,11 +112,11 @@ public class PlayerEntity : LivingEntity {
             return 0;
 
         // Can be used to do slow/run effects.
-        return _speed;
+        return buffer_Speed;
 	}
 
     public void AddExperience(ulong amount) {
-        ExperiencePoints += amount;
+        ExperiencePoints += (ulong) stats.GetPower(Statistic.ExpGained, amount);
         while(ExperiencePoints > nextLevelExo) {
             LevelUp();
 		}
@@ -115,10 +125,17 @@ public class PlayerEntity : LivingEntity {
 
 
     private void LevelUp() {
+        // exp variables
         level++;
         previousLevelExp = nextLevelExo;
         nextLevelExo *= 2;
 
+        // add stats
+        AddMaxHealth(currentForm.bonusMaxHealthPerLevel);
+        _flatDamages += currentForm.bonusAttackPerLevel;
+        UpdateBufferStats();
+
+        // skills & evolve
         if(level % skillEveryNLevels == 0) {
             skillsToGet++;
         }
@@ -132,8 +149,16 @@ public class PlayerEntity : LivingEntity {
         UI.ExperienceLabel.text = "Lvl " + level;
 	}
 
-    private void TryUpgrade() {
+    private void UpdateBufferStats() {
+        buffer_Speed = stats.GetPower(Statistic.Speed, _speed);
+        buffer_Armor = stats.GetPower(Statistic.Defense, _flatDamages);
+    }
 
+	protected override float GetDamageReduction() {
+        return buffer_Armor;
+	}
+
+	private void TryUpgrade() {
         // Gagner un skill
         if(skillsToGet > 0) {
             Time.timeScale = 0f;
@@ -180,10 +205,14 @@ public class PlayerEntity : LivingEntity {
         skills.AddSkill(skill);
 
         // Refresh global displayed list
-        UI.SkillsDisplayer.SetSkills(skills.GetPassives());
+        UI.SkillsDisplayer.SetSkills(skills.GetSkills());
 
-        //TODO update stats !
+        // Update stats
+        stats.ResetFrom(skills);
+        UpdateBufferStats();
     }
+
+
 
     protected override void Die() {
         // Save data
@@ -239,8 +268,6 @@ public class PlayerEntity : LivingEntity {
         Animator.SetClip(ANIM_DOWN, currentForm.animation_Bottom);
 
         // add skill bonus ?
-        // 
-
     }
 
 }
