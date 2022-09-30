@@ -13,7 +13,7 @@ public class BarUI : MonoBehaviour {
 
 	private void Start() {
 		value = MaxValue;
-		UpdateImage();
+		//UpdateImage();
 	}
 
 	/// <summary>

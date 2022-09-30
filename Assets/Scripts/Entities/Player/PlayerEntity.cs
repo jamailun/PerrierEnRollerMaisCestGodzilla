@@ -5,42 +5,54 @@ public class PlayerEntity : LivingEntity {
 
     [Header("UI link")]
 
+    [Tooltip("UI Manager reference")]
     [SerializeField] private ManagerUI UI;
 
     [Header("Player configuration.")]
 
     [Tooltip("The current monster form.")]
     [SerializeField] private PlayerForm currentForm;
+    public PlayerForm PlayerForm => currentForm;
 
-    [Tooltip("UI Manager reference")]
-
-    private bool attacking = false;
-    private float nextAttack = 0;
-
+    // config with numbers
     [Tooltip("The number modulo of the skill choice trigger.")]
     [SerializeField] private int skillEveryNLevels = 3;
     [Tooltip("The number modulo of the evolve trigger.")]
     [SerializeField] private int evolveEveryNLevels = 15;
+    [Tooltip("Amount of differents passive skills")]
+    [SerializeField] private int maxNumberOfPassives = 3;
 
+    // config of death
     [Tooltip("The prefab for the death animation")]
     [SerializeField] private GameObject deathAnimation;
     [Tooltip("The duration of the death animation.")]
     [SerializeField] private float deathAnimationDuration;
 
-    [SerializeField] private int maxNumberOfPassives = 3;
-
+    // Skill set
     private SkillsSet skills;
 
+    // In case of multiple level up, we ave to keep track of how many skills/evolve we can get.
+    private int skillsToGet = 0;
+    private int evolvesToGet = 0;
+
+    // Points get during this run
     public uint UpgradePoints { get; set; }
     public ulong ExperiencePoints { get; private set; }
-    private int level = 1;
-    private ulong nextLevel = 100;
-    private ulong previousLevel = 0;
 
+    // Level variables
+    private int level = 1;
+    private ulong nextLevelExo = 100;
+    private ulong previousLevelExp = 0;
+
+    // Attacking variables
+    private bool attacking = false;
+    private float nextAttack = 0;
+
+    // The start time of the player. Used to determine the length of a run.
     private float startedTime;
 
+    // Reference to the animator.
     public CustomAnimator Animator { get; private set; }
-    public PlayerForm PlayerForm => currentForm;
 
     private void Start() {
         Animator = GetComponentInChildren<CustomAnimator>();
@@ -61,7 +73,7 @@ public class PlayerEntity : LivingEntity {
         TimerUI.StartTimer();
 
         ExperiencePoints = 0;
-        UI.ExperienceBar.Init(previousLevel, nextLevel, ExperiencePoints);
+        AddExperience(0); // update the bar
         UI.ExperienceLabel.text = "Lvl " + level;
 
         skills = new SkillsSet(maxNumberOfPassives);
@@ -95,63 +107,71 @@ public class PlayerEntity : LivingEntity {
 
     public void AddExperience(ulong amount) {
         ExperiencePoints += amount;
-        while(ExperiencePoints > nextLevel) {
+        while(ExperiencePoints > nextLevelExo) {
             LevelUp();
 		}
-        UI.ExperienceBar.Init(previousLevel, nextLevel, ExperiencePoints);
-	}
+        UI.ExperienceBar.Init(previousLevelExp, nextLevelExo, ExperiencePoints);
+    }
+
 
     private void LevelUp() {
         level++;
-        previousLevel = nextLevel;
-        nextLevel *= 2;
+        previousLevelExp = nextLevelExo;
+        nextLevelExo *= 2;
 
         if(level % skillEveryNLevels == 0) {
-            // Skill...
-
-            Time.timeScale = 0; //TODO faire un manager pour ce genre de connerie ?
-            UI.NewSkillScreen.gameObject.SetActive(true);
-
-            if(level % evolveEveryNLevels == 0) {
-                // Skill + Evolve
-                UI.NewSkillScreen.FindSkills(skills, LevelUp_ThenEvolve);
-            } else {
-                // Skill.
-                UI.NewSkillScreen.FindSkills(skills, LevelUp_Over);
-            }
-        } else {
-            // Elvove.
-            if(level % evolveEveryNLevels == 0) {
-                Time.timeScale = 0;
-                UI.EvolveScreen.gameObject.SetActive(true);
-                UI.EvolveScreen.DisplayForms(currentForm.Descendants, ChangePlayerForm);
-            }
+            skillsToGet++;
         }
+        if(level % evolveEveryNLevels == 0) {
+            evolvesToGet++;
+        }
+        Heal(MaxHealth * 0.2f);
+
+        TryUpgrade();
 
         UI.ExperienceLabel.text = "Lvl " + level;
-
-        Debug.Log("Level up ! nex level="+level);
-        Heal(MaxHealth * 0.2f); // heal de 20% ??
-
-        //TODO vfx & sfx
 	}
 
-    private void LevelUp_Over(Skill skill) {
-        Time.timeScale = 1f;
-        AddSkill(skill);
-    }
-    private void LevelUp_ThenEvolve(Skill skill) {
-        // Check si on PEUT évoluer
-        if(currentForm.Descendants.Count == 0) {
-            LevelUp_Over(skill);
+    private void TryUpgrade() {
+
+        // Gagner un skill
+        if(skillsToGet > 0) {
+            Time.timeScale = 0f;
+            UI.NewSkillScreen.gameObject.SetActive(true);
+            UI.NewSkillScreen.FindSkills(skills, Upgrade_Skill);
+            return;
+		}
+
+        // Évoluer
+        if(evolvesToGet > 0 && currentForm.Descendants.Count > 0) {
+            Time.timeScale = 0f;
+            UI.EvolveScreen.gameObject.SetActive(true);
+            UI.EvolveScreen.DisplayForms(currentForm.Descendants, Upgrade_PlayerForm);
             return;
         }
-        // Sinon
+
+        // Si rien à faire, on continue le temps.
+        Time.timeScale = 1f;
+    }
+
+    private void Upgrade_Skill(Skill skill) {
+        UI.NewSkillScreen.gameObject.SetActive(false);
 
         AddSkill(skill);
 
-        UI.EvolveScreen.gameObject.SetActive(true);
-        UI.EvolveScreen.DisplayForms(currentForm.Descendants, ChangePlayerForm);
+        skillsToGet--;
+
+        TryUpgrade();
+    }
+
+    private void Upgrade_PlayerForm(PlayerForm form) {
+        UI.EvolveScreen.gameObject.SetActive(false);
+
+        ChangePlayerForm(form);
+
+        evolvesToGet--;
+
+        TryUpgrade();
     }
 
     private void AddSkill(Skill skill) {
@@ -204,10 +224,6 @@ public class PlayerEntity : LivingEntity {
     }
 
     private void ChangePlayerForm(PlayerForm form) {
-        Time.timeScale = 1f;
-        UI.EvolveScreen.gameObject.SetActive(false);
-
-
         currentForm = form;
         UpdatePlayerForm();
 	}

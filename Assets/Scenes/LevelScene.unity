@@ -1726,15 +1726,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.85
+      value: 19.18
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.66
+      value: 6.6
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1767,6 +1767,10 @@ PrefabInstance:
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1231743013400264615, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
+      propertyPath: experienceAmount
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264616, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_Name
@@ -2262,6 +2266,10 @@ PrefabInstance:
     - target: {fileID: 7117246351492565665, guid: 09e423fcf44d6294b991091f67a96a47, type: 3}
       propertyPath: m_Name
       value: ExperienceBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117246351492565671, guid: 09e423fcf44d6294b991091f67a96a47, type: 3}
+      propertyPath: _DEBUG
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7117246352504540090, guid: 09e423fcf44d6294b991091f67a96a47, type: 3}
       propertyPath: m_Color.b
@@ -3757,15 +3765,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.73
+      value: 10.53
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.64
+      value: 6.59
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3798,6 +3806,10 @@ PrefabInstance:
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1231743013400264615, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
+      propertyPath: experienceAmount
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264616, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_Name
@@ -15634,6 +15646,10 @@ PrefabInstance:
       propertyPath: evolveAllNlevels
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
+      propertyPath: maxNumberOfPassives
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 786004580282506679, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -15693,7 +15709,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalScale.x
@@ -15705,11 +15721,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.485
+      value: 14.22
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.803
+      value: 6.58
       objectReference: {fileID: 0}
     - target: {fileID: 1231743013400264613, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15916,7 +15932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4334426379730191162, guid: d5fc8079adc837947b3f333c6544a646, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4334426379730191162, guid: d5fc8079adc837947b3f333c6544a646, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15988,7 +16004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &4334426379881847592
 Rigidbody2D:
   serializedVersion: 4
@@ -16065,7 +16081,7 @@ Transform:
   - {fileID: 4334426379059034564}
   - {fileID: 4334426379900711495}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4334426379881847598
 MonoBehaviour:
@@ -16242,6 +16258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireZone
       objectReference: {fileID: 0}
+    - target: {fileID: 5529419691168601508, guid: 5bfdd00750d3e844eaa51ab7384a1be5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bfdd00750d3e844eaa51ab7384a1be5, type: 3}
 --- !u!222 &6837431850742224448
@@ -16383,6 +16403,7 @@ MonoBehaviour:
   content: {fileID: 6837431850742224451}
   MinValue: 0
   MaxValue: 100
+  _DEBUG: 0
 --- !u!114 &6837431851745548127
 MonoBehaviour:
   m_ObjectHideFlags: 0

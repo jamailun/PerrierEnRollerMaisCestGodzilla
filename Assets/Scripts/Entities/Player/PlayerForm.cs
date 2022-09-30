@@ -16,6 +16,9 @@ public class PlayerForm : ScriptableObject {
 	[SerializeField] private Color _color = Color.white;
 	public Color Color => _color;
 
+	[SerializeField] private float _scale = 1f;
+	public float Scale => _scale;
+
 	[SerializeField] private Sprite _bannerImage;
 	public Sprite BannerImage => _bannerImage;
 
