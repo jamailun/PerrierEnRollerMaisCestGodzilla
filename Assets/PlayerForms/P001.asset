@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9509ddd1e297a3c4a87a485c4a74d563, type: 3}
+  m_Name: P001
+  m_EditorClassIdentifier: 
+  _name: P001
+  _descendants: []
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _bannerImage: {fileID: 0}
+  _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
+  animation_Idle:
+    frameDuration: 0.3
+    points:
+    - {fileID: 21300000, guid: d28a09e8fa7ea91498a6161370522044, type: 3}
+  animation_Right:
+    frameDuration: 0.15
+    points:
+    - {fileID: 21300000, guid: 7f906d02f30e54a4eaa8656d2fd47584, type: 3}
+  animation_Top:
+    frameDuration: 0.15
+    points:
+    - {fileID: 21300000, guid: c2c0dc39c5462ee418dfff8f4fa170c3, type: 3}
+  animation_Bottom:
+    frameDuration: 0.15
+    points:
+    - {fileID: 21300000, guid: d28a09e8fa7ea91498a6161370522044, type: 3}
+  frame_Attack_Right: {fileID: 21300000, guid: edecdded5a9245441a4372df3a139a8b, type: 3}
+  frame_Attack_Top: {fileID: 21300000, guid: afe9210b81b8803439b476e5ba9c709d, type: 3}
+  frame_Attack_Bottom: {fileID: 21300000, guid: 41ed0b1f920958d45aa24888e2287f95, type: 3}

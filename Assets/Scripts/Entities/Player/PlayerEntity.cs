@@ -3,39 +3,25 @@ using System.Collections;
 
 public class PlayerEntity : LivingEntity {
 
+    [Header("UI link")]
+
+    [SerializeField] private ManagerUI UI;
+
     [Header("Player configuration.")]
-    [Tooltip("Duration of an attack")]
-    [SerializeField] private float attackDuration = 0.2f;
-
-    [Tooltip("Damage of an attack")]
-    [SerializeField] private float attackDamage = 30f;
-
-    [Tooltip("Cooldown between 2 attacks")]
-    [SerializeField] private float attackCooldown = 0.25f;
 
     [Tooltip("The current monster form.")]
     [SerializeField] private PlayerForm currentForm;
 
+    [Tooltip("UI Manager reference")]
+
     private bool attacking = false;
     private float nextAttack = 0;
 
-    [Tooltip("The reference to the experience bar.")]
-    [SerializeField] private BarUI experienceBar;
-    [Tooltip("The number modulo of the evolve trigger.")]
-    [SerializeField] private int evolveAllNlevels = 15;
     [Tooltip("The number modulo of the skill choice trigger.")]
     [SerializeField] private int skillEveryNLevels = 3;
-    [Tooltip("The reference to the new skill UI.")]
-    [SerializeField] private NewSkillScreen newSkillScreen;
-    [Tooltip("The reference to the skills display UI.")]
-    [SerializeField] private SkillsDisplayer skillsDisplay;
-    [Tooltip("The reference to the evolve UI.")]
-    [SerializeField] private EvolveScreen evolveScreen;
-    [Tooltip("The reference to the level UI.")]
-    [SerializeField] private TMPro.TMP_Text levelText;
+    [Tooltip("The number modulo of the evolve trigger.")]
+    [SerializeField] private int evolveEveryNLevels = 15;
 
-    [Tooltip("The reference to the death screen layout.")]
-    [SerializeField] private DeathScreen deathScreen;
     [Tooltip("The prefab for the death animation")]
     [SerializeField] private GameObject deathAnimation;
     [Tooltip("The duration of the death animation.")]
@@ -75,8 +61,8 @@ public class PlayerEntity : LivingEntity {
         TimerUI.StartTimer();
 
         ExperiencePoints = 0;
-        experienceBar.Init(previousLevel, nextLevel, ExperiencePoints);
-        levelText.text = "Lvl " + level;
+        UI.ExperienceBar.Init(previousLevel, nextLevel, ExperiencePoints);
+        UI.ExperienceLabel.text = "Lvl " + level;
 
         skills = new SkillsSet(maxNumberOfPassives);
     }
@@ -85,13 +71,14 @@ public class PlayerEntity : LivingEntity {
         // check cooldown.
         if(Time.time < nextAttack)
                 return;
-        nextAttack = Time.time + attackCooldown;
+        nextAttack = Time.time + currentForm.AttackShape.AttackCooldown;
 
         attacking = true;
-        currentForm.AttackShape.SpawnHurtbox(orientation, transform, attackDamage, attackDuration);
+        float attackDamage = currentForm.AttackShape.AttackDamage; //TODO ajouter les stats
+        currentForm.AttackShape.SpawnHurtbox(orientation, transform, attackDamage, currentForm.AttackShape.AttackDuration);
 
         // reset the boolean after some time.
-        StartCoroutine(Utils.DoAfter(attackDuration, () => attacking = false));
+        StartCoroutine(Utils.DoAfter(currentForm.AttackShape.AttackDuration, () => attacking = false));
 	}
 
     public override bool IsPlayer() {
@@ -111,7 +98,7 @@ public class PlayerEntity : LivingEntity {
         while(ExperiencePoints > nextLevel) {
             LevelUp();
 		}
-        experienceBar.Init(previousLevel, nextLevel, ExperiencePoints);
+        UI.ExperienceBar.Init(previousLevel, nextLevel, ExperiencePoints);
 	}
 
     private void LevelUp() {
@@ -123,25 +110,25 @@ public class PlayerEntity : LivingEntity {
             // Skill...
 
             Time.timeScale = 0; //TODO faire un manager pour ce genre de connerie ?
-            newSkillScreen.gameObject.SetActive(true);
+            UI.NewSkillScreen.gameObject.SetActive(true);
 
-            if(level % evolveAllNlevels == 0) {
+            if(level % evolveEveryNLevels == 0) {
                 // Skill + Evolve
-                newSkillScreen.FindSkills(skills, LevelUp_ThenEvolve);
+                UI.NewSkillScreen.FindSkills(skills, LevelUp_ThenEvolve);
             } else {
                 // Skill.
-                newSkillScreen.FindSkills(skills, LevelUp_Over);
+                UI.NewSkillScreen.FindSkills(skills, LevelUp_Over);
             }
         } else {
             // Elvove.
-            if(level % evolveAllNlevels == 0) {
+            if(level % evolveEveryNLevels == 0) {
                 Time.timeScale = 0;
-                evolveScreen.gameObject.SetActive(true);
-                evolveScreen.DisplayForms(currentForm.Descendants, ChangePlayerForm);
+                UI.EvolveScreen.gameObject.SetActive(true);
+                UI.EvolveScreen.DisplayForms(currentForm.Descendants, ChangePlayerForm);
             }
         }
 
-        levelText.text = "Lvl " + level;
+        UI.ExperienceLabel.text = "Lvl " + level;
 
         Debug.Log("Level up ! nex level="+level);
         Heal(MaxHealth * 0.2f); // heal de 20% ??
@@ -163,17 +150,17 @@ public class PlayerEntity : LivingEntity {
 
         AddSkill(skill);
 
-        evolveScreen.gameObject.SetActive(true);
-        evolveScreen.DisplayForms(currentForm.Descendants, ChangePlayerForm);
+        UI.EvolveScreen.gameObject.SetActive(true);
+        UI.EvolveScreen.DisplayForms(currentForm.Descendants, ChangePlayerForm);
     }
 
     private void AddSkill(Skill skill) {
         // add the skill
-        newSkillScreen.gameObject.SetActive(false);
+        UI.NewSkillScreen.gameObject.SetActive(false);
         skills.AddSkill(skill);
 
         // Refresh global displayed list
-        skillsDisplay.SetSkills(skills.GetPassives());
+        UI.SkillsDisplayer.SetSkills(skills.GetPassives());
 
         //TODO update stats !
     }
@@ -191,7 +178,7 @@ public class PlayerEntity : LivingEntity {
 
         StartCoroutine(Utils.DoAfter(deathAnimationDuration, () => {
             // display the screen after X time.
-            deathScreen.gameObject.SetActive(true);
+            UI.DeathScreen.gameObject.SetActive(true);
         }));
 
         // hop on devient tout mort
@@ -218,7 +205,7 @@ public class PlayerEntity : LivingEntity {
 
     private void ChangePlayerForm(PlayerForm form) {
         Time.timeScale = 1f;
-        evolveScreen.gameObject.SetActive(false);
+        UI.EvolveScreen.gameObject.SetActive(false);
 
 
         currentForm = form;

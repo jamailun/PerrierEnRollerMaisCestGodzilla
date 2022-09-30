@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9509ddd1e297a3c4a87a485c4a74d563, type: 3}
-  m_Name: Form_test 2
+  m_Name: tB
   m_EditorClassIdentifier: 
   _name: INSECTOID
   _descendants: []

@@ -213,18 +213,11 @@ MonoBehaviour:
   _speed: 500
   healthBar: {fileID: 0}
   invincible: 0
-  attackDuration: 0.2
-  attackDamage: 30
-  attackCooldown: 0.25
-  currentForm: {fileID: 0}
-  experienceBar: {fileID: 0}
-  evolveAllNlevels: 15
-  skillEveryNLevels: 3
-  newSkillScreen: {fileID: 0}
-  skillsDisplay: {fileID: 0}
-  levelText: {fileID: 0}
-  deathScreen: {fileID: 0}
-  deathAnimation: {fileID: 0}
+  currentForm: {fileID: 11400000, guid: 96df1bada9c15fc4aa39241a2fddb66a, type: 2}
+  UI: {fileID: 0}
+  skillEveryNLevels: 1
+  evolveEveryNLevels: 15
+  deathAnimation: {fileID: 7867984894950069129, guid: 4b2cc696fd96135418e4eb5b25be0378, type: 3}
   deathAnimationDuration: 1.5
   maxNumberOfPassives: 3
 --- !u!114 &786004580282506673

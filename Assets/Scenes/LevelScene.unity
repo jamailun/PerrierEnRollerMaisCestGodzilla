@@ -1493,7 +1493,7 @@ RectTransform:
   - {fileID: 45696017}
   - {fileID: 298010444}
   m_Father: {fileID: 937105140}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1840,7 +1840,7 @@ RectTransform:
   - {fileID: 1380280566}
   - {fileID: 99586496}
   m_Father: {fileID: 937105140}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1991,6 +1991,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windows: []
+  _deathScreen: {fileID: 895725215}
+  _evolveScreen: {fileID: 696034294}
+  _newSkillScreen: {fileID: 1476450667}
+  _skillsDisplayer: {fileID: 1091541797}
+  _timer: {fileID: 1017830419}
+  _scoreLabel: {fileID: 1608477092}
+  _experienceBar: {fileID: 656556637}
+  _experienceLabel: {fileID: 1477237578}
 --- !u!224 &937105140
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2008,10 +2016,10 @@ RectTransform:
   - {fileID: 1608477090}
   - {fileID: 656556638}
   - {fileID: 1477237575}
+  - {fileID: 1091541796}
   - {fileID: 895725212}
   - {fileID: 1476450663}
   - {fileID: 696034291}
-  - {fileID: 1091541796}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2500,7 +2508,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 937105140}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -2995,7 +3003,7 @@ RectTransform:
   - {fileID: 943794180}
   - {fileID: 1732602760}
   m_Father: {fileID: 937105140}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -15591,6 +15599,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 937105139}
+    - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1096577260}
@@ -15598,10 +15610,6 @@ PrefabInstance:
       propertyPath: levelText
       value: 
       objectReference: {fileID: 1477237578}
-    - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
-      propertyPath: currentForm
-      value: 
-      objectReference: {fileID: 11400000, guid: 96df1bada9c15fc4aa39241a2fddb66a, type: 2}
     - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
       propertyPath: deathScreen
       value: 
@@ -15619,20 +15627,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1091541797}
     - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
-      propertyPath: deathAnimation
-      value: 
-      objectReference: {fileID: 7867984894950069129, guid: 4b2cc696fd96135418e4eb5b25be0378, type: 3}
-    - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
       propertyPath: newSkillScreen
       value: 
       objectReference: {fileID: 1476450667}
     - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
       propertyPath: evolveAllNlevels
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 786004580282506678, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
-      propertyPath: skillEveryNLevels
-      value: 4
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 786004580282506679, guid: 3ecba44dec8a1174b92d43533c480f69, type: 3}
       propertyPath: m_RootOrder
