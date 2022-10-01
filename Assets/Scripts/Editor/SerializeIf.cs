@@ -34,52 +34,61 @@ public class DrawIfPropertyDrawer : PropertyDrawer {
             return;
 		}
 
-        // Get the value of the compared field.
-        int comparedFieldValue;// .GetValue<object>();
-        int comparedAttributeValue;
-
-        try {
-            comparedFieldValue = comparedField.intValue;
-        } catch(Exception) {
-            Debug.LogWarning("[SERIALIZEIF] Could not get int value from field " + comparedField.name + ".");
-            return;
-        }
-        try {
-            comparedAttributeValue = (int) drawIf.comparedValue;
-        } catch(Exception) {
-            Debug.LogWarning("[SERIALIZEIF] Could not get int value from compared value insinde the attribute.");
-            return;
-        }
-
         // Is the condition met? Should the field be drawn?
         bool conditionMet = false;
 
-        // Compare the values to see if the condition is met.
-        switch(drawIf.comparisonType) {
-            case ComparisonType.Equals:
-                conditionMet = comparedFieldValue == comparedAttributeValue;
-                break;
+        if(drawIf.comparisonType == ComparisonType.Boolean) {
+            bool field = comparedField.boolValue;
+            bool attr = (bool) drawIf.comparedValue;
+            conditionMet = (field == attr);
+        } else {
+            // Get the value of the compared field.
+            int comparedFieldValue;// .GetValue<object>();
+            int comparedAttributeValue;
 
-            case ComparisonType.NotEqual:
-                conditionMet = comparedFieldValue != comparedAttributeValue;
-                break;
+            try {
+                comparedFieldValue = comparedField.intValue;
+            } catch(Exception) {
+                Debug.LogWarning("[SERIALIZEIF] Could not get int value from field " + comparedField.name + ".");
+                return;
+            }
+            try {
+                comparedAttributeValue = (int) drawIf.comparedValue;
+            } catch(Exception) {
+                Debug.LogWarning("[SERIALIZEIF] Could not get int value from compared value insinde the attribute.");
+                return;
+            }
 
-            case ComparisonType.GreaterThan:
-                conditionMet = comparedFieldValue > comparedAttributeValue;
-                break;
 
-            case ComparisonType.SmallerThan:
-                conditionMet = comparedFieldValue < comparedAttributeValue;
-                break;
+            // Compare the values to see if the condition is met.
+            switch(drawIf.comparisonType) {
+                case ComparisonType.Equals:
+                    conditionMet = comparedFieldValue == comparedAttributeValue;
+                    break;
 
-            case ComparisonType.SmallerOrEqual:
-                conditionMet = comparedFieldValue <= comparedAttributeValue;
-                break;
+                case ComparisonType.NotEqual:
+                    conditionMet = comparedFieldValue != comparedAttributeValue;
+                    break;
 
-            case ComparisonType.GreaterOrEqual:
-                conditionMet = comparedFieldValue >= comparedAttributeValue;
-                break;
+                case ComparisonType.GreaterThan:
+                    conditionMet = comparedFieldValue > comparedAttributeValue;
+                    break;
+
+                case ComparisonType.SmallerThan:
+                    conditionMet = comparedFieldValue < comparedAttributeValue;
+                    break;
+
+                case ComparisonType.SmallerOrEqual:
+                    conditionMet = comparedFieldValue <= comparedAttributeValue;
+                    break;
+
+                case ComparisonType.GreaterOrEqual:
+                    conditionMet = comparedFieldValue >= comparedAttributeValue;
+                    break;
+            }
         }
+
+        
 
         // The height of the property should be defaulted to the default height.
         propertyHeight = base.GetPropertyHeight(property, label);

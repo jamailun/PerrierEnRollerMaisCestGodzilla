@@ -11,5 +11,7 @@ public enum ComparisonType {
     GreaterOrEqual,
 
     SmallerThan,
-    SmallerOrEqual
+    SmallerOrEqual,
+
+    Boolean
 }

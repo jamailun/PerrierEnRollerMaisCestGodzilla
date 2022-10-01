@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerEntity : LivingEntity {
 
@@ -13,6 +14,8 @@ public class PlayerEntity : LivingEntity {
     [Tooltip("The current monster form.")]
     [SerializeField] private PlayerForm currentForm;
     public PlayerForm PlayerForm => currentForm;
+
+    [SerializeField] private Transform spellOutput;
 
     // config with numbers
     [Tooltip("The number modulo of the skill choice trigger.")]
@@ -33,7 +36,8 @@ public class PlayerEntity : LivingEntity {
     private readonly StatisticsSet stats = new();
     // Buffers, to not recalculate everything 200 times per second.
     private float buffer_Speed;
-    private float buffer_Armor;
+
+	private float buffer_Armor;
 
     // In case of multiple level up, we ave to keep track of how many skills/evolve we can get.
     private int skillsToGet = 0;
@@ -297,4 +301,17 @@ public class PlayerEntity : LivingEntity {
         UI.Pause();
 	}
 
+    public Vector3 GetOutputPosition() {
+        return spellOutput.position;
+    }
+
+    public void Buff(StatisticModifier modifier, float duration) {
+        stats.AddTemporaryStats(modifier);
+        UpdateBufferStats();
+
+        StartCoroutine(Utils.DoAfter(duration, () => {
+            stats.RemoveTemporaryStats(modifier);
+            UpdateBufferStats();
+        }));
+    }
 }
