@@ -212,8 +212,6 @@ public class PlayerEntity : LivingEntity {
         UpdateBufferStats();
     }
 
-
-
     protected override void Die() {
         // Save data
         PersistentData.EndRun(Time.time - startedTime, level, UpgradePoints);
@@ -252,7 +250,7 @@ public class PlayerEntity : LivingEntity {
         }
     }
 
-    private void ChangePlayerForm(PlayerForm form) {
+    public void ChangePlayerForm(PlayerForm form) {
         currentForm = form;
         UpdatePlayerForm();
 	}
@@ -262,10 +260,35 @@ public class PlayerEntity : LivingEntity {
     public const string ANIM_TOP = "anim_walk_top";
     public const string ANIM_DOWN = "anim_walk_down";
     private void UpdatePlayerForm() {
-        Animator.SetClip(ANIM_IDLE, currentForm.animation_Idle);
-        Animator.SetClip(ANIM_RIGHT, currentForm.animation_Right);
-        Animator.SetClip(ANIM_TOP, currentForm.animation_Top);
-        Animator.SetClip(ANIM_DOWN, currentForm.animation_Bottom);
+        // Change scale
+        gameObject.transform.localScale = new Vector3(currentForm.Scale, currentForm.Scale, 1f);
+
+        // Change hitbox
+        currentForm.HurtboxDescriptor.CreateCollider(GetComponentInChildren<Hurtbox>());
+
+        // Change magnet
+        var magnet = GetComponentInChildren<AttractiblesMagnet>();
+        magnet.SetParameters(currentForm.magnetOffset, currentForm.magnetRange);
+
+        // Change ground collider
+        var groundCollider = GetComponent<CapsuleCollider2D>();
+        groundCollider.enabled = currentForm.groundCollider;
+        if(currentForm.groundCollider) {
+            groundCollider.offset = currentForm.groundColliderOffset;
+            groundCollider.size = currentForm.groundColliderSize;
+        }
+
+#if UNITY_EDITOR
+        GetComponentInChildren<SpriteRenderer>().sprite = currentForm.animation_Idle.GetCurrent(0);
+#endif
+
+        // Change animation
+        if(Animator != null) {
+            Animator.SetClip(ANIM_IDLE, currentForm.animation_Idle);
+            Animator.SetClip(ANIM_RIGHT, currentForm.animation_Right);
+            Animator.SetClip(ANIM_TOP, currentForm.animation_Top);
+            Animator.SetClip(ANIM_DOWN, currentForm.animation_Bottom);
+        }
 
         // add skill bonus ?
     }

@@ -15,6 +15,18 @@ MonoBehaviour:
   _name: P101
   _descendants: []
   _color: {r: 1, g: 1, b: 1, a: 1}
+  _scale: 1
+  _hurtboxDescriptor:
+    hurtboxType: 1
+    size: {x: 2.385097, y: 3.6838393}
+    offset: {x: -0.0624516, y: 0.5175102}
+    capsuleDirection: 0
+    points: []
+  magnetOffset: {x: 0, y: -0.3}
+  magnetRange: 3.5
+  groundCollider: 1
+  groundColliderSize: {x: 1, y: -2.27}
+  groundColliderOffset: {x: 3.1, y: 0.33}
   _bannerImage: {fileID: 0}
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
   animation_Idle:
@@ -36,3 +48,5 @@ MonoBehaviour:
   frame_Attack_Right: {fileID: 21300000, guid: 4937f4ecddcb4e9488d77f9bf99efe45, type: 3}
   frame_Attack_Top: {fileID: 21300000, guid: 9f65b99b52f17464f9f07bdcb3e1599f, type: 3}
   frame_Attack_Bottom: {fileID: 21300000, guid: afce52ac2b2d9ad4ca79f1f35e953db1, type: 3}
+  bonusMaxHealthPerLevel: 5
+  bonusAttackPerLevel: 1

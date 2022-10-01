@@ -19,6 +19,15 @@ public class PlayerForm : ScriptableObject {
 	[SerializeField] private float _scale = 1f;
 	public float Scale => _scale;
 
+	[SerializeField] private HurtboxDescriptor _hurtboxDescriptor;
+	public HurtboxDescriptor HurtboxDescriptor => _hurtboxDescriptor;
+
+	public Vector2 magnetOffset;
+	public float magnetRange;
+	public bool groundCollider;
+	public Vector2 groundColliderSize;
+	public Vector2 groundColliderOffset;
+
 	[SerializeField] private Sprite _bannerImage;
 	public Sprite BannerImage => _bannerImage;
 
@@ -37,5 +46,6 @@ public class PlayerForm : ScriptableObject {
 	[Header("Bonus stats per level up")]
 	[SerializeField] public float bonusMaxHealthPerLevel = 5f;
 	[SerializeField] public float bonusAttackPerLevel = 1f;
+
 
 }

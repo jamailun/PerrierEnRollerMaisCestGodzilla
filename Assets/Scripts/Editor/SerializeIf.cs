@@ -29,21 +29,25 @@ public class DrawIfPropertyDrawer : PropertyDrawer {
         drawIf = attribute as SerializeIfAttribute;
         comparedField = property.serializedObject.FindProperty(drawIf.comparedPropertyName);
 
+        if(comparedField == null) {
+            Debug.LogError("[SERIALIZEIF] Could NOT find property \"" + drawIf.comparedPropertyName + "\" for "+property.serializedObject.GetType().Name+".");
+            return;
+		}
+
         // Get the value of the compared field.
         int comparedFieldValue;// .GetValue<object>();
         int comparedAttributeValue;
 
         try {
-            // Try to set the numeric types.
-            comparedFieldValue = comparedField.intValue;// .GetValue<object>();
+            comparedFieldValue = comparedField.intValue;
+        } catch(Exception) {
+            Debug.LogWarning("[SERIALIZEIF] Could not get int value from field " + comparedField.name + ".");
+            return;
+        }
+        try {
             comparedAttributeValue = (int) drawIf.comparedValue;
         } catch(Exception) {
-            // This place will only be reached if the type is not a numeric one. If the comparison type is not valid for the compared field type, log an error.
-            if(drawIf.comparisonType != ComparisonType.Equals && drawIf.comparisonType != ComparisonType.NotEqual) {
-                Debug.LogError("The only comparsion types available to type '" + comparedField.propertyType + "' are Equals and NotEqual. (On object '" + property.serializedObject.targetObject.name + "')");
-                return;
-            }
-            Debug.LogWarning("could not get truc");
+            Debug.LogWarning("[SERIALIZEIF] Could not get int value from compared value insinde the attribute.");
             return;
         }
 

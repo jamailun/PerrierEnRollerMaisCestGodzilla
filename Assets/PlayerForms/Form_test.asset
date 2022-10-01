@@ -18,6 +18,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ae0eb562c1e559442a5edb359b2d845b, type: 2}
   - {fileID: 11400000, guid: d21a300f56a854e42b0205c6c061ca3d, type: 2}
   _color: {r: 1, g: 1, b: 1, a: 1}
+  _scale: 2
+  _hurtboxDescriptor:
+    hurtboxType: 1
+    size: {x: 0.17939615, y: 0.42423582}
+    offset: {x: -0.03796029, y: 0.0206182}
+    capsuleDirection: 0
+    points: []
+  magnetOffset: {x: 0, y: -0.081}
+  magnetRange: 0.5
+  groundCollider: 1
+  groundColliderSize: {x: 0.21040937, y: 0.099896505}
+  groundColliderOffset: {x: -0.043849833, y: -0.26309067}
   _bannerImage: {fileID: 0}
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
   animation_Idle:
@@ -43,3 +55,5 @@ MonoBehaviour:
   frame_Attack_Right: {fileID: 1737588782, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
   frame_Attack_Top: {fileID: 449106069, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
   frame_Attack_Bottom: {fileID: -1725206562, guid: 47bec73e3f35d4b4b8673d9ed8a6c19e, type: 3}
+  bonusMaxHealthPerLevel: 5
+  bonusAttackPerLevel: 1

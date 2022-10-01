@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class AttractiblesMagnet : MonoBehaviour {
 
 	[Tooltip("The force used to attract object")]
@@ -11,6 +11,11 @@ public class AttractiblesMagnet : MonoBehaviour {
 		if(obj != null && ! obj.Attracted) {
 			obj.StartAttract(transform, magnetForce);
 		}
+	}
+
+	public void SetParameters(Vector2 offset, float range) {
+		transform.localPosition = new Vector3(offset.x, offset.y, 0);
+		GetComponent<CircleCollider2D>().radius = range;
 	}
 
 }

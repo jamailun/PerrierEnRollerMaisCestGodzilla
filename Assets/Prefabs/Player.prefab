@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 800931573244673107}
-  - component: {fileID: 2651034143583311220}
   - component: {fileID: 7973611292423106300}
   m_Layer: 0
   m_Name: Hurtbox
@@ -33,22 +32,6 @@ Transform:
   m_Father: {fileID: 786004580282506679}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &2651034143583311220
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 325192247954011229}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.15, y: 0}
-  m_Size: {x: 0.94245195, y: 2.1132665}
-  m_Direction: 0
 --- !u!114 &7973611292423106300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,16 +193,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
+  _healthRegen: 0.1
+  _flatArmor: 0
+  _flatDamages: 0
   _speed: 500
   healthBar: {fileID: 0}
   invincible: 0
-  currentForm: {fileID: 11400000, guid: 96df1bada9c15fc4aa39241a2fddb66a, type: 2}
   UI: {fileID: 0}
+  currentForm: {fileID: 11400000, guid: 96df1bada9c15fc4aa39241a2fddb66a, type: 2}
   skillEveryNLevels: 1
   evolveEveryNLevels: 15
+  maxNumberOfPassives: 5
   deathAnimation: {fileID: 7867984894950069129, guid: 4b2cc696fd96135418e4eb5b25be0378, type: 3}
   deathAnimationDuration: 1.5
-  maxNumberOfPassives: 3
 --- !u!114 &786004580282506673
 MonoBehaviour:
   m_ObjectHideFlags: 0
