@@ -293,4 +293,8 @@ public class PlayerEntity : LivingEntity {
         // add skill bonus ?
     }
 
+	public void Pause() {
+        UI.Pause();
+	}
+
 }

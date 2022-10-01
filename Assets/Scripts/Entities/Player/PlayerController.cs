@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void Update() {
+		if(Input.GetKeyDown(KeyCode.Escape)) {
+			_player.Pause();
+			return;
+		}
+
 		// Move values
 		horizontal = Input.GetAxisRaw("Horizontal");
 		vertical = Input.GetAxisRaw("Vertical");

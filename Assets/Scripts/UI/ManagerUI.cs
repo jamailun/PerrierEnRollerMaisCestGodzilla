@@ -16,6 +16,10 @@ public class ManagerUI : MonoBehaviour {
 	[SerializeField] private DeathScreen _deathScreen;
 	public DeathScreen DeathScreen => _deathScreen;
 
+	[Tooltip("Reference to the pause screen")]
+	[SerializeField] private PauseScreen _pauseScreen;
+	public PauseScreen PauseScreen => _pauseScreen;
+
 	[Tooltip("Reference to the evolve screen")]
 	[SerializeField] private EvolveScreen _evolveScreen;
 	public EvolveScreen EvolveScreen => _evolveScreen;
@@ -69,5 +73,14 @@ public class ManagerUI : MonoBehaviour {
 		}
 	}
 
+	public void Pause() {
+		Time.timeScale = 0f;
+		PauseScreen.gameObject.SetActive(true);
+	}
+
+	public void Unpause() {
+		Time.timeScale = 1f;
+		PauseScreen.gameObject.SetActive(false);
+	}
 
 }
