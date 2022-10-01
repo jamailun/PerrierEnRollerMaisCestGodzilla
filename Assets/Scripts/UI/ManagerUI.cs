@@ -34,6 +34,10 @@ public class ManagerUI : MonoBehaviour {
 	[SerializeField] private SkillsDisplayer _skillsDisplayer;
 	public SkillsDisplayer SkillsDisplayer => _skillsDisplayer;
 
+	[Tooltip("Reference to the active skills handler element")]
+	[SerializeField] private ActiveSkillButtonsHandler _activesButtons;
+	public ActiveSkillButtonsHandler ActiveButtons => _activesButtons;
+
 	[Tooltip("Reference to the timer element")]
 	[SerializeField] private TimerUI _timer;
 	public TimerUI Timer => _timer;

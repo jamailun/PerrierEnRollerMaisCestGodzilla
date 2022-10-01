@@ -1,40 +1,40 @@
 ﻿using UnityEngine;
 
-public class ActiveSkillInstance : MonoBehaviour {
+public class ActiveSkillInstance {
 
-	[SerializeField] private ActiveSkill skill;
+	private ActiveSkill skill;
 
 	public int Level { get; private set; }
 	public int Stacks { get; private set; }
 	public float CurrentStackReload { get; private set; }
 
-	private bool activated;
+	private float nextActivated = 0f;
 
-	private void Start() {
-		Level = 0;
-		SetOrUpgradeSkill(skill);
-	}
-
-	private void Update() {
+	public bool Update() {
 		if(Stacks == skill.MaxStacks)
-			return;
+			return false;
 		CurrentStackReload += Time.deltaTime;
 		if(CurrentStackReload >= skill.Cooldown) {
 			CurrentStackReload -= skill.Cooldown;
 			Stacks++;
+			return true;
 		}
+		return false;
+	}
+
+	public float NextStackPercentage() {
+		if(Stacks == skill.MaxStacks)
+			return 0f;
+		return CurrentStackReload / skill.Cooldown;
 	}
 
 	public bool CanActivate() {
-		return !activated && Stacks > 0;
+		return Time.time >= nextActivated && Stacks > 0;
 	}
 
 	public void Activate() {
 		Stacks--;
-		activated = true;
-		StartCoroutine(Utils.DoAfter(skill.ActiveDuration, () => activated = false));
-
-		//TODO call the skill itself.
+		nextActivated = Time.time + skill.ActiveDuration;
 	}
 
 	public void SetOrUpgradeSkill(ActiveSkill skill) {
@@ -46,8 +46,8 @@ public class ActiveSkillInstance : MonoBehaviour {
 		}
 		this.skill = skill;	
 		Stacks = 0;
-		CurrentStackReload = 0;
-		activated = false;
+		CurrentStackReload = 0f;
+		nextActivated = Time.time;
 	}
 
 }
