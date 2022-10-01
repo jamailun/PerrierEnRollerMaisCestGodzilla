@@ -15,6 +15,7 @@ public class ActiveSkillButton : MonoBehaviour {
 	[SerializeField] private Image skillImage;
 	[SerializeField] private TMPro.TMP_Text stackLabel;
 	[SerializeField] private Image loadingStackImage;
+	[SerializeField] private Image activeAnimation;
 
 	[Header("Configuration du petit bouton")]
 
@@ -25,8 +26,8 @@ public class ActiveSkillButton : MonoBehaviour {
 
 	private void Start() {
 		SetSkill(skillType);
-
 		keyLabel.text = "" + keyPress;
+		activeAnimation.gameObject.SetActive(false);
 	}
 
 	private void Update() {
@@ -39,7 +40,12 @@ public class ActiveSkillButton : MonoBehaviour {
 				skill.Activate();
 				keyAnimation.Play();
 				stackLabel.text = "" + skill.Stacks;
+
+				activeAnimation.gameObject.SetActive(true);
+				StartCoroutine(Utils.DoAfter(skillType.ActiveDuration, () => activeAnimation.gameObject.SetActive(false)));
+
 				//TODO cast the skill.
+				//skillType.Cast(PLAYER);
 			}
 		}
 

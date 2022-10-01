@@ -96,7 +96,7 @@ public class SkillsSet {
 
 		allowed.Shuffle();
 
-		return allowed.GetRange(0, amount);
+		return allowed.GetRange(0, UnityEngine.Mathf.Min(amount, allowed.Count));
 	}
 
 }
