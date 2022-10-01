@@ -63,6 +63,8 @@ public class ActiveSkillButton : MonoBehaviour {
 		this.skillType = skillType;
 
 		skill.SetOrUpgradeSkill(skillType);
+
+		stackLabel.text = "" + skill.Stacks;
 	}
 
 }

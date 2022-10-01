@@ -84,7 +84,7 @@ public class PlayerEntity : LivingEntity {
         AddExperience(0); // update the bar
         UI.ExperienceLabel.text = "Lvl " + level;
 
-        skills = new SkillsSet(maxNumberOfPassives);
+        skills = new SkillsSet(maxNumberOfPassives, 3);
 
         // calculate buffers
         UpdateBufferStats();
@@ -207,9 +207,12 @@ public class PlayerEntity : LivingEntity {
         // add the skill
         UI.NewSkillScreen.gameObject.SetActive(false);
         skills.AddSkill(skill);
+        if(skill.IsActive()) {
+            UI.ActiveButtons.Add((ActiveSkill)skill);
+		}
 
         // Refresh global displayed list
-        UI.SkillsDisplayer.SetSkills(skills.GetSkills());
+        UI.SkillsDisplayer.SetSkills(skills.GetPassiveSkills());
 
         // Update stats
         stats.ResetFrom(skills);
