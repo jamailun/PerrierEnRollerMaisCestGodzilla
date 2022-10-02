@@ -10,6 +10,12 @@ public class ExperienceBall : Attractible {
 		if(player != null) {
 			player.AddExperience(experienceAmount);
 			Destroy(gameObject);
+		} else {
+			var hb = collision.gameObject.GetComponent<Hurtbox>();
+			if(hb != null && hb.IsPlayer()) {
+				hb.gameObject.GetComponentInParent<PlayerEntity>().AddExperience(experienceAmount);
+				Destroy(gameObject);
+			}
 		}
 	}
 

@@ -6,7 +6,10 @@ using UnityEngine.UI;
 /// </summary>
 public class BarUI : MonoBehaviour {
 
+	private const string FORMAT = "#";
+
 	[SerializeField] private Image content;
+	[SerializeField] private TMPro.TMP_Text label;
 	[SerializeField] private float MinValue = 0f;
 	[SerializeField] private float MaxValue = 100f;
 	private float value;
@@ -34,6 +37,9 @@ public class BarUI : MonoBehaviour {
 	}
 
 	private void UpdateImage() {
+		if(label != null) {
+			label.text = value.ToString(FORMAT) + "/" + MaxValue.ToString(FORMAT);
+		}
 		if(MaxValue == 0) {
 			content.fillAmount = 0f;
 			return;

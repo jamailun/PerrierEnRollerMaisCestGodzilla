@@ -20,12 +20,12 @@ public class Projectile : MonoBehaviour {
 	private Transform parent;
 
 	// Called by the code.
-	public void Init(Transform parent, Vector2 direction, Transform realParent = null) {
-		this.parent = realParent ?? parent;
+	public void Init(Vector3 sourcePosition, Vector2 direction, Transform realParent) {
+		this.parent = realParent;
 		Debug.Log("Parent = " + this.parent + "("+ this.parent.gameObject.name+"), " + this.parent.GetInstanceID());
 
 		// Set position and rotation
-		transform.SetPositionAndRotation(parent.position, parent.rotation);
+		transform.SetPositionAndRotation(sourcePosition, Quaternion.identity);
 
 		Vector3 dir = direction * PLAN;
 

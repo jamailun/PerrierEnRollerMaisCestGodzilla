@@ -15,6 +15,10 @@ public class StatisticsSet {
 
 	public StatisticsSet() {
 		Reset();
+		foreach(Statistic s in System.Enum.GetValues(typeof(Statistic))) {
+			temp_flats[s] = 0;
+			temp_mutls[s] = 0;
+		}
 	}
 
 	private void Reset() {
@@ -47,7 +51,7 @@ public class StatisticsSet {
 	}
 
 	public float GetPower(Statistic type, float baseValue) {
-		return (baseValue + flats[type]) * mutls[type];
+		return (baseValue + flats[type] + temp_mutls[type]) * (mutls[type] + temp_mutls[type]);
 	}
 
 	public void AddTemporaryStats(StatisticModifier modifier) {

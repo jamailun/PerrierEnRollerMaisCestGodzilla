@@ -130,6 +130,11 @@ public class Enemy : LivingEntity {
             Recalculate();
     }
 
+    private bool IsFlip() {
+        return spriteRenderer.flipX;
+
+    }
+
 
     private void Recalculate() {
         // Set destination according to the type
@@ -188,14 +193,19 @@ public class Enemy : LivingEntity {
     private IEnumerator Cor_AttackDistance() {
         yield return new WaitForSeconds(distance_shot_load);
 
+        var source = new Vector3(projectile_output.position.x, projectile_output.position.y, -.1f);
+        if(IsFlip()) {
+            source.x -= 2 * projectile_output.localPosition.x;
+        }
+
         if(attackEffect != null) {
             var vfx = Instantiate(attackEffect);
-            vfx.transform.SetPositionAndRotation(new Vector3(projectile_output.position.x, projectile_output.position.y, -.1f), Quaternion.identity);
+            vfx.transform.SetPositionAndRotation(source, Quaternion.identity);
             //SFX ?
         }
 
         var proj = Instantiate(projectile_prefab);
-        proj.Init(projectile_output, target.position - transform.position, transform);
+        proj.Init(source, target.position - transform.position, transform);
         proj.damages = attackDamages;
 	}
 

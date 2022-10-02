@@ -21,8 +21,8 @@ MonoBehaviour:
   _scale: 2
   _hurtboxDescriptor:
     hurtboxType: 1
-    size: {x: 0.17939615, y: 0.42423582}
-    offset: {x: -0.03796029, y: 0.0206182}
+    size: {x: 0.19257474, y: 0.5362524}
+    offset: {x: -0.03927815, y: -0.03539008}
     capsuleDirection: 0
     points: []
   magnetOffset: {x: 0, y: -0.081}

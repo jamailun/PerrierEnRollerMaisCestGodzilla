@@ -211,7 +211,7 @@ public class PlayerEntity : LivingEntity {
         UI.NewSkillScreen.gameObject.SetActive(false);
         skills.AddSkill(skill);
         if(skill.IsActive()) {
-            UI.ActiveButtons.Add((ActiveSkill)skill);
+            UI.ActiveButtons.Add((ActiveSkill)skill, this);
 		}
 
         // Refresh global displayed list
