@@ -16,14 +16,23 @@ MonoBehaviour:
   heightTiles: 30
   waterSizeMin: 4
   waterSizeMax: 8
+  sandSizeMin: 9
+  sandSizeMax: 13
   waterSandTransitionRight: 0.486
   waterSandTransitionLeft: 0.407
+  sandDirtTransitionRight: 0.471
+  sandDirtTransitionLeft: 0.454
   waterTile: {fileID: 11400000, guid: b573ccf51946e0242a5d412bc4227c7e, type: 2}
   sandTile: {fileID: 11400000, guid: 8c6ff91cd51f23f45926e693d3735b9c, type: 2}
-  groundTile: {fileID: 11400000, guid: 8c6ff91cd51f23f45926e693d3735b9c, type: 2}
+  groundTile: {fileID: 11400000, guid: ab935efce00d0074aa1a395951d19067, type: 2}
   water_sand_BR: {fileID: 11400000, guid: 6e2307f047251c44ca6bb3b19a939f1c, type: 2}
   water_sand_LT: {fileID: 11400000, guid: 00fc4eb325d46f644bd60e42b9e1c1e3, type: 2}
   water_sand_BT: {fileID: 11400000, guid: b5a223fb121709a4cb7cb94520cc95d7, type: 2}
   water_sand_BL: {fileID: 11400000, guid: 51ca3864593cf514fa2546573a803ab4, type: 2}
   water_sand_RT: {fileID: 11400000, guid: 544c881d1e8083446aa9e73039e19764, type: 2}
+  sand_dirt_BR: {fileID: 11400000, guid: d2045982cf3c7a64c8e2ebb559fded02, type: 2}
+  sand_dirt_LT: {fileID: 11400000, guid: 2f009c34ae40823498dbfb45930f353d, type: 2}
+  sand_dirt_BT: {fileID: 11400000, guid: 5f25ddbeb0963154da9319a119ff3fd5, type: 2}
+  sand_dirt_BL: {fileID: 11400000, guid: 394be8c6d420a77469e8319cf568223e, type: 2}
+  sand_dirt_RT: {fileID: 11400000, guid: 2f009c34ae40823498dbfb45930f353d, type: 2}
   sizePerTile: 64

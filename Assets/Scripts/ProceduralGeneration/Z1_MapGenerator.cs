@@ -22,10 +22,15 @@ public class Z1_MapGenerator : MapGenerator {
 	[SerializeField] private int heightTiles = 5;
 	[SerializeField] private int waterSizeMin = 2;
 	[SerializeField] private int waterSizeMax = 4;
+	[SerializeField] private int sandSizeMin = 6;
+	[SerializeField] private int sandSizeMax = 12;
 
 	[Header("Seeds")]
 	[SerializeField] [Range(0.01f, 0.5f)] private float waterSandTransitionRight = 0.2f;
 	[SerializeField] [Range(0.01f, 0.5f)] private float waterSandTransitionLeft = 0.2f;
+
+	[SerializeField] [Range(0.01f, 0.5f)] private float sandDirtTransitionRight = 0.2f;
+	[SerializeField] [Range(0.01f, 0.5f)] private float sandDirtTransitionLeft = 0.2f;
 
 	[Header("Tiles")]
 	[SerializeField] private Tile waterTile;
@@ -38,86 +43,89 @@ public class Z1_MapGenerator : MapGenerator {
 	[SerializeField] private Tile water_sand_BL;
 	[SerializeField] private Tile water_sand_RT;
 
-	private enum TileType : int {
-		Ground = 0,
+	[SerializeField] private Tile sand_dirt_BR;
+	[SerializeField] private Tile sand_dirt_LT;
+	[SerializeField] private Tile sand_dirt_BT;
+	[SerializeField] private Tile sand_dirt_BL;
+	[SerializeField] private Tile sand_dirt_RT;
 
-		Water,
-		WaterToSand_BR,
-		WaterToSand_LT,
-		WaterToSand_BT,
-		WaterToSand_BL,
-		WaterToSand_RT,
-		Sand,
+	[Header("Buildings")]
+	[SerializeField] private Building b; 
 
-		Building,
-		Road
-	}
+	private const int TYPE_NONE = 0;
+
+	private const int TYPE_WATER = 1;
+
+	private const int TYPE_WATER_TO_SAND_BR = 121;
+	private const int TYPE_WATER_TO_SAND_LT = 122;
+	private const int TYPE_WATER_TO_SAND_BT = 123;
+	private const int TYPE_WATER_TO_SAND_BL = 124;
+	private const int TYPE_WATER_TO_SAND_RT = 125;
+
+	private const int TYPE_SAND = 2;
+
+	private const int TYPE_SAND_TO_GROUND_BR = 231;
+	private const int TYPE_SAND_TO_GROUND_LT = 232;
+	private const int TYPE_SAND_TO_GROUND_BT = 233;
+	private const int TYPE_SAND_TO_GROUND_BL = 234;
+	private const int TYPE_SAND_TO_GROUND_RT = 235;
+
+	private const int TYPE_GROUND = 3;
+
+
 	private Tile GetTile(int x, int y) {
 		return tiles[x,y] switch {
-			TileType.Water => waterTile,
+			TYPE_WATER => waterTile,
 
-			TileType.WaterToSand_BR => water_sand_BR,
-			TileType.WaterToSand_LT => water_sand_LT,
-			TileType.WaterToSand_BT => water_sand_BT,
-			TileType.WaterToSand_BL => water_sand_BL,
-			TileType.WaterToSand_RT => water_sand_RT,
+			TYPE_WATER_TO_SAND_BR => water_sand_BR,
+			TYPE_WATER_TO_SAND_LT => water_sand_LT,
+			TYPE_WATER_TO_SAND_BT => water_sand_BT,
+			TYPE_WATER_TO_SAND_BL => water_sand_BL,
+			TYPE_WATER_TO_SAND_RT => water_sand_RT,
 
-			TileType.Sand => sandTile,
+			TYPE_SAND => sandTile,
+
+			TYPE_SAND_TO_GROUND_BR => sand_dirt_BR,
+			TYPE_SAND_TO_GROUND_LT => sand_dirt_LT,
+			TYPE_SAND_TO_GROUND_BT => sand_dirt_BT,
+			TYPE_SAND_TO_GROUND_BL => sand_dirt_BL,
+			TYPE_SAND_TO_GROUND_RT => sand_dirt_RT,
+
+			TYPE_GROUND => groundTile,
 
 			_ => groundTile
 		};
 	}
-	TileType[,] tiles;
 
+	private int[,] tiles;
 	public int sizePerTile = 64;
 
 	// Points délimitants la mer (pour le collider)
 	// tiles où mettre la mer
 
 	public override void Generate() {
-		tiles = new TileType[widthTiles, heightTiles];
+		tiles = new int[widthTiles, heightTiles];
 
 		// WATER -> SAND TRANSITION
-		int waterX = Random.Range(waterSizeMin, waterSizeMax);
-		bool previousRight = false;
-		bool previousLeft = false;
-		for(int y = 0; y < heightTiles; y++) {
+		VerticalTransition(tiles, TYPE_NONE,
+			heightTiles, waterSizeMin, waterSizeMax,
+			TYPE_WATER, TYPE_SAND, TYPE_WATER_TO_SAND_BR, TYPE_WATER_TO_SAND_LT, TYPE_WATER_TO_SAND_RT, TYPE_WATER_TO_SAND_BL, TYPE_WATER_TO_SAND_BT,
+			waterSandTransitionLeft, waterSandTransitionRight
+		);
 
-			bool toRight = false;
-			bool toLeft = false;
+		// SAND -> GROUND TRANSITION
+		VerticalTransition(tiles, TYPE_NONE,
+			heightTiles, sandSizeMin, sandSizeMax,
+			TYPE_SAND, TYPE_GROUND, TYPE_SAND_TO_GROUND_BR, TYPE_SAND_TO_GROUND_LT, TYPE_SAND_TO_GROUND_RT, TYPE_SAND_TO_GROUND_BL, TYPE_SAND_TO_GROUND_BT,
+			sandDirtTransitionLeft, sandDirtTransitionRight
+		);
 
-			// Try to go to right
-			if(waterX < waterSizeMax && Random.value <= waterSandTransitionRight && ! previousLeft) {
-				toRight = true;
-			// Try to go to left
-			} else if(waterX > waterSizeMin && Random.value <= waterSandTransitionLeft && ! previousRight) {
-				toLeft = true;
-			}
+		// DO PONDS
 
-			previousLeft = previousRight = false;
-			
-			// fill water to the transition
-			for(int x = 0; x < waterX - 1; x++) {
-				tiles[x, y] = TileType.Water;
-			}
-			// do the transition
-			if(toRight) {
-				tiles[waterX-1, y] = TileType.WaterToSand_BR;
-				tiles[waterX, y] = TileType.WaterToSand_LT;
-				waterX++;
-				previousRight = true;
-			} else if(toLeft) {
-				waterX--;
-				tiles[waterX - 1, y] = TileType.WaterToSand_RT;
-				tiles[waterX, y] = TileType.WaterToSand_BL;
-				previousLeft = true;
-			} else {
-				tiles[waterX - 1, y] = TileType.WaterToSand_BT;
-				tiles[waterX, y] = TileType.Sand;
-			}
-
-		}
+		// DO BUILDINGS
 	}
+
+	
 
 	public override void Populate(SceneData scene) {
 		for(int x = 0; x < widthTiles; x++) {
@@ -125,6 +133,7 @@ public class Z1_MapGenerator : MapGenerator {
 				scene.tilemap.SetTile(new(x, y, 0), GetTile(x,y));
 			}
 		}
+		// place buildings entities
 
 	}
 
