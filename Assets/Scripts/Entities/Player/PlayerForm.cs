@@ -31,6 +31,9 @@ public class PlayerForm : ScriptableObject {
 	[SerializeField] private Sprite _bannerImage;
 	public Sprite BannerImage => _bannerImage;
 
+	[SerializeField] private float _attackScale = 1f;
+	public float AttackScale => _attackScale;
+
 	[SerializeField] private AttackShape _attackShape;
 	public AttackShape AttackShape => _attackShape;
 

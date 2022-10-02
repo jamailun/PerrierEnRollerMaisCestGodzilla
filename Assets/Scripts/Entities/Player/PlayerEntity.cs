@@ -25,6 +25,9 @@ public class PlayerEntity : LivingEntity {
     [Tooltip("Amount of differents passive skills")]
     [SerializeField] private int maxNumberOfPassives = 3;
 
+    [Tooltip("The EXP (Y) needed per level (X)")]
+    [SerializeField] private AnimationCurve experienceCurve;
+
     // config of death
     [Tooltip("The prefab for the death animation")]
     [SerializeField] private GameObject deathAnimation;
@@ -48,8 +51,8 @@ public class PlayerEntity : LivingEntity {
     public ulong ExperiencePoints { get; private set; }
 
     // Level variables
-    private int level = 1;
-    private ulong nextLevelExo = 100;
+    private int level = 0;
+    private ulong nextLevelExp;
     private ulong previousLevelExp = 0;
 
     // Attacking variables
@@ -81,6 +84,7 @@ public class PlayerEntity : LivingEntity {
         TimerUI.StartTimer();
 
         ExperiencePoints = 0;
+        nextLevelExp = (ulong) Mathf.FloorToInt(experienceCurve.Evaluate(level + 1));
         AddExperience(0); // update the bar
         UI.ExperienceLabel.text = "Lvl " + level;
 
@@ -103,7 +107,7 @@ public class PlayerEntity : LivingEntity {
         // Create the attack itself
         float attackDuration = currentForm.AttackShape.AttackDuration;
         float attackDamage = stats.GetPower(Statistic.Attack, _flatDamages + currentForm.AttackShape.AttackDamageBonus);
-        currentForm.AttackShape.SpawnHurtbox(orientation, transform, attackDamage, attackDuration);
+        currentForm.AttackShape.SpawnHitbox(orientation, transform, attackDamage, attackDuration, currentForm.AttackScale);
         //TODO ajouter les dmg spécifiques sur batiments et ennemis.
 
         // reset the boolean after some time.
@@ -124,18 +128,18 @@ public class PlayerEntity : LivingEntity {
 
     public void AddExperience(ulong amount) {
         ExperiencePoints += (ulong) stats.GetPower(Statistic.ExpGained, amount);
-        while(ExperiencePoints > nextLevelExo) {
+        while(ExperiencePoints > nextLevelExp) {
             LevelUp();
 		}
-        UI.ExperienceBar.Init(previousLevelExp, nextLevelExo, ExperiencePoints);
+        UI.ExperienceBar.Init(previousLevelExp, nextLevelExp, ExperiencePoints);
     }
 
 
     private void LevelUp() {
         // exp variables
         level++;
-        previousLevelExp = nextLevelExo;
-        nextLevelExo *= 2;
+        previousLevelExp = nextLevelExp;
+        nextLevelExp = (ulong) Mathf.FloorToInt(experienceCurve.Evaluate(level));
 
         // add stats
         AddMaxHealth(currentForm.bonusMaxHealthPerLevel);

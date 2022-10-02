@@ -31,6 +31,7 @@ MonoBehaviour:
   groundColliderSize: {x: 0.21040937, y: 0.099896505}
   groundColliderOffset: {x: -0.043849833, y: -0.26309067}
   _bannerImage: {fileID: 0}
+  _attackScale: 0.5
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
   animation_Idle:
     frameDuration: 0.3

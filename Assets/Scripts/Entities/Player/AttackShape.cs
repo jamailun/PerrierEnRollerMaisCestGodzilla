@@ -9,9 +9,9 @@ public class AttackShape : ScriptableObject {
 	[SerializeField] private float attackDuration = 0.2f;
 	public float AttackDuration => attackDuration;
 
-	[Tooltip("Damage of an attack")]
-	[SerializeField] private float attackDamage = 30f;
-	public float AttackDamageBonus => attackDamage;
+	[Tooltip("Damage bonus of an attack")]
+	[SerializeField] private float attackDamageBonus = 0f;
+	public float AttackDamageBonus => attackDamageBonus;
 
 	[Tooltip("Cooldown between 2 attacks")]
 	[SerializeField] private float attackCooldown = 0.25f;
@@ -32,7 +32,7 @@ public class AttackShape : ScriptableObject {
 	[SerializeField] private bool moveOnAttack = false;
 	public bool CanMoveOnAttack => moveOnAttack;
 
-	public Hitbox SpawnHurtbox(Orientation direction, Transform parent, float damage, float duration) {
+	public Hitbox SpawnHitbox(Orientation direction, Transform parent, float damage, float duration, float scale = 1f) {
 		Hitbox prefab = direction switch {
 			Orientation.Top => topPrefab,
 			Orientation.Bottom => bottomPrefab,
@@ -46,6 +46,7 @@ public class AttackShape : ScriptableObject {
 
 		var hitbox = Instantiate(prefab, parent);
 		hitbox.transform.localPosition = offset;
+		hitbox.transform.localScale = new Vector3(scale, scale, 1f);
 		hitbox.Spawn(damage, duration, (direction == Orientation.Left));
 
 		return hitbox;

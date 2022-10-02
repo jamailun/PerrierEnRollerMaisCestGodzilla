@@ -37,7 +37,6 @@ public class Hitbox : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		Debug.Log(name + " HITBOX hits " + collision.gameObject.name);
 		var target = collision.GetComponent<Hurtbox>();
 		if(target != null) {
 			Debug.Log("DAMAGE done  : "+collision.gameObject.name);

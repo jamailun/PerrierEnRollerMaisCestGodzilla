@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac36ea0c26350464781f0b50c447265e, type: 3}
+  m_Name: TestShape
+  m_EditorClassIdentifier: 
+  attackDuration: 0.1
+  attackDamageBonus: 0
+  attackCooldown: 0.25
+  rightPrefab: {fileID: 7759117166320640181, guid: 271baa291d06b4842939ba8a7598f89b, type: 3}
+  rightOffset: {x: 0.2, y: 0, z: -0.1}
+  bottomPrefab: {fileID: 5265709456636245770, guid: ad2186c8407189c47b0714be205cdfd7, type: 3}
+  bottomOffset: {x: -0.1, y: -0.35, z: -0.1}
+  topPrefab: {fileID: -5664659088666199714, guid: caef399bf899c2b47be5c3a901dee0cb, type: 3}
+  topOffset: {x: 0, y: 0.4, z: 0.01}
+  moveOnAttack: 0

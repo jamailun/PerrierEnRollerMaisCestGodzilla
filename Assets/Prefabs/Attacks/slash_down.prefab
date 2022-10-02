@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6576590261238244614}
   - component: {fileID: 6964492351356399833}
-  - component: {fileID: 2112190506916989610}
-  - component: {fileID: 7497038043405480577}
+  - component: {fileID: 7760578982194891655}
+  - component: {fileID: 5265709456636245770}
   m_Layer: 0
   m_Name: slash_down
   m_TagString: Untagged
@@ -86,8 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &2112190506916989610
-PolygonCollider2D:
+--- !u!70 &7760578982194891655
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -99,39 +99,10 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 0.91}
-    newSize: {x: 1.28, y: 0.91}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.59999996, y: 0.085}
-      - {x: 0.56, y: 0.125}
-      - {x: 0.44589797, y: 0.12758991}
-      - {x: 0.19259018, y: 0.0072302874}
-      - {x: 0.05442047, y: -0.0006850958}
-      - {x: -0.18445922, y: 0.109388016}
-      - {x: -0.5153303, y: 0.3878638}
-      - {x: -0.5675319, y: 0.41993383}
-      - {x: -0.602243, y: 0.38704553}
-      - {x: -0.591024, y: 0.296619}
-      - {x: -0.56429106, y: 0.15193167}
-      - {x: -0.4546887, y: -0.03747207}
-      - {x: -0.33957243, y: -0.21156314}
-      - {x: -0.18897597, y: -0.35338098}
-      - {x: -0.13795578, y: -0.3990911}
-      - {x: 0.099999994, y: -0.42377844}
-      - {x: 0.24553251, y: -0.3880621}
-      - {x: 0.37640822, y: -0.3123469}
-      - {x: 0.58, y: -0.095}
-      - {x: 0.59999996, y: -0.035}
---- !u!114 &7497038043405480577
+  m_Offset: {x: -0.02231145, y: 0.013729756}
+  m_Size: {x: 1.2353774, y: 0.89627063}
+  m_Direction: 1
+--- !u!114 &5265709456636245770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

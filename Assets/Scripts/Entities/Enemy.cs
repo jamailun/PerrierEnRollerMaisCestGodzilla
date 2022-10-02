@@ -23,10 +23,6 @@ public class Enemy : LivingEntity {
     [SerializeField] private float recalculateAfter = 0.2f;
 
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
-    [Tooltip("Amont of damages to deal")]
-    [SerializeField] private float attackDamages = 10f;
-
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Time between two attacks of an enemy, in seconds")]
     [SerializeField] private float attackSpeed = 1f;
 
@@ -39,11 +35,31 @@ public class Enemy : LivingEntity {
     [Tooltip("Attack effect on shot")]
     [SerializeField] private ParticleSystem attackEffect;
 
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    [Tooltip("Attack effect on shot")]
+    [SerializeField] private Sprite attackSprite;
+
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    [Tooltip("Transform to shot attacks from")]
+    [SerializeField] private Transform attack_output;
+
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    [Tooltip("Geometric scale for attacks")]
+    [SerializeField] private float attackScale = 1f;
+
     // Melee
 
     [SerializeIf("enemyType", EnemyType.Melee)]
-    [Tooltip("The RAnge required to attack the player")]
+    [Tooltip("The range required to attack the player")]
     [SerializeField] private float meleeRange = .5f;
+
+    [SerializeIf("enemyType", EnemyType.Melee)]
+    [Tooltip("The duration of the attack")]
+    [SerializeField] private float meleeAttackDuration = .1f;
+
+    [SerializeIf("enemyType", EnemyType.Melee)]
+    [Tooltip("The hitbox to spawn to attack")]
+    [SerializeField] private Hitbox meleeAttackPrefab_side;
 
     // Distance
 
@@ -62,10 +78,6 @@ public class Enemy : LivingEntity {
     [SerializeIf("enemyType", EnemyType.Distance)]
     [Tooltip("Projectile to shot")]
     [SerializeField] private Projectile projectile_prefab;
-
-    [SerializeIf("enemyType", EnemyType.Distance)]
-    [Tooltip("Transform to shot projectiles from")]
-    [SerializeField] private Transform projectile_output;
 
     [Space]
 
@@ -110,6 +122,7 @@ public class Enemy : LivingEntity {
             var player = FindObjectOfType<PlayerEntity>();
             if(player == null) {
                 Debug.LogWarning("Enemy " + name + " could NOT find player...");
+                agent.isStopped = true;
                 return;
 			}
             target = player.transform;
@@ -132,9 +145,7 @@ public class Enemy : LivingEntity {
 
     private bool IsFlip() {
         return spriteRenderer.flipX;
-
     }
-
 
     private void Recalculate() {
         // Set destination according to the type
@@ -146,8 +157,9 @@ public class Enemy : LivingEntity {
                 if(d <= meleeRange && Time.time >= nextAttackAllowed) {
                     Attack(false);
                     break;
-				}
-                agent.SetDestination(target.position);
+				} else {
+                    agent.SetDestination(target.position);
+                }
                 break;
 
             case EnemyType.Distance:
@@ -178,6 +190,7 @@ public class Enemy : LivingEntity {
 
         Debug.Log(gameObject.name + " ATTACK !");
 
+        // DISTANCE
         if(distance) {
             nextAttackAllowed += distance_shot_load;
             nextRecalculate += distance_shot_load * 1.1f;
@@ -187,26 +200,58 @@ public class Enemy : LivingEntity {
             return;
         }
 
+        // MELEE    
+        nextAttackAllowed += meleeAttackDuration;
 
-	}
+        var source = GetOutput();
 
-    private IEnumerator Cor_AttackDistance() {
-        yield return new WaitForSeconds(distance_shot_load);
+        AttackEffect(source);
 
-        var source = new Vector3(projectile_output.position.x, projectile_output.position.y, -.1f);
+        var hitbox = Instantiate(meleeAttackPrefab_side);
+        hitbox.transform.position = source;
+        hitbox.transform.localScale = new Vector3(attackScale, attackScale, 1f);
+        hitbox.Spawn(_flatDamages, meleeAttackDuration, IsFlip());
+
+        Sprite oldSprite = spriteRenderer.sprite;
+        if(attackSprite != null)
+            spriteRenderer.sprite = attackSprite;
+        StartCoroutine(Utils.DoAfter(meleeAttackDuration, () => {
+            agent.isStopped = false;
+            spriteRenderer.sprite = oldSprite;
+        }));
+
+    }
+
+    private Vector3 GetOutput() {
+        var source = new Vector3(attack_output.position.x, attack_output.position.y, -.1f);
         if(IsFlip()) {
-            source.x -= 2 * projectile_output.localPosition.x;
+            source.x -= 2 * attack_output.localPosition.x;
         }
+        return source;
+    }
 
+    // Play the effects of the attack
+    private void AttackEffect(Vector3 source) {
         if(attackEffect != null) {
             var vfx = Instantiate(attackEffect);
             vfx.transform.SetPositionAndRotation(source, Quaternion.identity);
             //SFX ?
         }
+    }
+
+    private IEnumerator Cor_AttackDistance() {
+        yield return new WaitForSeconds(distance_shot_load);
+
+        var source = GetOutput();
+
+        AttackEffect(source);
 
         var proj = Instantiate(projectile_prefab);
         proj.Init(source, target.position - transform.position, transform);
-        proj.damages = attackDamages;
+        proj.transform.localScale = new Vector3(attackScale, attackScale, 1f);
+        proj.damages = _flatDamages;
+
+        //TODO animate
 	}
 
 	protected override void Die() {

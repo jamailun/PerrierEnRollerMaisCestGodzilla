@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3072285845032365629}
   - component: {fileID: 8589281358964491028}
-  - component: {fileID: 7598933061517615822}
-  - component: {fileID: 2768550503744083961}
+  - component: {fileID: 5873762966420239775}
+  - component: {fileID: 7759117166320640181}
   m_Layer: 0
   m_Name: slash_right
   m_TagString: Untagged
@@ -86,8 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &7598933061517615822
-PolygonCollider2D:
+--- !u!70 &5873762966420239775
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -99,37 +99,10 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.52, y: 1.23}
-    newSize: {x: 1.52, y: 1.23}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.5717975, y: -0.09495748}
-      - {x: 0.6597871, y: 0.09106804}
-      - {x: 0.67786497, y: 0.32867685}
-      - {x: 0.6081181, y: 0.45277885}
-      - {x: 0.44392455, y: 0.4893315}
-      - {x: 0.39099318, y: 0.449722}
-      - {x: 0.33785704, y: 0.22186537}
-      - {x: 0.14428589, y: -0.052735947}
-      - {x: -0.03519699, y: -0.185951}
-      - {x: -0.24412552, y: -0.29491952}
-      - {x: -0.64793533, y: -0.41337234}
-      - {x: -0.6884524, y: -0.4475786}
-      - {x: -0.63166684, y: -0.49813458}
-      - {x: -0.5011535, y: -0.5334528}
-      - {x: -0.04738098, y: -0.5376591}
-      - {x: 0.10206467, y: -0.47611186}
-      - {x: 0.25575516, y: -0.38400877}
-      - {x: 0.4263095, y: -0.25662765}
---- !u!114 &2768550503744083961
+  m_Offset: {x: -0.10602385, y: 0.07544073}
+  m_Size: {x: 1.6260308, y: 1.2177745}
+  m_Direction: 1
+--- !u!114 &7759117166320640181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

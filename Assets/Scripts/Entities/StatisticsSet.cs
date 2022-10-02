@@ -50,7 +50,9 @@ public class StatisticsSet {
 		}
 	}
 
-	public float GetPower(Statistic type, float baseValue) {
+	public float GetPower(Statistic type, float baseValue, bool debug = false) {
+		if(debug)
+			UnityEngine.Debug.LogWarning("("+baseValue+"+"+flats[type] +"+"+ temp_mutls[type]+") * ("+mutls[type] +"+"+ temp_mutls[type]+") = " + ((baseValue + flats[type] + temp_mutls[type]) * (mutls[type] + temp_mutls[type])));
 		return (baseValue + flats[type] + temp_mutls[type]) * (mutls[type] + temp_mutls[type]);
 	}
 
