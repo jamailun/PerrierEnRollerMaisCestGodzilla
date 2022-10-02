@@ -11,8 +11,11 @@ public class ProceduralTestEditor : Editor {
 
 		if(GUILayout.Button("GENERATE")) {
 			ProceduralTest pt = (ProceduralTest) target;
-			pt.Generate();
-
+			pt.GenerateAndPopulate();
+		}
+		if(GUILayout.Button("Clear buildings")) {
+			ProceduralTest pt = (ProceduralTest) target;
+			pt.ClearBuildings();
 		}
 
 	}

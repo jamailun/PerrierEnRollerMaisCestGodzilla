@@ -96,9 +96,10 @@ public abstract class MapGenerator : ScriptableObject {
 			int placedsAmount = 0;
 			int tentative = 0;
 			while(tentative < triesPerSeed) {
+				float radiusPlace = seed.lockRadius * 0.1f;
 				float radius = seed.lockRadius * 0.8f;
-				float tx = sizePerTile * Random.Range(seed.minX + radius, seed.maxX - radius);
-				float ty = sizePerTile * Random.Range(0 + radius, heightTiles - radius);
+				float tx = sizePerTile * Random.Range(seed.minX + radiusPlace, seed.maxX - radiusPlace);
+				float ty = sizePerTile * Random.Range(0 + radiusPlace/2, heightTiles - radiusPlace);
 				var center = new Vector2(tx, ty);
 
 				if(CanPlaceBuildingHere(center, radius)) {

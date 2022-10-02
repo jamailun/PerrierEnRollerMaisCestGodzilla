@@ -17,13 +17,20 @@ MonoBehaviour:
   heightTiles: 30
   triesPerSeed: 3
   buildings:
-  - buildingPrefab: {fileID: 7501820452410743311, guid: a7d91e030ec5fcd4e81fc96376fc0430, type: 3}
-    lockRadius: 1
-    minX: 12
-    maxX: 30
+  - buildingPrefab: {fileID: 4290465918984096854, guid: 6b8f7f6bcf2089e44b7442caab720e83, type: 3}
+    lockRadius: 2
+    minX: 7
+    maxX: 13
     minPerGroup: 1
     maxPerGroup: 2
-    optimalAmount: 20
+    optimalAmount: 10
+  - buildingPrefab: {fileID: 7671187641688114655, guid: 7d6fa7fcaf0eb9b4da3564f68289ae09, type: 3}
+    lockRadius: 4
+    minX: 7
+    maxX: 12
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 5
   waterSizeMin: 4
   waterSizeMax: 8
   waterSandTransitionRight: 0.486
