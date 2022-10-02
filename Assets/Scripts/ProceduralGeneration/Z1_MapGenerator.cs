@@ -5,16 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-/// <summary>
-/// ZONE 1.
-/// Contraintes :
-/// - de gauche à droite,
-/// - de la mer à gauche
-/// - de plus en plus de batiments
-/// 
-/// 
-/// </summary>
-
 [CreateAssetMenu(fileName = "Map_Generator", menuName = "PERMCG/Z1_Map_Generator", order = 10)]
 public class Z1_MapGenerator : MapGenerator {
 
@@ -98,7 +88,7 @@ public class Z1_MapGenerator : MapGenerator {
 	#endregion
 
 	private int[,] tiles;
-
+	private Vector2 spawn;
 
 	//TODO : Points délimitants la mer (pour le collider) : // private Vector2[] waterPoints;
 
@@ -112,6 +102,17 @@ public class Z1_MapGenerator : MapGenerator {
 			TYPE_WATER, TYPE_SAND, TYPE_WATER_TO_SAND_BR, TYPE_WATER_TO_SAND_LT, TYPE_WATER_TO_SAND_RT, TYPE_WATER_TO_SAND_BL, TYPE_WATER_TO_SAND_BT,
 			waterSandTransitionLeft, waterSandTransitionRight
 		);
+
+		// Get spawn : on first tile that is NOT water
+		int spawnTileY = Random.Range(heightTiles/2 - 3, heightTiles/2 + 3);
+		int spawnTileX = 0;
+		for(int sx = waterSizeMin; sx < widthTiles; sx++) {
+			if(tiles[sx, spawnTileY] != TYPE_WATER) {
+				spawnTileX = sx;
+				break;
+			}
+		}
+		spawn = new Vector2(spawnTileX, spawnTileY) * sizePerTile;
 
 		// SAND -> GROUND TRANSITION
 		VerticalTransition(tiles, TYPE_NONE,
@@ -128,7 +129,7 @@ public class Z1_MapGenerator : MapGenerator {
 		GenerateBuildingsFromSeeds();
 	}
 
-	public override void Populate(SceneData scene) {
+	public override void Populate(SceneData scene, bool debug = true) {
 		// Fill the tilemap
 		for(int x = 0; x < widthTiles; x++) {
 			for(int y = 0; y < heightTiles; y++) {
@@ -141,7 +142,14 @@ public class Z1_MapGenerator : MapGenerator {
 
 		// recalcultate navmesh
 		scene.navmesh.BuildNavMeshAsync();
+
+		if(debug) {
+			scene.player.transform.position = GetPlayerSpawn();
+		}
 	}
 
+	public override Vector2 GetPlayerSpawn() {
+		return spawn;
+	}
 
 }

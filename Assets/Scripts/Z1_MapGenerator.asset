@@ -15,12 +15,21 @@ MonoBehaviour:
   sizePerTile: 2
   widthTiles: 50
   heightTiles: 30
+  triesPerSeed: 3
+  buildings:
+  - buildingPrefab: {fileID: 7501820452410743311, guid: a7d91e030ec5fcd4e81fc96376fc0430, type: 3}
+    lockRadius: 1
+    minX: 12
+    maxX: 30
+    minPerGroup: 1
+    maxPerGroup: 2
+    optimalAmount: 20
   waterSizeMin: 4
   waterSizeMax: 8
-  sandSizeMin: 11
-  sandSizeMax: 15
   waterSandTransitionRight: 0.486
   waterSandTransitionLeft: 0.407
+  sandSizeMin: 11
+  sandSizeMax: 15
   sandDirtTransitionRight: 0.471
   sandDirtTransitionLeft: 0.454
   waterTile: {fileID: 11400000, guid: b573ccf51946e0242a5d412bc4227c7e, type: 2}
@@ -36,12 +45,3 @@ MonoBehaviour:
   sand_dirt_BT: {fileID: 11400000, guid: 5f25ddbeb0963154da9319a119ff3fd5, type: 2}
   sand_dirt_BL: {fileID: 11400000, guid: 394be8c6d420a77469e8319cf568223e, type: 2}
   sand_dirt_RT: {fileID: 11400000, guid: 96b988defd5009b42a9774471055c222, type: 2}
-  triesPerSeed: 3
-  buildings:
-  - buildingPrefab: {fileID: 7501820452410743311, guid: a7d91e030ec5fcd4e81fc96376fc0430, type: 3}
-    lockRadius: 1
-    minX: 6
-    maxX: 10
-    minPerGroup: 1
-    maxPerGroup: 2
-    optimalAmount: 20

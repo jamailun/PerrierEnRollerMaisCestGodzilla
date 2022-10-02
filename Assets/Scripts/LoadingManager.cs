@@ -55,7 +55,7 @@ public class LoadingManager : MonoBehaviour {
 		var target = SceneManager.GetSceneByName(levelSceneName);
 
 		// Creating tilemap
-		generator.Populate(new SceneData(target));
+		generator.Populate(new SceneData(target), false);
 
 		// Creating entities
 		var test = Instantiate(testPrefab);

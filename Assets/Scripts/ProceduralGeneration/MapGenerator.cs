@@ -23,7 +23,9 @@ public abstract class MapGenerator : ScriptableObject {
 	/// Populate a scene with the generated data.
 	/// </summary>
 	/// <param name="scene">The scenedata corresponding to the scene to populate.</param>
-	public abstract void Populate(SceneData scene);
+	public abstract void Populate(SceneData scene, bool debug = true);
+
+	public abstract Vector2 GetPlayerSpawn();
 
 	/// <summary>
 	/// Do a tile vertical transition from left to right.
