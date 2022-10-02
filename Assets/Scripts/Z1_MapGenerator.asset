@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed04ef0ce471c7469e46bc9af099a44, type: 3}
+  m_Name: Z1_MapGenerator
+  m_EditorClassIdentifier: 
+  widthTiles: 50
+  heightTiles: 30
+  waterSizeMin: 4
+  waterSizeMax: 8
+  waterSandTransitionRight: 0.486
+  waterSandTransitionLeft: 0.407
+  waterTile: {fileID: 11400000, guid: b573ccf51946e0242a5d412bc4227c7e, type: 2}
+  sandTile: {fileID: 11400000, guid: 8c6ff91cd51f23f45926e693d3735b9c, type: 2}
+  groundTile: {fileID: 11400000, guid: 8c6ff91cd51f23f45926e693d3735b9c, type: 2}
+  water_sand_BR: {fileID: 11400000, guid: 6e2307f047251c44ca6bb3b19a939f1c, type: 2}
+  water_sand_LT: {fileID: 11400000, guid: 00fc4eb325d46f644bd60e42b9e1c1e3, type: 2}
+  water_sand_BT: {fileID: 11400000, guid: b5a223fb121709a4cb7cb94520cc95d7, type: 2}
+  water_sand_BL: {fileID: 11400000, guid: 51ca3864593cf514fa2546573a803ab4, type: 2}
+  water_sand_RT: {fileID: 11400000, guid: 544c881d1e8083446aa9e73039e19764, type: 2}
+  sizePerTile: 64

@@ -155,6 +155,7 @@ MonoBehaviour:
   stage: 0
   levelSceneName: LevelScene
   testPrefab: {fileID: 5223675917355467165, guid: fab7e61b6a27138448f4d286d6fe9419, type: 3}
+  zone_1_generator: {fileID: 11400000, guid: 4f69d1425e9befe4c97275d64f6bcda0, type: 2}
 --- !u!4 &83845498
 Transform:
   m_ObjectHideFlags: 0

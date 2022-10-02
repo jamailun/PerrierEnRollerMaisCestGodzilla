@@ -9,6 +9,9 @@ public class LoadingManager : MonoBehaviour {
 	[SerializeField] private string levelSceneName = "LevelScene";
 	[SerializeField] private GameObject testPrefab;
 
+	[Header("Generators")]
+	[SerializeField] private MapGenerator zone_1_generator;
+
 	private void Start() {
 		if(Instance != null) {
 			Debug.LogWarning("Cannot have multiple LoadingManager. Removing this one.");
@@ -28,16 +31,19 @@ public class LoadingManager : MonoBehaviour {
 		Debug.Log("Preparing stage " + stage + ".");
 
 		Debug.Log("Creating procedural generator...");
-		//TODO ProceduralGenerator generator = new ProceduralGenerator();
+		MapGenerator generator = stage switch {
+			1 => zone_1_generator,
+			_ => throw new System.NotImplementedException("NO generator for stage " + stage)
+		};
 
 		Debug.Log("Creating the level layout...");
-		//TODO Texture2D layout  = generator.GenerateTexture(w, h);
+		generator.Generate();
 
 		Debug.Log("Creating scene...");
-		StartCoroutine(LoadAsyncScene());
+		StartCoroutine(LoadAsyncScene(generator));
 	}
 
-	private IEnumerator LoadAsyncScene(/*Texture2D layout*/) {
+	private IEnumerator LoadAsyncScene(MapGenerator generator) {
 		// The Application loads the Scene in the background at the same time as the current Scene.
 		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelSceneName, LoadSceneMode.Additive);
 
@@ -46,11 +52,14 @@ public class LoadingManager : MonoBehaviour {
 			yield return null;
 		}
 
-		// TODO : IMPLEMENT LAYOUT !
-		// TODO : create ENEMIES !
+		var target = SceneManager.GetSceneByName(levelSceneName);
 
+		// Creating tilemap
+		generator.Populate(new SceneData(target));
+
+		// Creating entities
 		var test = Instantiate(testPrefab);
-		SceneManager.MoveGameObjectToScene(test, SceneManager.GetSceneByName(levelSceneName));
+		SceneManager.MoveGameObjectToScene(test, target);
 
 		// Unload the previous Scene
 		SceneManager.UnloadSceneAsync("LoadingScreen");

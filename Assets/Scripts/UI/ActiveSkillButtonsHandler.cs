@@ -17,7 +17,6 @@ public class ActiveSkillButtonsHandler : MonoBehaviour {
 			if( ! button.gameObject.activeSelf || button.GetSkill() == null || button.GetSkill() == skill) {
 				button.gameObject.SetActive(true);
 				button.SetSkill(skill, target);
-				Debug.LogWarning("-> " + button);
 				return;
 			}
 		}
