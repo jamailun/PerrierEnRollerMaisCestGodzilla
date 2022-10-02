@@ -18,21 +18,21 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "Map_Generator", menuName = "PERMCG/Z1_Map_Generator", order = 10)]
 public class Z1_MapGenerator : MapGenerator {
 
-	[SerializeField] private int widthTiles = 10;
-	[SerializeField] private int heightTiles = 5;
+	[Header("Water / Sand transition")]
+
 	[SerializeField] private int waterSizeMin = 2;
 	[SerializeField] private int waterSizeMax = 4;
-	[SerializeField] private int sandSizeMin = 6;
-	[SerializeField] private int sandSizeMax = 12;
-
-	[Header("Seeds")]
 	[SerializeField] [Range(0.01f, 0.5f)] private float waterSandTransitionRight = 0.2f;
 	[SerializeField] [Range(0.01f, 0.5f)] private float waterSandTransitionLeft = 0.2f;
 
+	[Header("Sand / Ground transition")]
+
+	[SerializeField] private int sandSizeMin = 6;
+	[SerializeField] private int sandSizeMax = 12;
 	[SerializeField] [Range(0.01f, 0.5f)] private float sandDirtTransitionRight = 0.2f;
 	[SerializeField] [Range(0.01f, 0.5f)] private float sandDirtTransitionLeft = 0.2f;
 
-	[Header("Tiles")]
+	[Header("Tiles used in zone 1")]
 	[SerializeField] private Tile waterTile;
 	[SerializeField] private Tile sandTile;
 	[SerializeField] private Tile groundTile;
@@ -49,8 +49,7 @@ public class Z1_MapGenerator : MapGenerator {
 	[SerializeField] private Tile sand_dirt_BL;
 	[SerializeField] private Tile sand_dirt_RT;
 
-	[Header("Buildings")]
-	[SerializeField] private Building b; 
+	#region local_types_def
 
 	private const int TYPE_NONE = 0;
 
@@ -72,9 +71,8 @@ public class Z1_MapGenerator : MapGenerator {
 
 	private const int TYPE_GROUND = 3;
 
-
 	private Tile GetTile(int x, int y) {
-		return tiles[x,y] switch {
+		return tiles[x, y] switch {
 			TYPE_WATER => waterTile,
 
 			TYPE_WATER_TO_SAND_BR => water_sand_BR,
@@ -97,14 +95,16 @@ public class Z1_MapGenerator : MapGenerator {
 		};
 	}
 
-	private int[,] tiles;
-	public int sizePerTile = 64;
+	#endregion
 
-	// Points délimitants la mer (pour le collider)
-	// tiles où mettre la mer
+	private int[,] tiles;
+
+
+	//TODO : Points délimitants la mer (pour le collider) : // private Vector2[] waterPoints;
 
 	public override void Generate() {
 		tiles = new int[widthTiles, heightTiles];
+		placeds = new();
 
 		// WATER -> SAND TRANSITION
 		VerticalTransition(tiles, TYPE_NONE,
@@ -121,20 +121,26 @@ public class Z1_MapGenerator : MapGenerator {
 		);
 
 		// DO PONDS
+		// little foretss ?
+		// random points of sand on the ground ?
 
 		// DO BUILDINGS
+		GenerateBuildingsFromSeeds();
 	}
 
-	
-
 	public override void Populate(SceneData scene) {
+		// Fill the tilemap
 		for(int x = 0; x < widthTiles; x++) {
 			for(int y = 0; y < heightTiles; y++) {
 				scene.tilemap.SetTile(new(x, y, 0), GetTile(x,y));
 			}
 		}
-		// place buildings entities
 
+		// Place buildings
+		RepopulateBuildings(scene);
+
+		// recalcultate navmesh
+		scene.navmesh.BuildNavMeshAsync();
 	}
 
 

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed04ef0ce471c7469e46bc9af099a44, type: 3}
   m_Name: Z1_MapGenerator
   m_EditorClassIdentifier: 
+  sizePerTile: 2
   widthTiles: 50
   heightTiles: 30
   waterSizeMin: 4
   waterSizeMax: 8
-  sandSizeMin: 9
-  sandSizeMax: 13
+  sandSizeMin: 11
+  sandSizeMax: 15
   waterSandTransitionRight: 0.486
   waterSandTransitionLeft: 0.407
   sandDirtTransitionRight: 0.471
@@ -34,5 +35,13 @@ MonoBehaviour:
   sand_dirt_LT: {fileID: 11400000, guid: 2f009c34ae40823498dbfb45930f353d, type: 2}
   sand_dirt_BT: {fileID: 11400000, guid: 5f25ddbeb0963154da9319a119ff3fd5, type: 2}
   sand_dirt_BL: {fileID: 11400000, guid: 394be8c6d420a77469e8319cf568223e, type: 2}
-  sand_dirt_RT: {fileID: 11400000, guid: 2f009c34ae40823498dbfb45930f353d, type: 2}
-  sizePerTile: 64
+  sand_dirt_RT: {fileID: 11400000, guid: 96b988defd5009b42a9774471055c222, type: 2}
+  triesPerSeed: 3
+  buildings:
+  - buildingPrefab: {fileID: 7501820452410743311, guid: a7d91e030ec5fcd4e81fc96376fc0430, type: 3}
+    lockRadius: 1
+    minX: 6
+    maxX: 10
+    minPerGroup: 1
+    maxPerGroup: 2
+    optimalAmount: 20
