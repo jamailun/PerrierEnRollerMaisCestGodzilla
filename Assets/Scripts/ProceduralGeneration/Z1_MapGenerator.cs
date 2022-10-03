@@ -140,7 +140,7 @@ public class Z1_MapGenerator : MapGenerator {
 
 	#endregion
 
-	private Vector2 spawn;
+	private Vector2 spawn, exit;
 
 	//TODO : Points délimitants la mer (pour le collider) : // private Vector2[] waterPoints;
 
@@ -230,8 +230,9 @@ public class Z1_MapGenerator : MapGenerator {
 				}
 
 				// Central road.
-				int yBonusHori = Random.Range(2*twentyPercent + 3 , 3 * twentyPercent - 3);
-				BuildHorizontalRoadToRight(yBonusHori, roadX);
+				int exitRoad = Random.Range(2*twentyPercent + 3 , 3 * twentyPercent - 3);
+				BuildHorizontalRoadToRight(exitRoad, roadX);
+				exit = new Vector2(widthTiles, exitRoad + 0.5f) * sizePerTile;
 			}
 
 			previousX = roadX;
@@ -326,11 +327,15 @@ public class Z1_MapGenerator : MapGenerator {
 
 		if(debug) {
 			scene.player.transform.position = GetPlayerSpawn();
+			Debug.Log("(DEBUG) Exit will be placed in " + GetLevelExit());
 		}
 	}
 
 	public override Vector2 GetPlayerSpawn() {
 		return spawn;
+	}
+	public override Vector2 GetLevelExit() {
+		return exit;
 	}
 
 }

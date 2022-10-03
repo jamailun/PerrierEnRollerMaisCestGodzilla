@@ -27,6 +27,7 @@ public abstract class MapGenerator : ScriptableObject {
 	public abstract void Populate(SceneData scene, bool debug = true);
 
 	public abstract Vector2 GetPlayerSpawn();
+	public abstract Vector2 GetLevelExit();
 
 	/// <summary>
 	/// Do a tile vertical transition from left to right.
@@ -98,9 +99,6 @@ public abstract class MapGenerator : ScriptableObject {
 			int placedsAmount = 0;
 			int tentative = - seed.bonusTries;
 			float bufferY = seed.GetBufferY(); // long calculus, so we do it here
-
-			Debug.Log("BUFFER FOR " + seed.buildingPrefab.name + " : " + bufferY);
-			Debug.Log("MUST HAVE Y > " + (0.1f+bufferY) + " && Y < " + (heightTiles * sizePerTile - 0.1f - bufferY));
 
 			while(tentative < triesPerSeed) {
 				float radiusPlace = seed.lockRadius * 0.1f;

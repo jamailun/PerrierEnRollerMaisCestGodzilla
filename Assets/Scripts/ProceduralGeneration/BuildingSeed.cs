@@ -29,10 +29,16 @@ public class BuildingSeed {
 		return false;
 	}
 
+	/// <summary>
+	/// Calculate automatically the half-height of a buildig from it's hurtbox.
+	/// </summary>
+	/// <returns>0 if no collider/hurtbox was found</returns>
 	public float GetBufferY() {
 		var coll =  buildingPrefab.GetComponentInChildren<Hurtbox>()?.GetComponent<Collider2D>();
-		if(coll == null)
+		if(coll == null) {
+			Debug.LogWarning("Building prefab " + buildingPrefab.name + " doesn't have a hurtbox.");
 			return 0;
+		}
 		if(typeof(BoxCollider2D).IsInstanceOfType(coll))
 			return ((BoxCollider2D) coll).size.y / 2f;
 		if(typeof(CircleCollider2D).IsInstanceOfType(coll))
