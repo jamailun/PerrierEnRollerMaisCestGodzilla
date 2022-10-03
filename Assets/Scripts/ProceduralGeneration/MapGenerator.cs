@@ -12,6 +12,7 @@ public abstract class MapGenerator : ScriptableObject {
 	[SerializeField] protected int triesPerSeed = 3;
 	[SerializeField] protected BuildingSeed[] buildings;
 
+	protected int[,] tiles;
 	protected List<BuildingSeed.Placed> placeds = new();
 
 	/// <summary>
@@ -92,17 +93,27 @@ public abstract class MapGenerator : ScriptableObject {
 	/// Generate buildings from the seeds parameters
 	/// </summary>
 	protected void GenerateBuildingsFromSeeds() {
+		float centerY = heightTiles / 2f;
 		foreach(var seed in buildings) {
 			int placedsAmount = 0;
-			int tentative = 0;
+			int tentative = - seed.bonusTries;
+			float bufferY = seed.GetBufferY(); // long calculus, so we do it here
+
+			Debug.Log("BUFFER FOR " + seed.buildingPrefab.name + " : " + bufferY);
+			Debug.Log("MUST HAVE Y > " + (0.1f+bufferY) + " && Y < " + (heightTiles * sizePerTile - 0.1f - bufferY));
+
 			while(tentative < triesPerSeed) {
 				float radiusPlace = seed.lockRadius * 0.1f;
 				float radius = seed.lockRadius * 0.8f;
-				float tx = sizePerTile * Random.Range(seed.minX + radiusPlace, seed.maxX - radiusPlace);
-				float ty = sizePerTile * Random.Range(0 + radiusPlace/2, heightTiles - radiusPlace);
-				var center = new Vector2(tx, ty);
+				float tx = Random.Range(seed.minX + radiusPlace/3, seed.maxX - radiusPlace/3);
+				float ty = Random.Range(0 + radiusPlace/2, heightTiles - radiusPlace);
+				if(ty <= centerY + seed.avoidCenterY && ty >= centerY - seed.avoidCenterY) {
+					tentative++;
+					continue;
+				}
+				var center = sizePerTile * new Vector2(tx, ty);
 
-				if(CanPlaceBuildingHere(center, radius)) {
+				if(CanPlaceBuildingHere(center, radius, seed, Mathf.FloorToInt(tx), Mathf.FloorToInt(ty), bufferY)) {
 					// place some buildings, in a circle
 					int toPlace = Random.Range(seed.minPerGroup, seed.maxPerGroup);
 					for(int n = 0; n < toPlace; n++) {
@@ -110,7 +121,7 @@ public abstract class MapGenerator : ScriptableObject {
 						placeds.Add(new BuildingSeed.Placed(seed, pos));
 						placedsAmount++;
 					}
-					if(placedsAmount > seed.optimalAmount * 1.1f)
+					if(placedsAmount >= seed.optimalAmount)
 						break;
 				} else {
 					tentative++;
@@ -126,10 +137,14 @@ public abstract class MapGenerator : ScriptableObject {
 	/// <param name="pos">The point to try to put the building at</param>
 	/// <param name="radius">The radius of the building</param>
 	/// <returns></returns>
-	protected bool CanPlaceBuildingHere(Vector2 pos, float radius) {
+	protected bool CanPlaceBuildingHere(Vector2 pos, float radius, BuildingSeed seed, int x, int y, float bufferY) {
+		if(!seed.CanBePlaced(tiles[x, y]))
+			return false;
+		if(pos.x < 0.1f || pos.y <= 0.1f + bufferY || pos.y >= heightTiles*sizePerTile - 0.1f - bufferY)
+			return false;
 		foreach(var b in placeds) {
 			if(Vector2.Distance(new Vector2(b.x, b.y), pos) < Mathf.Max(radius, b.radius))
-				return true;
+				return false;
 		}
 		return true;
 	}

@@ -22,6 +22,13 @@ public class Z1_MapGenerator : MapGenerator {
 	[SerializeField] [Range(0.01f, 0.5f)] private float sandDirtTransitionRight = 0.2f;
 	[SerializeField] [Range(0.01f, 0.5f)] private float sandDirtTransitionLeft = 0.2f;
 
+	[Header("Road parameters")]
+
+	[SerializeField] private int firstRoadX = 20;
+	[SerializeField] private int distanceBetweenRoadsMin = 7;
+	[SerializeField] private int distanceBetweenRoadsMax = 12;
+	[SerializeField] private float chanceAdditionalRoad = 0.8f;
+
 	[Header("Tiles used in zone 1")]
 	[SerializeField] private Tile waterTile;
 	[SerializeField] private Tile sandTile;
@@ -38,6 +45,20 @@ public class Z1_MapGenerator : MapGenerator {
 	[SerializeField] private Tile sand_dirt_BT;
 	[SerializeField] private Tile sand_dirt_BL;
 	[SerializeField] private Tile sand_dirt_RT;
+
+	[SerializeField] private Tile roadTile;
+	[SerializeField] private Tile road_to_grass_L;
+	[SerializeField] private Tile road_to_grass_R;
+	[SerializeField] private Tile road_to_grass_T;
+	[SerializeField] private Tile road_to_grass_B;
+	[SerializeField] private Tile road_to_grass_BR;
+	[SerializeField] private Tile road_to_grass_BL;
+	[SerializeField] private Tile road_to_grass_TR;
+	[SerializeField] private Tile road_to_grass_TL;
+	[SerializeField] private Tile road_to_grass_nBR;
+	[SerializeField] private Tile road_to_grass_nBL;
+	[SerializeField] private Tile road_to_grass_nTR;
+	[SerializeField] private Tile road_to_grass_nTL;
 
 	#region local_types_def
 
@@ -61,6 +82,21 @@ public class Z1_MapGenerator : MapGenerator {
 
 	private const int TYPE_GROUND = 3;
 
+	private const int TYPE_GROUND_TO_ROAD_L = 3401;
+	private const int TYPE_GROUND_TO_ROAD_R = 3402;
+	private const int TYPE_GROUND_TO_ROAD_T = 3403;
+	private const int TYPE_GROUND_TO_ROAD_B = 3404;
+	private const int TYPE_GROUND_TO_ROAD_BR = 3411;
+	private const int TYPE_GROUND_TO_ROAD_BL = 3412;
+	private const int TYPE_GROUND_TO_ROAD_TR = 3413;
+	private const int TYPE_GROUND_TO_ROAD_TL = 3414;
+	private const int TYPE_GROUND_TO_ROAD_nBR = 3421;
+	private const int TYPE_GROUND_TO_ROAD_nBL = 3422;
+	private const int TYPE_GROUND_TO_ROAD_nTR = 3423;
+	private const int TYPE_GROUND_TO_ROAD_nTL = 3424;
+
+	private const int TYPE_ROAD = 4;
+
 	private Tile GetTile(int x, int y) {
 		return tiles[x, y] switch {
 			TYPE_WATER => waterTile,
@@ -81,13 +117,29 @@ public class Z1_MapGenerator : MapGenerator {
 
 			TYPE_GROUND => groundTile,
 
+			TYPE_GROUND_TO_ROAD_L => road_to_grass_L,
+			TYPE_GROUND_TO_ROAD_R => road_to_grass_R,
+			TYPE_GROUND_TO_ROAD_B => road_to_grass_B,
+			TYPE_GROUND_TO_ROAD_T => road_to_grass_T,
+
+			TYPE_GROUND_TO_ROAD_BR => road_to_grass_BR,
+			TYPE_GROUND_TO_ROAD_TR => road_to_grass_TR,
+			TYPE_GROUND_TO_ROAD_BL => road_to_grass_BL,
+			TYPE_GROUND_TO_ROAD_TL => road_to_grass_TL,
+
+			TYPE_GROUND_TO_ROAD_nBR => road_to_grass_nBR,
+			TYPE_GROUND_TO_ROAD_nTR => road_to_grass_nTR,
+			TYPE_GROUND_TO_ROAD_nBL => road_to_grass_nBL,
+			TYPE_GROUND_TO_ROAD_nTL => road_to_grass_nTL,
+
+			TYPE_ROAD => roadTile,
+
 			_ => groundTile
 		};
 	}
 
 	#endregion
 
-	private int[,] tiles;
 	private Vector2 spawn;
 
 	//TODO : Points délimitants la mer (pour le collider) : // private Vector2[] waterPoints;
@@ -112,7 +164,7 @@ public class Z1_MapGenerator : MapGenerator {
 				break;
 			}
 		}
-		spawn = new Vector2(spawnTileX, spawnTileY) * sizePerTile;
+		spawn = new Vector2(spawnTileX + 1.5f, spawnTileY) * sizePerTile;
 
 		// SAND -> GROUND TRANSITION
 		VerticalTransition(tiles, TYPE_NONE,
@@ -121,12 +173,141 @@ public class Z1_MapGenerator : MapGenerator {
 			sandDirtTransitionLeft, sandDirtTransitionRight
 		);
 
-		// DO PONDS
-		// little foretss ?
-		// random points of sand on the ground ?
+		// Roads
+		int verticalAmount = 2;
+
+		int previousX = -1;
+		int previousYbot = -1;
+		int previousYtop = -1;
+
+		int roadX = firstRoadX;
+
+		int twentyPercent = heightTiles / 5;
+
+		bool foundSmall = false;
+		for(int r = 0; r < verticalAmount; r++) {
+			bool isSmall = false;
+			if(!foundSmall && (r == verticalAmount - 1 || Random.value <= 0.5))
+				isSmall = true;
+
+			roadX += Random.Range(distanceBetweenRoadsMin, distanceBetweenRoadsMax);
+
+			int roadYtop;
+			int roadYbot;
+
+			if(isSmall) {
+				roadYtop = Random.Range(4 * twentyPercent,  heightTiles - 2);        //	80% -> 100%
+				roadYbot = Random.Range(1 * twentyPercent, 2 * twentyPercent);      //	20% ->  40%
+			} else {
+				roadYtop = Random.Range(3 * twentyPercent, 4 * twentyPercent);      //  60% ->  80%
+				roadYbot = Random.Range(		2		 , 1 * twentyPercent);      //   0% ->  20%
+			}
+
+			//Debug.Log("road " + (r + 1) + " from (" + roadX + "," + roadYtop + ") to (" + roadX + "," + roadYbot + ").");
+
+			// build this road
+			BuildVerticalRoad(roadX, roadYtop, roadYbot);
+
+			if(isSmall) {
+				foundSmall = true;
+			}
+
+			if(previousYbot != -1) {
+				if(isSmall) {
+					BuildHorizontalRoadToRight(previousYtop, previousX);
+					BuildHorizontalRoadToRight(roadYbot, previousX);
+					// additional road from top
+					if(Mathf.Abs(roadYtop - previousYtop) > 6 && Random.value <= chanceAdditionalRoad) {
+						BuildHorizontalRoadToRight(roadYtop, roadX);
+					}
+				} else {
+					BuildHorizontalRoadToRight(previousYbot, previousX);
+					BuildHorizontalRoadToRight(roadYtop, previousX);
+					// additional road from bottom
+					if(Mathf.Abs(roadYbot - previousYbot) > 6 && Random.value <= chanceAdditionalRoad) {
+						BuildHorizontalRoadToRight(roadYbot, roadX);
+					}
+				}
+
+				// Central road.
+				int yBonusHori = Random.Range(2*twentyPercent + 3 , 3 * twentyPercent - 3);
+				BuildHorizontalRoadToRight(yBonusHori, roadX);
+			}
+
+			previousX = roadX;
+			previousYbot = roadYbot;
+			previousYtop = roadYtop;
+		}
 
 		// DO BUILDINGS
 		GenerateBuildingsFromSeeds();
+	}
+
+	private void BuildVerticalRoad(int x, int ty, int by) {
+		if(ty < heightTiles - 1) {
+			tiles[x - 1, ty + 1] = TYPE_GROUND_TO_ROAD_BR;
+			tiles[x    , ty + 1] = TYPE_GROUND_TO_ROAD_B;
+			tiles[x + 1, ty + 1] = TYPE_GROUND_TO_ROAD_BL;
+		}
+		for(int y = ty; y >= by; y--) {
+			if(x > 0)
+				tiles[x - 1, y] = TYPE_GROUND_TO_ROAD_R;
+				tiles[x    , y] = TYPE_ROAD;
+			if(x < widthTiles - 1)
+				tiles[x + 1, y] = TYPE_GROUND_TO_ROAD_L;
+		}
+		if(by > 0) {
+			tiles[x - 1, by - 1] = TYPE_GROUND_TO_ROAD_TR;
+			tiles[x, by - 1] = TYPE_GROUND_TO_ROAD_T;
+			tiles[x + 1, by - 1] = TYPE_GROUND_TO_ROAD_TL;
+		}
+	}
+
+
+	private void BuildHorizontalRoadToRight(int y, int lx) {
+		if(tiles[lx + 1, y + 1] == TYPE_GROUND_TO_ROAD_BL)
+			tiles[lx + 1, y + 1] = TYPE_GROUND_TO_ROAD_B;
+		else
+			tiles[lx + 1, y + 1] = TYPE_GROUND_TO_ROAD_nTR;
+
+		tiles[lx + 1, y] = TYPE_ROAD;
+
+		if(tiles[lx + 1, y - 1] == TYPE_GROUND_TO_ROAD_TL)
+			tiles[lx + 1, y - 1] = TYPE_GROUND_TO_ROAD_T;
+		else
+			tiles[lx + 1, y - 1] = TYPE_GROUND_TO_ROAD_nBR;
+
+
+		for(int x = lx+2; x < widthTiles; x++) {
+			if(tiles[x, y + 1] == TYPE_NONE) {
+				tiles[x, y + 1] = TYPE_GROUND_TO_ROAD_B;
+			} else {
+				if(tiles[x, y + 1] == TYPE_GROUND_TO_ROAD_BR)
+					tiles[x, y + 1] = TYPE_GROUND_TO_ROAD_B;
+				else
+					tiles[x, y + 1] = TYPE_GROUND_TO_ROAD_nTL;
+			}
+
+			if(tiles[x, y] == TYPE_NONE) {
+				tiles[x, y] = TYPE_ROAD;
+			} else {
+				tiles[x, y] = TYPE_ROAD;
+			}
+
+			if(tiles[x, y-1] == TYPE_NONE) {
+				tiles[x, y-1] = TYPE_GROUND_TO_ROAD_T;
+			} else {
+				if(tiles[x, y - 1] == TYPE_GROUND_TO_ROAD_TR)
+					tiles[x, y - 1] = TYPE_GROUND_TO_ROAD_T;
+				else
+					tiles[x, y-1] = TYPE_GROUND_TO_ROAD_nBL;
+				break;
+			}
+
+			if(tiles[x,y-1]==TYPE_NONE) tiles[x, y-1] = TYPE_WATER;
+			//tiles[x, y] = TYPE_WATER;
+			if(tiles[x, y+1] == TYPE_NONE) tiles[x, y+1] = TYPE_WATER;
+		}
 	}
 
 	public override void Populate(SceneData scene, bool debug = true) {

@@ -15,22 +15,78 @@ MonoBehaviour:
   sizePerTile: 2
   widthTiles: 50
   heightTiles: 30
-  triesPerSeed: 3
+  triesPerSeed: 5
   buildings:
+  - buildingPrefab: {fileID: 5024249504566616442, guid: d585505422b72284683968f2244fcdf2, type: 3}
+    lockRadius: 5
+    minX: 5
+    maxX: 7
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 1
+    bonusTries: 5
+    avoidCenterY: 3
+    requireTile: 790000007a0000007b0000007c0000007d00000002000000
   - buildingPrefab: {fileID: 4290465918984096854, guid: 6b8f7f6bcf2089e44b7442caab720e83, type: 3}
-    lockRadius: 2
+    lockRadius: 1.2
     minX: 7
     maxX: 13
     minPerGroup: 1
     maxPerGroup: 2
-    optimalAmount: 10
-  - buildingPrefab: {fileID: 7671187641688114655, guid: 7d6fa7fcaf0eb9b4da3564f68289ae09, type: 3}
-    lockRadius: 4
+    optimalAmount: 18
+    bonusTries: 1
+    avoidCenterY: 0
+    requireTile: 02000000
+  - buildingPrefab: {fileID: 4290465918984096854, guid: ee82ab28f7b9fef49a1b909acf41b8cc, type: 3}
+    lockRadius: 2
     minX: 7
     maxX: 12
     minPerGroup: 1
     maxPerGroup: 1
     optimalAmount: 5
+    bonusTries: 0
+    avoidCenterY: 0
+    requireTile: 02000000
+  - buildingPrefab: {fileID: 8668274889037212891, guid: d2a86ef42c8575e489562646a181ee65, type: 3}
+    lockRadius: 3
+    minX: 20
+    maxX: 35
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 11
+    bonusTries: -1
+    avoidCenterY: 0
+    requireTile: 0300000000000000
+  - buildingPrefab: {fileID: 8953851738645597793, guid: 1f0e3d46c7631e643a6b809709861749, type: 3}
+    lockRadius: 2
+    minX: 15
+    maxX: 28
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 10
+    bonusTries: 1
+    avoidCenterY: 0
+    requireTile: 0300000000000000
+  - buildingPrefab: {fileID: 247506364466569574, guid: 12731e3d43ac37d46a421a1ffa83236e, type: 3}
+    lockRadius: 2
+    minX: 16
+    maxX: 32
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 5
+    bonusTries: -1
+    avoidCenterY: 0
+    requireTile: 0300000000000000
+  - buildingPrefab: {fileID: 3084730902233845707, guid: 509be0ee97a07e541bfe5ec9ea0a1a61, type: 3}
+    lockRadius: 5
+    minX: 35
+    maxX: 48
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 6
+    bonusTries: 0
+    avoidCenterY: 0
+    requireTile: 0300000000000000
   waterSizeMin: 4
   waterSizeMax: 8
   waterSandTransitionRight: 0.486
@@ -39,16 +95,33 @@ MonoBehaviour:
   sandSizeMax: 15
   sandDirtTransitionRight: 0.471
   sandDirtTransitionLeft: 0.454
+  firstRoadX: 20
+  distanceBetweenRoadsMin: 10
+  distanceBetweenRoadsMax: 13
+  chanceAdditionalRoad: 0.8
   waterTile: {fileID: 11400000, guid: b573ccf51946e0242a5d412bc4227c7e, type: 2}
   sandTile: {fileID: 11400000, guid: 8c6ff91cd51f23f45926e693d3735b9c, type: 2}
-  groundTile: {fileID: 11400000, guid: ab935efce00d0074aa1a395951d19067, type: 2}
+  groundTile: {fileID: 11400000, guid: 6198d2610f4ba1d47bb85bea4528c9e1, type: 2}
   water_sand_BR: {fileID: 11400000, guid: 6e2307f047251c44ca6bb3b19a939f1c, type: 2}
   water_sand_LT: {fileID: 11400000, guid: 00fc4eb325d46f644bd60e42b9e1c1e3, type: 2}
   water_sand_BT: {fileID: 11400000, guid: b5a223fb121709a4cb7cb94520cc95d7, type: 2}
   water_sand_BL: {fileID: 11400000, guid: 51ca3864593cf514fa2546573a803ab4, type: 2}
   water_sand_RT: {fileID: 11400000, guid: 544c881d1e8083446aa9e73039e19764, type: 2}
-  sand_dirt_BR: {fileID: 11400000, guid: d2045982cf3c7a64c8e2ebb559fded02, type: 2}
-  sand_dirt_LT: {fileID: 11400000, guid: 2f009c34ae40823498dbfb45930f353d, type: 2}
-  sand_dirt_BT: {fileID: 11400000, guid: 5f25ddbeb0963154da9319a119ff3fd5, type: 2}
-  sand_dirt_BL: {fileID: 11400000, guid: 394be8c6d420a77469e8319cf568223e, type: 2}
-  sand_dirt_RT: {fileID: 11400000, guid: 96b988defd5009b42a9774471055c222, type: 2}
+  sand_dirt_BR: {fileID: 11400000, guid: 7a74f6b2771bc5f4d90d76a184fcd9e2, type: 2}
+  sand_dirt_LT: {fileID: 11400000, guid: 19a7f74f771fd184f918bf7d40b5b5c1, type: 2}
+  sand_dirt_BT: {fileID: 11400000, guid: 64078ea8c5a502e49b90a64551cecd36, type: 2}
+  sand_dirt_BL: {fileID: 11400000, guid: d6d5a06b1ab79984c9f5d323de07c8d9, type: 2}
+  sand_dirt_RT: {fileID: 11400000, guid: e80ca9cdce0c85748a78f4e01431342e, type: 2}
+  roadTile: {fileID: 11400000, guid: 18dad383117b9174fb94f60027e4cd8b, type: 2}
+  road_to_grass_L: {fileID: 11400000, guid: 5f56927e91ad5394fb07f1336f6f42a8, type: 2}
+  road_to_grass_R: {fileID: 11400000, guid: 69a2e042c26626343a66584a2eb7f923, type: 2}
+  road_to_grass_T: {fileID: 11400000, guid: 677a1e276c827ea4db2bf019ae15a740, type: 2}
+  road_to_grass_B: {fileID: 11400000, guid: 28d84959c5b91c74989e87210f8ff56f, type: 2}
+  road_to_grass_BR: {fileID: 11400000, guid: bb3e190be3fcf5f42bbf2edd85768756, type: 2}
+  road_to_grass_BL: {fileID: 11400000, guid: 2d0bc40d39c55ce4b868db13848ed7f1, type: 2}
+  road_to_grass_TR: {fileID: 11400000, guid: 8d814736a6ccf6449a80d8dbdda44195, type: 2}
+  road_to_grass_TL: {fileID: 11400000, guid: 30e82f69e733a1e4f9858d8d64277241, type: 2}
+  road_to_grass_nBR: {fileID: 11400000, guid: ed88d71cbf95e7f4bacd9848fa683ad8, type: 2}
+  road_to_grass_nBL: {fileID: 11400000, guid: 977a801645efbbb438ac5440f0bbca50, type: 2}
+  road_to_grass_nTR: {fileID: 11400000, guid: 8e819eb61957c554a8c7589e4041dd02, type: 2}
+  road_to_grass_nTL: {fileID: 11400000, guid: 35ef6146a35519142816fb59626eeae5, type: 2}
