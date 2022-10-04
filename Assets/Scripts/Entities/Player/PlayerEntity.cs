@@ -59,6 +59,13 @@ public class PlayerEntity : LivingEntity {
     private bool attacking = false;
     private float nextAttack = 0;
 
+    // Dash variable
+    public Vector3 DashTarget;
+    public Vector2 DashDirection;
+    [SerializeField] private ParticleSystem dashVFX;
+    private float nextDash;
+    private bool dashing = false;
+
     // The start time of the player. Used to determine the length of a run.
     private float startedTime;
 
@@ -114,13 +121,37 @@ public class PlayerEntity : LivingEntity {
         StartCoroutine(Utils.DoAfter(attackDuration, () => attacking = false));
 	}
 
+    public void TryDash(float horizontal, float vertical) {
+        if(horizontal == 0 && vertical == 0 || attacking) return;
+        if(dashing || Time.time < nextDash) return;
+
+        dashing = true;
+        nextDash = Time.time + currentForm.dashCooldown;
+
+        DashDirection = new Vector2(horizontal, vertical).normalized;
+        var rayhit = Physics2D.Raycast(transform.position, DashDirection, currentForm.dashDistance, LayerMask.NameToLayer("Obstacles"));
+        if(rayhit) {
+            DashTarget = new Vector3(rayhit.point.x, rayhit.point.y, transform.position.z);
+        } else {
+            DashTarget = transform.position + new Vector3(DashDirection.x, DashDirection.y, 0) * currentForm.dashDistance;
+        }
+
+        dashVFX.Play();
+    }
+
     public override bool IsPlayer() {
         return true;
     }
+    public bool IsDashing() { return dashing; }
+    public void StopDashing() { dashing = false; dashVFX.Stop(); }
 
     public float GetSpeed() {
         if(attacking && !currentForm.AttackShape.CanMoveOnAttack)
             return 0;
+
+        // dahs = fast
+        if(dashing)
+            return buffer_Speed * 2f;
 
         // Can be used to do slow/run effects.
         return buffer_Speed;

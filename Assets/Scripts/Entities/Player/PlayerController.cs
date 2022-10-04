@@ -48,10 +48,23 @@ public class PlayerController : MonoBehaviour {
 		// Automatically create an attack if possible.
 		if(Input.GetKeyDown(KeyCode.Space)) {
 			_player.TryAttack(orientation);
+		} else if(Input.GetKeyDown(KeyCode.LeftShift)) {
+			_player.TryDash(horizontal, vertical);
 		}
+		
 	}
 
 	private void FixedUpdate() {
-		_body.velocity = _player.GetSpeed() * Time.fixedDeltaTime * new Vector2(horizontal, vertical).normalized;
+		if(_player.IsDashing()) {
+			float remainnigDistance = (_player.DashTarget - _player.transform.position).sqrMagnitude;
+			if(remainnigDistance < 0.1f) {
+				_player.StopDashing();
+			} else {
+				_body.velocity = _player.GetSpeed() * Time.fixedDeltaTime * _player.DashDirection;
+			}
+		} else {
+			// Normal movement
+			_body.velocity = _player.GetSpeed() * Time.fixedDeltaTime * new Vector2(horizontal, vertical).normalized;
+		}
 	}
 }
