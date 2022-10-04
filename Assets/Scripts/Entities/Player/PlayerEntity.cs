@@ -66,6 +66,11 @@ public class PlayerEntity : LivingEntity {
     private float nextDash;
     private bool dashing = false;
 
+    // damage effect
+    [SerializeField] private ParticleSystem bloodVFX;
+    [SerializeField] private float damagedDuration = 0.1f;
+    [SerializeField] private Color damagedColor = Color.white;
+
     // The start time of the player. Used to determine the length of a run.
     private float startedTime;
 
@@ -146,7 +151,7 @@ public class PlayerEntity : LivingEntity {
     public void StopDashing() { dashing = false; dashVFX.Stop(); }
 
     public float GetSpeed() {
-        if(attacking && !currentForm.AttackShape.CanMoveOnAttack)
+        if(dead || attacking && !currentForm.AttackShape.CanMoveOnAttack)
             return 0;
 
         // dahs = fast
@@ -193,7 +198,7 @@ public class PlayerEntity : LivingEntity {
 
     private void UpdateBufferStats() {
         buffer_Speed = stats.GetPower(Statistic.Speed, _speed);
-        buffer_Armor = stats.GetPower(Statistic.Defense, _flatDamages);
+        buffer_Armor = stats.GetPower(Statistic.Defense, _flatArmor);
     }
 
 	protected override float GetDamageReduction() {
@@ -355,4 +360,26 @@ public class PlayerEntity : LivingEntity {
             UpdateBufferStats();
         }));
     }
+
+	protected override void HealthChanged() {
+        // VFX
+        if(bloodVFX != null)
+            bloodVFX.Play();
+        SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
+        if(renderer != null)
+            renderer.color = damagedColor;
+
+        // non-damage period
+        invincible = true;
+
+
+        // reset variables
+        StartCoroutine(Utils.DoAfter(damagedDuration, () => {
+            if(bloodVFX != null)
+                bloodVFX.Stop();
+            if(renderer != null)
+                renderer.color = Color.white;
+            invincible = false;
+        }));
+	}
 }

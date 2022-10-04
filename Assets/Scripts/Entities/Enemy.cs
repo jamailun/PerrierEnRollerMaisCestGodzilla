@@ -203,14 +203,14 @@ public class Enemy : LivingEntity {
         // MELEE    
         nextAttackAllowed += meleeAttackDuration;
 
-        var source = GetOutput();
+        var source = new Vector3(attack_output.position.x, attack_output.position.y, -.1f);
 
         AttackEffect(source);
 
         var hitbox = Instantiate(meleeAttackPrefab_side);
         hitbox.transform.position = source;
         hitbox.transform.localScale = new Vector3(attackScale, attackScale, 1f);
-        hitbox.Spawn(_flatDamages, meleeAttackDuration, IsFlip());
+        hitbox.Spawn(_flatDamages, meleeAttackDuration, IsFlip(), transform);
 
         Sprite oldSprite = spriteRenderer.sprite;
         if(attackSprite != null)
@@ -225,7 +225,9 @@ public class Enemy : LivingEntity {
     private Vector3 GetOutput() {
         var source = new Vector3(attack_output.position.x, attack_output.position.y, -.1f);
         if(IsFlip()) {
+            Debug.Log("before flip = " + source);
             source.x -= 2 * attack_output.localPosition.x;
+            Debug.Log("AFTER flip = " + source);
         }
         return source;
     }

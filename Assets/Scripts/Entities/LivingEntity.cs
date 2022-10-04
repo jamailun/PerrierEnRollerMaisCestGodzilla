@@ -23,7 +23,7 @@ public abstract class LivingEntity : MonoBehaviour {
     [SerializeField] private BarUI healthBar;
 
     [Tooltip("IF the entity can take damages or not.")]
-    [SerializeField] private bool invincible = false;
+    [SerializeField] protected bool invincible = false;
 
     // THe current health of the entity.
     public float Health { get; protected set; }

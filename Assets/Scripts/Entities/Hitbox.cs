@@ -12,7 +12,7 @@ public class Hitbox : MonoBehaviour {
 		_collider.enabled = false;
 	}
 
-	public void Spawn(float damages, float duration, bool swapX) {
+	public void Spawn(float damages, float duration, bool swapX, Transform logicParent = null) {
 		if(_collider.enabled)
 			return; // Already attacking : do nothing.
 
@@ -27,9 +27,12 @@ public class Hitbox : MonoBehaviour {
 			if(renderer != null)
 				renderer.flipX = true;
 			// miror position
-			var pos = transform.localPosition;
-			pos.x = -pos.x;
-			transform.localPosition = pos;
+			if(logicParent != null) {
+				float dx = Mathf.Abs(logicParent.position.x - transform.position.x);
+				transform.position = new Vector3(transform.position.x - 2 * dx, transform.position.y, transform.position.z);
+			} else {
+				transform.localPosition = new Vector3(-transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+			}
 		}
 
 		// Destroy after time
