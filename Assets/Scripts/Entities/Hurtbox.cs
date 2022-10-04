@@ -22,8 +22,16 @@ public class Hurtbox : MonoBehaviour {
 	}
 
 	public void Damage(Hitbox hitbox) {
-		Debug.Log("DAMAGE FROM " + hitbox + " : " + hitbox.CurrentDamages);
-		_entity.Damage(hitbox.CurrentDamages);
+		float damages = hitbox.CurrentDamages;
+
+		if(_entity.GetEntityType() == EntityType.Enemy)
+			damages += hitbox.BonusDamagesEnemies;
+		if(_entity.GetEntityType() == EntityType.Building)
+			damages += hitbox.BonusDamagesBuilding;
+
+		Debug.Log("DAMAGE. ["+hitbox.name+"] ---("+damages+")---> ["+_entity.name+"]");
+
+		_entity.Damage(damages);
 	}
 
 }

@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase: 5000
-  sortOffset: -1
+  sortOffset: 0
   runSortOnlyOnce: 1
 --- !u!114 &5177897865492587171
 MonoBehaviour:

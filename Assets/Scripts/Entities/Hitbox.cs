@@ -7,6 +7,9 @@ public class Hitbox : MonoBehaviour {
 
 	public float CurrentDamages { private set; get; }
 
+	public float BonusDamagesBuilding;
+	public float BonusDamagesEnemies;
+
 	private void Awake() {
 		_collider = GetComponent<Collider2D>();
 		_collider.enabled = false;
@@ -15,6 +18,9 @@ public class Hitbox : MonoBehaviour {
 	public void Spawn(float damages, float duration, bool swapX, Transform logicParent = null) {
 		if(_collider.enabled)
 			return; // Already attacking : do nothing.
+
+		if(logicParent != null)
+			gameObject.name = "HITBOX_FROM_" + logicParent.gameObject.name;
 
 		// Enable the collider.
 		CurrentDamages = damages;
@@ -42,7 +48,7 @@ public class Hitbox : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D collision) {
 		var target = collision.GetComponent<Hurtbox>();
 		if(target != null) {
-			Debug.Log("DAMAGE done  : "+collision.gameObject.name);
+			//Debug.Log("DAMAGE done  : "+collision.gameObject.name);
 			target.Damage(this);
 		}
 	}

@@ -35,6 +35,9 @@ public class Building : LivingEntity {
 		HealthChanged(0);
 	}
 
+	public override EntityType GetEntityType() {
+		return EntityType.Building;
+	}
 
 	protected override void HealthChanged(float delta) {
 		float ratio = Health / MaxHealth;

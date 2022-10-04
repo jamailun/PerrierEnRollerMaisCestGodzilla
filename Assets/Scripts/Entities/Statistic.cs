@@ -5,7 +5,7 @@ public enum Statistic : int {
 
 	HealthRegen,
 
-	HealthMax,
+	HealthMax,// Not used
 
 	Attack,
 
@@ -13,7 +13,7 @@ public enum Statistic : int {
 
 	AttackBonusEnemies,
 
-	AttackSpeed,
+	AttackSpeed, // Not used
 
 	Range,
 

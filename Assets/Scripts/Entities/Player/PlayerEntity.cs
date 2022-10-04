@@ -109,22 +109,28 @@ public class PlayerEntity : LivingEntity {
         // calculate buffers
         UpdateBufferStats();
 
-        //DEBUG
-        StartCoroutine(Utils.DoAfter(1f, () => AddSkill(SkillLibrairy.GetActivesSkills()[0])));
+        StartCoroutine(Utils.DoAfter(1f, ()=>AddSkill(SkillLibrairy.GetPassiveSkills()[4])));
+
+        // reset camera
+        Camera.main.orthographicSize = 4f;
     }
 
 	public void TryAttack(Orientation orientation) {
         // check cooldown.
         if(Time.time < nextAttack)
                 return;
+
         nextAttack = Time.time + currentForm.AttackShape.AttackCooldown;
         attacking = true;
 
         // Create the attack itself
         float attackDuration = currentForm.AttackShape.AttackDuration;
         float attackDamage = stats.GetPower(Statistic.Attack, _flatDamages + currentForm.AttackShape.AttackDamageBonus);
-        currentForm.AttackShape.SpawnHitbox(orientation, transform, attackDamage, attackDuration, currentForm.AttackScale);
-        //TODO ajouter les dmg spécifiques sur batiments et ennemis.
+        float attackScale = stats.GetPower(Statistic.Range, currentForm.AttackScale);
+        var hitbox = currentForm.AttackShape.SpawnHitbox(orientation, transform, attackDamage, attackDuration, attackScale);
+        // Add additional damages
+        hitbox.BonusDamagesBuilding = stats.GetPower(Statistic.AttackBonusBuildings, attackDamage) - attackDamage;
+        hitbox.BonusDamagesEnemies = stats.GetPower(Statistic.AttackBonusEnemies, attackDamage) - attackDamage;
 
         // reset the boolean after some time.
         StartCoroutine(Utils.DoAfter(attackDuration, () => attacking = false));
@@ -148,10 +154,10 @@ public class PlayerEntity : LivingEntity {
         dashVFX.Play();
     }
 
-    public override bool IsPlayer() {
-        return true;
-    }
-    public bool IsDashing() { return dashing; }
+	public override EntityType GetEntityType() {
+        return EntityType.Player;
+	}
+	public bool IsDashing() { return dashing; }
     public void StopDashing() { dashing = false; dashVFX.Stop(); }
 
     public float GetSpeed() {

@@ -61,10 +61,12 @@ public abstract class LivingEntity : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    // Moyen le plus rapide de savoir si une entité est joueur ou pas, plutot que du typeof.
-    // Notons que ça augmente la flexibilité du truc.
-    public virtual bool IsPlayer() {
-        return false;
+    public bool IsPlayer() {
+        return GetEntityType() == EntityType.Player;
+	}
+
+    public virtual EntityType GetEntityType() {
+        return EntityType.Enemy;
 	}
 
     public void AddMaxHealth(float amount) {

@@ -295,14 +295,16 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  growScaleOnNewSkill: 1.05
+  growScaleOnEvolve: 1.2
   deathAnimation: {fileID: 7867984894950069129, guid: 4b2cc696fd96135418e4eb5b25be0378, type: 3}
   deathAnimationDuration: 1.5
   DashTarget: {x: 0, y: 0, z: 0}
   DashDirection: {x: 0, y: 0}
   dashVFX: {fileID: 8515105704419182080}
-  bloodVFX: {fileID: 0}
+  bloodVFX: {fileID: 8797787920123143369}
   damagedDuration: 0.1
-  damagedColor: {r: 1, g: 1, b: 1, a: 1}
+  damagedColor: {r: 1, g: 0.2, b: 0.2, a: 0.8}
 --- !u!114 &786004580282506673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,5 +590,10 @@ PrefabInstance:
 --- !u!4 &6573092667503745928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6213544800613544696, guid: 60d682c994c32d64fab4c38405cfd81a, type: 3}
+  m_PrefabInstance: {fileID: 937490789204928880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8797787920123143369 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8582356104806862265, guid: 60d682c994c32d64fab4c38405cfd81a, type: 3}
   m_PrefabInstance: {fileID: 937490789204928880}
   m_PrefabAsset: {fileID: 0}
