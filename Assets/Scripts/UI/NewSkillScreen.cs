@@ -34,6 +34,10 @@ public class NewSkillScreen : MonoBehaviour {
 		this.callback = callback;
 
 		List<Skill> skills = skillsSet.PickSkills(buttons.Length);
+		if(skills.Count == 0) {
+			callback?.Invoke(null);
+			return;
+		}
 
 		// remplir les skills
 		int i = 0;

@@ -28,6 +28,10 @@ public class PlayerEntity : LivingEntity {
     [Tooltip("The EXP (Y) needed per level (X)")]
     [SerializeField] private AnimationCurve experienceCurve;
 
+    private float currentScaleMult = 1f;
+    [SerializeField] private float growScaleOnNewSkill = 1f;
+    [SerializeField] private float growScaleOnEvolve = 1f;
+
     // config of death
     [Tooltip("The prefab for the death animation")]
     [SerializeField] private GameObject deathAnimation;
@@ -60,8 +64,8 @@ public class PlayerEntity : LivingEntity {
     private float nextAttack = 0;
 
     // Dash variable
-    public Vector3 DashTarget;
-    public Vector2 DashDirection;
+    [HideInInspector] public Vector3 DashTarget;
+    [HideInInspector] public Vector2 DashDirection;
     [SerializeField] private ParticleSystem dashVFX;
     private float nextDash;
     private bool dashing = false;
@@ -196,6 +200,14 @@ public class PlayerEntity : LivingEntity {
         UI.ExperienceLabel.text = "Lvl " + level;
 	}
 
+    private void GrowScale(float amount) {
+        currentScaleMult *= amount;
+        float scale = currentScaleMult * currentForm.Scale;
+        gameObject.transform.localScale = new Vector3(scale, scale, 1);
+
+        Camera.main.orthographicSize *= amount;
+    }
+
     private void UpdateBufferStats() {
         buffer_Speed = stats.GetPower(Statistic.Speed, _speed);
         buffer_Armor = stats.GetPower(Statistic.Defense, _flatArmor);
@@ -227,6 +239,9 @@ public class PlayerEntity : LivingEntity {
     }
 
     private void Upgrade_Skill(Skill skill) {
+        // Grow for evolve
+        GrowScale(growScaleOnNewSkill);
+
         UI.NewSkillScreen.gameObject.SetActive(false);
 
         AddSkill(skill);
@@ -237,6 +252,9 @@ public class PlayerEntity : LivingEntity {
     }
 
     private void Upgrade_PlayerForm(PlayerForm form) {
+        // Grow for evolve
+        GrowScale(growScaleOnEvolve);
+
         UI.EvolveScreen.gameObject.SetActive(false);
 
         ChangePlayerForm(form);
@@ -249,6 +267,9 @@ public class PlayerEntity : LivingEntity {
     private void AddSkill(Skill skill) {
         // add the skill
         UI.NewSkillScreen.gameObject.SetActive(false);
+        if(skill == null)
+            return;
+
         skills.AddSkill(skill);
         if(skill.IsActive()) {
             UI.ActiveButtons.Add((ActiveSkill)skill, this);
@@ -311,7 +332,7 @@ public class PlayerEntity : LivingEntity {
     public const string ANIM_DOWN = "anim_walk_down";
     private void UpdatePlayerForm() {
         // Change scale
-        gameObject.transform.localScale = new Vector3(currentForm.Scale, currentForm.Scale, 1f);
+        GrowScale(1f);
 
         // Change hitbox
         currentForm.HurtboxDescriptor.CreateCollider(GetComponentInChildren<Hurtbox>());
@@ -361,7 +382,10 @@ public class PlayerEntity : LivingEntity {
         }));
     }
 
-	protected override void HealthChanged() {
+	protected override void HealthChanged(float delta) {
+        if(delta >= 0) // only damage effect
+            return;
+
         // VFX
         if(bloodVFX != null)
             bloodVFX.Play();

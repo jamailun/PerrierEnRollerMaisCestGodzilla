@@ -91,13 +91,13 @@ public abstract class LivingEntity : MonoBehaviour {
         }
 
         healthBar?.SetValue(Health);
-        HealthChanged();
+        HealthChanged(-damage);
     }
 
     /// <summary>
     /// Called when the health of the entity changed.
     /// </summary>
-    protected virtual void HealthChanged() { }
+    protected virtual void HealthChanged(float delta) { }
 
     private void SpawnDamageText(float amount) {
         /*var obj = new GameObject();
@@ -133,7 +133,7 @@ public abstract class LivingEntity : MonoBehaviour {
             Health = MaxHealth;
 
         healthBar?.SetValue(Health);
-        HealthChanged();
+        HealthChanged(heal);
     }
 
     public bool IsDead() {

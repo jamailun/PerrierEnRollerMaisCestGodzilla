@@ -32,11 +32,11 @@ public class Building : LivingEntity {
 			return;
 		}
 
-		HealthChanged();
+		HealthChanged(0);
 	}
 
 
-	protected override void HealthChanged() {
+	protected override void HealthChanged(float delta) {
 		float ratio = Health / MaxHealth;
 
 		// Change the sprite index

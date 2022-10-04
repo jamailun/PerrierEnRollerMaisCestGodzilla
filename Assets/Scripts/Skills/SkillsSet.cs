@@ -15,6 +15,8 @@ public class SkillsSet {
 	}
 
 	public void AddSkill(Skill skill) {
+		if(skill == null)
+			return;
 		if(skill.IsActive()) {
 			var s = (ActiveSkill) skill;
 			if(activesSkills.ContainsKey(s)) {

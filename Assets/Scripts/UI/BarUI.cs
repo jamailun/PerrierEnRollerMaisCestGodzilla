@@ -38,7 +38,10 @@ public class BarUI : MonoBehaviour {
 
 	private void UpdateImage() {
 		if(label != null) {
-			label.text = value.ToString(FORMAT) + "/" + MaxValue.ToString(FORMAT);
+			if(value == 0)
+				label.text = "0/"+MaxValue.ToString(FORMAT);
+			else
+				label.text = value.ToString(FORMAT) + "/" + MaxValue.ToString(FORMAT);
 		}
 		if(MaxValue == 0) {
 			content.fillAmount = 0f;
