@@ -38,6 +38,8 @@ public class PlayerEntity : LivingEntity {
     [Tooltip("The duration of the death animation.")]
     [SerializeField] private float deathAnimationDuration;
 
+    [SerializeField] private float startCameraSize = 4f;
+
     // Data set
     private SkillsSet skills;
     private readonly StatisticsSet stats = new();
@@ -117,7 +119,7 @@ public class PlayerEntity : LivingEntity {
         StartCoroutine(Utils.DoAfter(1f, ()=>AddSkill(SkillLibrairy.GetPassiveSkills()[4])));
 
         // reset camera
-        Camera.main.orthographicSize = 4f;
+        Camera.main.orthographicSize = startCameraSize;
     }
 
 	public void TryAttack(Orientation orientation) {

@@ -24,6 +24,7 @@ public class Utils {
 
 	// Moi j'aime bien le Java. C'est juste une 'fonction' qui prend aucun argument et qui renvoie void.
 	public delegate void Runnable();
+	public delegate bool Predicate();
 
 	public static IEnumerator DoAfter(float duration, Runnable runnable) {
 		yield return new WaitForSeconds(duration);
@@ -53,8 +54,10 @@ static class CSharpExtension {
 
 	public static T GetOrAddComponent<T>(this GameObject obj) where T : Component {
 		var cp = obj.GetComponent<T>();
-		if(cp == null)
+		if(cp == null) {
+			Debug.Log("(debug) added component " + typeof(T).Name + " to " + obj.name);
 			return obj.AddComponent<T>();
+		}
 		return cp;
 	}
 }

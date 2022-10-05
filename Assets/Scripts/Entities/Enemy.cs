@@ -35,10 +35,6 @@ public class Enemy : LivingEntity {
     [SerializeField] private ParticleSystem attackEffect;
 
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
-    [Tooltip("Attack effect on shot")]
-    [SerializeField] private Sprite attackSprite;
-
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Transform to shot attacks from")]
     [SerializeField] private Transform attack_output;
 
@@ -75,6 +71,14 @@ public class Enemy : LivingEntity {
     [SerializeField] private float distance_shot_load = .8f;
 
     [SerializeIf("enemyType", EnemyType.Distance)]
+    [Tooltip("Time waiting after shoot")]
+    [SerializeField] private float distance_shot_postload = 0f;
+
+    [SerializeIf("enemyType", EnemyType.Distance)]
+    [Tooltip("Index on the animation to spawn the projectile. IF DEFINED !!")]
+    [SerializeField] private int distance_animation_spawn = -1;
+
+    [SerializeIf("enemyType", EnemyType.Distance)]
     [Tooltip("Projectile to shot")]
     [SerializeField] private Projectile projectile_prefab;
 
@@ -88,8 +92,16 @@ public class Enemy : LivingEntity {
 
     // -------------------------------------------------------------
 
+    [Header("Animation")]
+
+    [SerializeField] private float walkAnimationScale = 1f;
+    [SerializeField] private CustomAnimation walkAnimation;
+    [SerializeField] private float attackAnimationScale = 1f;
+    [SerializeField] private CustomAnimation attackAnimation;
+
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
+    private CustomAnimator animator;
 
     private float nextRecalculate; // next time to recalulate trajectory
     private float nextAttackAllowed; // prochaine attaque.
@@ -122,12 +134,41 @@ public class Enemy : LivingEntity {
             Recalculate();
 		}
 
+        animator = gameObject.GetOrAddComponent<CustomAnimator>();
+        animator.SetClip(ANIM_WALK, walkAnimation);
+        animator.SetClip(ANIM_ATTACK, attackAnimation);
+        PlayAnimationWalk();
     }
 
-	private void Update() {
+    private const string ANIM_WALK = "anim_walk";
+    private const string ANIM_ATTACK = "anim_attack";
+
+    private void PlayAnimationWalk() {
+        spriteRenderer.transform.localScale = new Vector3(walkAnimationScale, walkAnimationScale, 1f);
+        Debug.Log("(Enemy "+gameObject.name+") scale du renderer = " + walkAnimationScale);
+        if(enemyType == EnemyType.Melee || enemyType == EnemyType.Distance)
+            animator.PlayConditional(ANIM_WALK, PredicateWalkAnimation, walkAnimation.GetFirst());
+        else
+            animator.Play(ANIM_WALK);
+    }
+
+    private void PlayAttackTemp(float duration) {
+        spriteRenderer.transform.localScale = new Vector3(attackAnimationScale, attackAnimationScale, 1f);
+        Debug.Log("(Enemy " + gameObject.name + ") scale du renderer = " + walkAnimationScale);
+
+        animator.PlayOnce(ANIM_ATTACK, duration, ANIM_WALK, walkAnimationScale);
+	}
+
+    private bool PredicateWalkAnimation() {
+        if(target == null)
+            return false;
+        return agent.remainingDistance > 0.05f + agent.stoppingDistance;
+	}
+
+    private void Update() {
 		if(enemyType == EnemyType.None || null == target)
 			return; // pas d'IA => on fait rien :)
-            
+
         // Change direction
         spriteRenderer.flipX = target.position.x < transform.position.x;
 
@@ -181,15 +222,21 @@ public class Enemy : LivingEntity {
 
         agent.isStopped = true;
 
-        Debug.Log(gameObject.name + " ATTACK !");
+        //Debug.Log(gameObject.name + " ATTACK !");
 
         // DISTANCE
         if(distance) {
             nextAttackAllowed += distance_shot_load;
             nextRecalculate += distance_shot_load * 1.1f;
 
-            StartCoroutine(Utils.DoAfter(distance_shot_load * 1.1f, () => agent.isStopped = false));
-            StartCoroutine(Cor_AttackDistance());
+            StartCoroutine(Utils.DoAfter(distance_shot_load + distance_shot_postload, () => agent.isStopped = false));
+            if(distance_animation_spawn >= 0) {
+                PlayAttackTemp(distance_shot_load);
+                animator.SpecifyCallback(distance_animation_spawn, () => SpawnProjectile());
+            } else {
+                // simple
+                StartCoroutine(Cor_AttackDistance());
+            }
             return;
         }
 
@@ -205,12 +252,11 @@ public class Enemy : LivingEntity {
         hitbox.transform.localScale = new Vector3(attackScale, attackScale, 1f);
         hitbox.Spawn(_flatDamages, meleeAttackDuration, IsFlip(), transform);
 
-        Sprite oldSprite = spriteRenderer.sprite;
-        if(attackSprite != null)
-            spriteRenderer.sprite = attackSprite;
+        // Animation
+        PlayAttackTemp(meleeAttackDuration);
+
         StartCoroutine(Utils.DoAfter(meleeAttackDuration, () => {
             agent.isStopped = false;
-            spriteRenderer.sprite = oldSprite;
         }));
 
     }
@@ -218,9 +264,7 @@ public class Enemy : LivingEntity {
     private Vector3 GetOutput() {
         var source = new Vector3(attack_output.position.x, attack_output.position.y, -.1f);
         if(IsFlip()) {
-            Debug.Log("before flip = " + source);
             source.x -= 2 * attack_output.localPosition.x;
-            Debug.Log("AFTER flip = " + source);
         }
         return source;
     }
@@ -230,24 +274,34 @@ public class Enemy : LivingEntity {
         if(attackEffect != null) {
             var vfx = Instantiate(attackEffect);
             vfx.transform.SetPositionAndRotation(source, Quaternion.identity);
-            //SFX ?
+            //TODO SFX
         }
     }
 
     private IEnumerator Cor_AttackDistance() {
+        PlayAttackTemp(distance_shot_load);
+
+        Debug.Log("(Enemy "+gameObject.name+") shot wait.");
         yield return new WaitForSeconds(distance_shot_load);
 
+        SpawnProjectile();
+
+        Debug.Log("(Enemy " + gameObject.name + ") shot over.");
+    }
+
+    private void SpawnProjectile() {
+        // Calculate
         var source = GetOutput();
 
+        // SFX
         AttackEffect(source);
 
+        // Projectil
         var proj = Instantiate(projectile_prefab);
         proj.Init(source, target.position - transform.position, transform);
         proj.transform.localScale = new Vector3(attackScale, attackScale, 1f);
         proj.damages = _flatDamages;
-
-        //TODO animate
-	}
+    }
 
 	protected override void Die() {
         // Drop item before delete the gameobject

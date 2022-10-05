@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour {
 	// Called by the code.
 	public void Init(Vector3 sourcePosition, Vector2 direction, Transform realParent) {
 		this.parent = realParent;
-		Debug.Log("Parent = " + this.parent + "("+ this.parent.gameObject.name+"), " + this.parent.GetInstanceID());
+		//Debug.Log("Parent = " + this.parent + "("+ this.parent.gameObject.name+"), " + this.parent.GetInstanceID());
 
 		// Set position and rotation
 		transform.SetPositionAndRotation(sourcePosition, Quaternion.identity);
@@ -38,40 +38,16 @@ public class Projectile : MonoBehaviour {
 		StartCoroutine(Utils.DestroyAfter(gameObject, lifeDuration));
 	}
 
-	/*private void Collides(GameObject other) {
-		Debug.Log("OTHER = " + other + "(" + other.gameObject.name + "), " + other.GetInstanceID());
-		if(other.transform == parent || other.transform.IsChildOf(parent))
-			return;
-
-		var living = other.GetComponent<LivingEntity>();
-		if(living != null) {
-			// Pour le moment je laisse 2 cas différents, mais si ya besoin de rien changer autant faire 1 seul 'if'.
-			if(damagePlayer && living.IsPlayer()) {
-				Debug.Log("attack player " + other.name);
-				living.Damage(damages);
-				Destroy(gameObject);
-			} else if(damageEnemies && !living.IsPlayer()) {
-				Debug.Log("attack enemy " + other.name);
-				living.Damage(damages);
-				Destroy(gameObject);
-			}
-		} else {
-			// mur
-			Destroy(gameObject);
-			Debug.Log("collides with wall " + other.name);
-		}
-	}*/
-
 	private void OnTriggerEnter2D(Collider2D collision) {
 		var box = collision.GetComponent<Hurtbox>();
 		if(box == null)
 			return;
 		if(damagePlayer && box.IsPlayer()) {
-			Debug.Log("attack player " + box.name);
+			//Debug.Log("attack player " + box.name);
 			box.Damage(this);
 			Destroy(gameObject);
 		} else if(damageEnemies && !box.IsPlayer()) {
-			Debug.Log("attack enemy " + box.name);
+			//Debug.Log("attack enemy " + box.name);
 			box.Damage(this);
 			Destroy(gameObject);
 		}

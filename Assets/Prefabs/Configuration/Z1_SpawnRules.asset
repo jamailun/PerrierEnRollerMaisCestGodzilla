@@ -20,7 +20,16 @@ MonoBehaviour:
     maxSpawn: 5
     spawnPriority: 2
     additionalRadius: 0.5
-    cooldown: 0
+    power: 1.1
+  - enemyPrefab: {fileID: 190286576091896714, guid: 147eb8fd5bca1fc41a1c2ad4f6a7d59e, type: 3}
+    minX: 30
+    maxX: 100
+    minSpawn: 1
+    maxSpawn: 1
+    spawnPriority: 0.5
+    additionalRadius: 2
+    power: 5
   minWaveCooldown: 8
   maxWaveCooldown: 12
-  baseEnemiesPerWave: 5
+  baseRequiredPower: 5
+  basePowerHorizontal: 0.015

@@ -17,7 +17,7 @@ public class Hurtbox : MonoBehaviour {
 	}
 
 	public void Damage(Projectile proj) {
-		Debug.Log("DAMAGE FROM " + proj + " : " + proj.damages);
+		//Debug.Log("DAMAGE FROM " + proj + " : " + proj.damages);
 		_entity.Damage(proj.damages);
 	}
 
@@ -29,7 +29,7 @@ public class Hurtbox : MonoBehaviour {
 		if(_entity.GetEntityType() == EntityType.Building)
 			damages += hitbox.BonusDamagesBuilding;
 
-		Debug.Log("DAMAGE. ["+hitbox.name+"] ---("+damages+")---> ["+_entity.name+"]");
+		//Debug.Log("DAMAGE. ["+hitbox.name+"] ---("+damages+")---> ["+_entity.name+"]");
 
 		_entity.Damage(damages);
 	}

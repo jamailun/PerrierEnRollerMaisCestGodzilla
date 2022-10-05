@@ -304,7 +304,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aa857eb2538fdcc4d822bf5e55b80a8e, type: 3}
+  m_Sprite: {fileID: 482593951, guid: 004cb47c893ab194385292db10ccaf4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -481,7 +481,6 @@ MonoBehaviour:
   attackSpeed: 1
   attackSpeedEpsilon: 0.05
   attackEffect: {fileID: 0}
-  attackSprite: {fileID: 21300000, guid: 1cd2f0405a2fca74ebb03a7faad534dc, type: 3}
   attack_output: {fileID: 7420799433563452929}
   attackScale: 1.5
   meleeRange: 2
@@ -493,6 +492,23 @@ MonoBehaviour:
   projectile_prefab: {fileID: 0}
   experiencePrefab: {fileID: 1231743013400264615, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
   droppedExp: 1
+  walkAnimationScale: 0.9
+  walkAnimation:
+    frameDuration: 0.15
+    points:
+    - {fileID: 482593951, guid: 004cb47c893ab194385292db10ccaf4f, type: 3}
+    - {fileID: 95182396, guid: 004cb47c893ab194385292db10ccaf4f, type: 3}
+    - {fileID: -1750026424, guid: 004cb47c893ab194385292db10ccaf4f, type: 3}
+    - {fileID: 960854263, guid: 004cb47c893ab194385292db10ccaf4f, type: 3}
+  attackAnimationScale: 0.9
+  attackAnimation:
+    frameDuration: 0.15
+    points:
+    - {fileID: 664037004, guid: 1e7473c610840c0478d9bbb7681381cd, type: 3}
+    - {fileID: -121168598, guid: 1e7473c610840c0478d9bbb7681381cd, type: 3}
+    - {fileID: -1935253636, guid: 1e7473c610840c0478d9bbb7681381cd, type: 3}
+    - {fileID: -1797357920, guid: 1e7473c610840c0478d9bbb7681381cd, type: 3}
+    - {fileID: 1595274944, guid: 1e7473c610840c0478d9bbb7681381cd, type: 3}
 --- !u!70 &6547389533593694176
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
