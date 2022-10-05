@@ -22,7 +22,10 @@ public abstract class Attractible : MonoBehaviour {
 	private void Update() {
 		if(!attracted)
 			return;
-
+		if(target == null) { // player is dead !
+			attracted = false;
+			return;
+		}
 		transform.position = Vector2.MoveTowards(transform.position, target.position, force * Time.deltaTime);
 	}
 

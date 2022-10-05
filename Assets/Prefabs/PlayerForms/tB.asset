@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: INSECTOID
   _descendants: []
   _color: {r: 1, g: 0.07661387, b: 0, a: 1}
-  _scale: 1
+  _scale: 2
   _hurtboxDescriptor:
     hurtboxType: 1
     size: {x: 0.17939615, y: 0.42423582}
@@ -28,7 +28,10 @@ MonoBehaviour:
   groundColliderSize: {x: 0.21040937, y: 0.099896505}
   groundColliderOffset: {x: -0.043849833, y: -0.26309067}
   _bannerImage: {fileID: 21300000, guid: 84d55f0e032eda44aa619afb4c5a6a7f, type: 3}
+  _attackScale: 1
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
+  dashDistance: 2
+  dashCooldown: 1
   animation_Idle:
     frameDuration: 0.3
     points:

@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class DifficultyDisplayer : MonoBehaviour {
 
+	public static DifficultyDisplayer Instance { get; private set; }
+
 	[SerializeField] private RectTransform container;
 	[SerializeField] private Image panelPrefab;
 	[Header("Display configuration")]
@@ -21,12 +23,16 @@ public class DifficultyDisplayer : MonoBehaviour {
 	private RectTransform rightPanel;
 	private RectTransform tempPanel;
 
-	private void Start() {
-		Init(); //TODO TO CHANGE!!
+	private void Awake() {
+		if(Instance != null) {
+			Destroy(this);
+			return;
+		}
+		Instance = this;
 	}
 
-	public void Init() {
-		start = Time.time;
+	public void Init(float start) {
+		this.start = start;
 		width = ((RectTransform) transform).sizeDelta.x;
 
 		if(difficulties.Length < 2) {
@@ -39,13 +45,12 @@ public class DifficultyDisplayer : MonoBehaviour {
 		foreach(var diff in difficulties)
 			size += diff.number;
 
-
 		runtime_diff = new DifficultyName[size];
 		int n = 0;
 		for(int i = 0; i < difficulties.Length; i++) {
 			var source = difficulties[i];
 			for (int j = 0; j < source.number; j++) {
-				runtime_diff[n] = new DifficultyName { color = source.color, name = source.name, textInWhite = source.textInWhite };
+				runtime_diff[n] = new DifficultyName { color = source.color, name = source.name, textInWhite = source.textInWhite, difficultyMultiplier = source.difficultyMultiplier };
 				runtime_diff[n].elapsedStart = init;
 				n++;
 				init += secondsPerElement;
@@ -136,8 +141,17 @@ public class DifficultyDisplayer : MonoBehaviour {
 		public int number;
 		public Color color;
 		public bool textInWhite;
+		public float difficultyMultiplier;
 
 		[HideInInspector] public float elapsedStart;
+	}
+
+	public static float GetDifficultyMultiplier() {
+		if(Instance == null)
+			return 1f;
+		if(Instance.runtime_diff == null)
+			Instance.Init(Time.time);
+		return Instance.runtime_diff[Instance.index].difficultyMultiplier;
 	}
 	
 }

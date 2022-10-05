@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.AI;
 
 // pour faire un truc avec les boss, il faudrait que cette classe soit abstraite avec juste une methode Getter de enemytype;
@@ -119,13 +118,7 @@ public class Enemy : LivingEntity {
         agent.acceleration = _speed * 1.5f;
 
         if(target == null) {
-            var player = FindObjectOfType<PlayerEntity>();
-            if(player == null) {
-                Debug.LogWarning("Enemy " + name + " could NOT find player...");
-                agent.isStopped = true;
-                return;
-			}
-            target = player.transform;
+            RefreshTarget();
             Recalculate();
 		}
 
@@ -277,5 +270,15 @@ public class Enemy : LivingEntity {
 
 		base.Die();
 	}
+
+    public void RefreshTarget() {
+        var player = FindObjectOfType<PlayerEntity>();
+        if(player == null) {
+            Debug.LogWarning("Enemy " + name + " could NOT find player...");
+            agent.isStopped = true;
+            return;
+        }
+        target = player.transform;
+    }
 
 }

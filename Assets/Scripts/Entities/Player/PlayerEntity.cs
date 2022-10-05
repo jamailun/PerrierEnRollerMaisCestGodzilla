@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System;
 
 public class PlayerEntity : LivingEntity {
 
@@ -27,6 +25,8 @@ public class PlayerEntity : LivingEntity {
 
     [Tooltip("The EXP (Y) needed per level (X)")]
     [SerializeField] private AnimationCurve experienceCurve;
+    [Tooltip("Maximum level the player can get")]
+    [SerializeField] [Range(10, 50)] private int maxLevel = 35;
 
     private float currentScaleMult = 1f;
     [SerializeField] private float growScaleOnNewSkill = 1f;
@@ -98,6 +98,11 @@ public class PlayerEntity : LivingEntity {
 
         startedTime = Time.time;
         TimerUI.StartTimer();
+        if(DifficultyDisplayer.Instance != null) {
+            DifficultyDisplayer.Instance.Init(startedTime);
+		} else {
+            Debug.LogError("No difficulty manager(displayer) set.");
+		}
 
         ExperiencePoints = 0;
         nextLevelExp = (ulong) Mathf.FloorToInt(experienceCurve.Evaluate(level + 1));
@@ -174,7 +179,7 @@ public class PlayerEntity : LivingEntity {
 
     public void AddExperience(ulong amount) {
         ExperiencePoints += (ulong) stats.GetPower(Statistic.ExpGained, amount);
-        while(ExperiencePoints > nextLevelExp) {
+        while(ExperiencePoints > nextLevelExp && level < maxLevel) {
             LevelUp();
 		}
         UI.ExperienceBar.Init(previousLevelExp, nextLevelExp, ExperiencePoints);
@@ -186,6 +191,10 @@ public class PlayerEntity : LivingEntity {
         level++;
         previousLevelExp = nextLevelExp;
         nextLevelExp = (ulong) Mathf.FloorToInt(experienceCurve.Evaluate(level));
+        if(nextLevelExp <= previousLevelExp) {
+            Debug.LogWarning("Carefull ! Level " + level + " as smaller required exp than the preivous. +5% of the previous exp then.");
+            nextLevelExp = (ulong) (((double) nextLevelExp)* 1.05);
+		}
 
         // add stats
         AddMaxHealth(currentForm.bonusMaxHealthPerLevel);
@@ -245,6 +254,8 @@ public class PlayerEntity : LivingEntity {
     }
 
     private void Upgrade_Skill(Skill skill) {
+        skillsToGet--;
+
         // Grow for evolve
         GrowScale(growScaleOnNewSkill);
 
@@ -252,12 +263,12 @@ public class PlayerEntity : LivingEntity {
 
         AddSkill(skill);
 
-        skillsToGet--;
-
         TryUpgrade();
     }
 
     private void Upgrade_PlayerForm(PlayerForm form) {
+        evolvesToGet--;
+
         // Grow for evolve
         GrowScale(growScaleOnEvolve);
 
@@ -265,14 +276,11 @@ public class PlayerEntity : LivingEntity {
 
         ChangePlayerForm(form);
 
-        evolvesToGet--;
-
         TryUpgrade();
     }
 
     private void AddSkill(Skill skill) {
         // add the skill
-        UI.NewSkillScreen.gameObject.SetActive(false);
         if(skill == null)
             return;
 
