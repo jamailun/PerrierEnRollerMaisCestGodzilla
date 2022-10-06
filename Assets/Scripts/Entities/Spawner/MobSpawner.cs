@@ -16,6 +16,8 @@ public class MobSpawner : MonoBehaviour {
 
 			float spawnedPower = 0;
 
+			var DIM = LoadingManager.Instance.CurrentMapDimensions();
+
 			var center = CameraCenter;
 			float minX = CameraLeft;
 			float maxX = CameraRight;
@@ -39,10 +41,15 @@ public class MobSpawner : MonoBehaviour {
 					Debug.LogWarning("CAREFUL ! No min/max spawn set for entry " + entry.enemyPrefab.name + " !");
 				}
 
-				Debug.Log("TRY entry "+entry.enemyPrefab.name + " x " + nextSpawn);
+				//Debug.Log("TRY entry "+entry.enemyPrefab.name + " x " + nextSpawn);
 
 				for(int n = 0; n < nextSpawn && spawnedPower < requiredPower; n++) {
 					var pos = center + (Random.insideUnitCircle.normalized * ((maxX - minX)/2f + entry.additionalRadius));
+
+					if(pos.x < 0 || pos.x > DIM.x || pos.y < 0 || pos.y > DIM.y) {
+						spawnedPower += Mathf.Max(0.1f, entry.power);
+						continue;
+					}
 
 					var mob = Instantiate(entry.enemyPrefab);
 					mob.transform.SetPositionAndRotation(pos, Quaternion.identity);

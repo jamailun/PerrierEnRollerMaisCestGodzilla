@@ -322,6 +322,9 @@ public class Z1_MapGenerator : MapGenerator {
 		// Place buildings
 		RepopulateBuildings(scene);
 
+		// Put worldborder
+		scene.borders.SetDimensions(widthTiles * 2f, heightTiles * 2f, 10f);
+
 		// recalcultate navmesh
 		scene.navmesh.BuildNavMeshAsync();
 

@@ -312,7 +312,7 @@ public class Enemy : LivingEntity {
 
         // Projectil
         var proj = Instantiate(projectile_prefab);
-        proj.Init(source, target.position - transform.position, transform);
+        proj.Init(source, target.position - source, transform);
         proj.transform.localScale = new Vector3(attackScale, attackScale, 1f);
         proj.damages = _flatDamages;
     }

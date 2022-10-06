@@ -7,13 +7,13 @@ public struct SceneData {
 	public NavMeshSurface2d navmesh;
 	public Tilemap tilemap;
 	public PlayerEntity player;
-	public EntitiesOrigin origin;
+	public WorldBorder borders;
 
 	public SceneData(Scene scene) {
 		navmesh = null;
 		tilemap = null;
 		player = null;
-		origin = null;
+		borders = null;
 
 		foreach(var obj in scene.GetRootGameObjects()) {
 			if(navmesh == null && obj.GetComponent<NavMeshSurface2d>() != null) {
@@ -23,12 +23,12 @@ public struct SceneData {
 			else if(player == null && obj.GetComponent<PlayerEntity>() != null) {
 				player = obj.GetComponent<PlayerEntity>();
 			}
-			else if(origin == null && obj.GetComponent<EntitiesOrigin>() != null) {
-				origin = obj.GetComponent<EntitiesOrigin>();
+			else if(borders == null && obj.GetComponent<WorldBorder>() != null) {
+				borders = obj.GetComponent<WorldBorder>();
 			}
 		}
 	}
 
-	public bool IsValid { get { return navmesh != null && tilemap != null && player != null && origin != null; } }
+	public bool IsValid { get { return navmesh != null && tilemap != null && player != null && borders != null; } }
 
 }

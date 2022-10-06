@@ -228,6 +228,7 @@ public class PlayerEntity : LivingEntity {
     private void UpdateBufferStats() {
         buffer_Speed = stats.GetPower(Statistic.Speed, _speed);
         buffer_Armor = stats.GetPower(Statistic.Defense, _flatArmor);
+        _healthRegen = stats.GetPower(Statistic.HealthRegen, 0);
     }
 
 	protected override float GetDamageReduction() {

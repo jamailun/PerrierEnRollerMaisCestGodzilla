@@ -4,6 +4,9 @@ using UnityEngine;
 public class CustomAnimator : MonoBehaviour {
 
 	[SerializeField] private bool DEBUG = false;
+	[SerializeField] private bool onlyDefaultClip = false;
+
+	[SerializeField] private CustomAnimation defaultClip;
 
 	private readonly Dictionary<string, CustomAnimation> clips = new();
 
@@ -22,6 +25,11 @@ public class CustomAnimator : MonoBehaviour {
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 		if(_spriteRenderer == null)
 			_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+		if(onlyDefaultClip) {
+			SetClip("_", defaultClip);
+			Play("_");
+		}
 	}
 
 	private void LateUpdate() {

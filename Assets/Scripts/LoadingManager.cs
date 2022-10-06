@@ -20,6 +20,11 @@ public class LoadingManager : MonoBehaviour {
 		}
 		Instance = this;
 		DontDestroyOnLoad(gameObject);
+
+#if UNITY_EDITOR
+		if(stage == 0)
+			stage = 1;
+#endif
 	}
 
 	public static void Reset() {
@@ -27,15 +32,21 @@ public class LoadingManager : MonoBehaviour {
 			Instance.stage = 0;		
 	}
 
+	private MapGenerator GetCurrentGenerator() {
+		return stage switch {
+			1 => zone_1_generator,
+			_ => throw new System.NotImplementedException("NO generator for stage " + stage)
+		};
+	}
+
 	public void NextStage() {
+		Time.timeScale = 0f;
+
 		stage++;
 		Debug.Log("Preparing stage " + stage + ".");
 
 		Debug.Log("Creating procedural generator...");
-		MapGenerator generator = stage switch {
-			1 => zone_1_generator,
-			_ => throw new System.NotImplementedException("NO generator for stage " + stage)
-		};
+		MapGenerator generator = GetCurrentGenerator();
 
 		Debug.Log("Creating the level layout...");
 		generator.Generate();
@@ -64,6 +75,12 @@ public class LoadingManager : MonoBehaviour {
 
 		// Unload the previous Scene
 		SceneManager.UnloadSceneAsync("LoadingScreen");
+
+		Time.timeScale = 1f;
+	}
+
+	public Vector2 CurrentMapDimensions() {
+		return GetCurrentGenerator().GetDimensions();
 	}
 
 }

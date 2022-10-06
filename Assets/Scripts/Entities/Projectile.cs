@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision) {
-		if(collision.transform == parent || collision.transform.IsChildOf(parent))
+		if(collision == null || collision.transform == parent || collision.transform.IsChildOf(parent))
 			return;
 		var building = collision.gameObject.GetComponent<Building>();
 		if(building) {

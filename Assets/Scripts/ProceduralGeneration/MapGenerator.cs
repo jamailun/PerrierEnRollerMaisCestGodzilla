@@ -90,6 +90,10 @@ public abstract class MapGenerator : ScriptableObject {
 		}
 	}
 
+	public Vector2 GetDimensions() {
+		return new Vector2(widthTiles, heightTiles) * sizePerTile;
+	}
+
 	/// <summary>
 	/// Generate buildings from the seeds parameters
 	/// </summary>
