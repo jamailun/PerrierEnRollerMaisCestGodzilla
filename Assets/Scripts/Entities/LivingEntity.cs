@@ -76,6 +76,10 @@ public abstract class LivingEntity : MonoBehaviour {
         healthBar.Init(0, _maxHealth, Health);
 	}
 
+    public void SetMaxHealth(float amount) {
+        _maxHealth = amount;
+        healthBar.Init(0, _maxHealth, Health);
+	}
     public void Damage(float damage) {
         AssertInitialized();
 

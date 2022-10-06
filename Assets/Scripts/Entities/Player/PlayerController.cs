@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour {
 			_player.Pause();
 			return;
 		}
+		if(_player.Animator == null) {
+			return; // ignore this frame.
+		}
 
 		// Move values
 		horizontal = Input.GetAxisRaw("Horizontal");

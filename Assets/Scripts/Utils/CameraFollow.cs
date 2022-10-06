@@ -3,7 +3,7 @@
 public class CameraFollow : MonoBehaviour {
 
 	[Tooltip("The target to follow")]
-	[SerializeField] Transform target;
+	[SerializeField] internal Transform target;
 
 	[Tooltip("The offset")]
 	[SerializeField] private Vector3 offset = new(0, 0, -10);

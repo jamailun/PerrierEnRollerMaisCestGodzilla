@@ -64,6 +64,10 @@ public class Building : LivingEntity {
 	}
 
 	protected override void Die() {
+		if(rewardPoints <= 0) {
+			base.Die();
+			return;
+		}
 		// Drop item before delete the gameobject
 		int c = 1;
 		uint amount = rewardPoints / 10;

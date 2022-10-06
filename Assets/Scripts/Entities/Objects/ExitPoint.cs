@@ -6,7 +6,7 @@ public class ExitPoint : MonoBehaviour {
 		var player = collision.gameObject.GetComponent<PlayerEntity>();
 		if(player) {
 			Debug.Log("GO TO NEXT LEVL!!!");
-			LoadingManager.Instance.NextStage();
+			LoadingManager.Instance.NextStage(player);
 		}
 	}
 

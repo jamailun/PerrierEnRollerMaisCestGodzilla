@@ -73,10 +73,12 @@ public class ManagerUI : MonoBehaviour {
 	}
 
 	private void Awake() {
-		if(Instance != null)
-			Destroy(Instance.gameObject);
+		if(Instance != null) {
+			Destroy(this.gameObject);
+			return;
+		}
 		Instance = this;
-		//DontDestroyOnLoad(this);
+		DontDestroyOnLoad(this);
 	}
 
 	private void Update() {

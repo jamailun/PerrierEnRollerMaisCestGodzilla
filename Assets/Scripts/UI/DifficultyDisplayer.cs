@@ -149,8 +149,10 @@ public class DifficultyDisplayer : MonoBehaviour {
 	public static float GetDifficultyMultiplier() {
 		if(Instance == null)
 			return 1f;
-		if(Instance.runtime_diff == null)
+		if(Instance.runtime_diff == null) {
+			Debug.LogWarning("init diff because of the difficulty multipleier !");
 			Instance.Init(Time.time);
+		}
 		return Instance.runtime_diff[Instance.index].difficultyMultiplier;
 	}
 	

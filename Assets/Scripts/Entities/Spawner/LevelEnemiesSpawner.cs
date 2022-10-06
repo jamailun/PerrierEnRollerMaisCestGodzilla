@@ -24,7 +24,6 @@ public class LevelEnemiesSpawner : ScriptableObject {
 		entries.Clear();
 		totalPriority = 0f;
 		foreach(var entry in enemies) {
-			Debug.LogWarning("generate [" + entry.enemyPrefab.name + "]. 1||2 : " + (minX > entry.maxX) + "||" + (maxX < entry.minX));
 			bool cannotSpawn = minX > entry.maxX || maxX < entry.minX;
 			if(!cannotSpawn) {
 				entries.Add(entry);

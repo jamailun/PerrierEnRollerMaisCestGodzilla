@@ -83,7 +83,11 @@ public class PlayerEntity : LivingEntity {
     // Reference to the animator.
     public CustomAnimator Animator { get; private set; }
 
-    private void Start() {
+    public static bool shouldStart = true;
+	private void Start() {
+        if(!shouldStart)
+            return;
+        shouldStart = false;
         Animator = GetComponentInChildren<CustomAnimator>();
         if(currentForm == null) {
             Debug.LogError("Error, no Animation for player.");
@@ -302,9 +306,8 @@ public class PlayerEntity : LivingEntity {
 
     protected override void Die() {
         // Save data
-        LoadingManager.Reset();
-        PersistentData.EndRun(Time.time - startedTime, level, UpgradePoints);
         TimerUI.Stop();
+        PersistentData.EndRun(Time.time - startedTime, level, UpgradePoints);
 
         //TODO SFX
         if(deathAnimation != null) {
@@ -429,4 +432,36 @@ public class PlayerEntity : LivingEntity {
         UpgradePoints += amount;
         UI.ScoreDisplay.UpdateScore(UpgradePoints);
     }
+
+    public GameData ExportData() {
+        return new GameData {
+            currentForm = currentForm,
+            currentHealth = Health,
+            experience = ExperiencePoints,
+            level = level,
+            rewardPoints = UpgradePoints,
+            runStarted = startedTime,
+            skills = skills,
+            flatDamages = _flatDamages,
+            maxHealth = MaxHealth
+        };
+	}
+
+    public void ImportData(GameData data) {
+        Start();
+
+        currentForm = data.currentForm;
+        base.SetMaxHealth(data.maxHealth);
+        Health = data.currentHealth;
+        ExperiencePoints = data.experience;
+        level = data.level;
+        startedTime = data.runStarted;
+        UpgradePoints = data.rewardPoints;
+        skills = data.skills;
+        _flatDamages = data.flatDamages;
+
+        UpdatePlayerForm();
+        GrowScale(1f);
+        UpdateBufferStats();
+	}
 }

@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void SelectedStartGame() {
 		SceneManager.LoadScene("LoadingScreen");
-		LoadingManager.Instance.NextStage();
+		LoadingManager.Instance.NextStage(null);
 	}
 
 	public void SelectedShop() {
