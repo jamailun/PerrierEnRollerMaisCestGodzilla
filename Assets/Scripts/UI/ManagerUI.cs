@@ -5,6 +5,8 @@ using UnityEngine;
 /// </summary>
 public class ManagerUI : MonoBehaviour {
 
+	public static ManagerUI Instance { get; private set; }
+
 	[Header("Config")]
 
 	[Tooltip("The map of keys and windows.")]
@@ -58,6 +60,11 @@ public class ManagerUI : MonoBehaviour {
 	[SerializeField] private TMPro.TMP_Text _experienceLabel;
 	public TMPro.TMP_Text ExperienceLabel => _experienceLabel;
 
+	[Header("Prefabs")]
+
+	[Tooltip("Damage text prefab")]
+	[SerializeField] private DamageText _damageText;
+	public DamageText DamageTextPrefab => _damageText;
 
 	[System.Serializable]
 	public struct ManagerEntry {
@@ -66,7 +73,10 @@ public class ManagerUI : MonoBehaviour {
 	}
 
 	private void Awake() {
-		DontDestroyOnLoad(this);
+		if(Instance != null)
+			Destroy(Instance.gameObject);
+		Instance = this;
+		//DontDestroyOnLoad(this);
 	}
 
 	private void Update() {

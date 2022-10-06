@@ -301,6 +301,7 @@ public class PlayerEntity : LivingEntity {
 
     protected override void Die() {
         // Save data
+        LoadingManager.Reset();
         PersistentData.EndRun(Time.time - startedTime, level, UpgradePoints);
         TimerUI.Stop();
 

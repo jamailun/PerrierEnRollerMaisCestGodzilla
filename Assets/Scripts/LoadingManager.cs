@@ -22,8 +22,9 @@ public class LoadingManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 	}
 
-	public void Reset() {
-		stage = 0;		
+	public static void Reset() {
+		if(Instance != null)
+			Instance.stage = 0;		
 	}
 
 	public void NextStage() {

@@ -80,11 +80,13 @@ public abstract class LivingEntity : MonoBehaviour {
         AssertInitialized();
 
         damage -= GetDamageReduction();
-        if(damage < 0 || dead || invincible)
+        if(damage < 0 || dead || invincible) {
+            SpawnDamageText("[Blocked]", DamageText.DamageType.Blocked);
             return;
+        }
 
         Health -= damage;
-        SpawnDamageText(damage);
+        SpawnDamageText("-"+damage, DamageText.GetTypeFromEntityType(GetEntityType()));
 
         if(Health <= 0) {
             Health = 0;
@@ -101,11 +103,9 @@ public abstract class LivingEntity : MonoBehaviour {
     /// </summary>
     protected virtual void HealthChanged(float delta) { }
 
-    private void SpawnDamageText(float amount) {
-        /*var obj = new GameObject();
-        var txt = obj.AddComponent<DamageText>();
-        txt.SetDamageText(amount, transform.position + new Vector3(0, .1f, 0));
-        // */
+    protected void SpawnDamageText(string value, DamageText.DamageType type) {
+        var text = Instantiate(ManagerUI.Instance.DamageTextPrefab);
+        text.SetDamageText(value, transform.position + new Vector3(0, .5f, 0), type);
     }
 
     protected virtual float GetDamageReduction() {
@@ -129,7 +129,7 @@ public abstract class LivingEntity : MonoBehaviour {
 
         Health += heal;
         if(showText)
-            SpawnDamageText(-heal);
+            SpawnDamageText("+" + heal, DamageText.DamageType.PlayerHeal);
 
         if(Health > MaxHealth)
             Health = MaxHealth;
