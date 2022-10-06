@@ -86,7 +86,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.02}
@@ -357,9 +357,12 @@ MonoBehaviour:
   meleeRange: 0.5
   meleeAttackDuration: 0.1
   meleeAttackPrefab_side: {fileID: 0}
+  melee_animation_spawn: -1
   distance_wanted: 10
   distance_epsilon: 1
   distance_shot_load: 0.8
+  distance_shot_postload: 0
+  distance_animation_spawn: -1
   projectile_prefab: {fileID: 2412919875044874183, guid: 2f0c410110a9fd14e8dd7444b08a1640, type: 3}
   experiencePrefab: {fileID: 1231743013400264615, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
   droppedExp: 50

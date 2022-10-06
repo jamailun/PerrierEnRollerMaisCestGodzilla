@@ -113,10 +113,11 @@ public class PlayerEntity : LivingEntity {
 
         skills = new SkillsSet(maxNumberOfPassives, 3);
 
+        UpgradePoints = 0;
+        UI.ScoreDisplay.UpdateScore(0);
+
         // calculate buffers
         UpdateBufferStats();
-
-        StartCoroutine(Utils.DoAfter(1f, ()=>AddSkill(SkillLibrairy.GetPassiveSkills()[4])));
 
         // reset camera
         Camera.main.orthographicSize = startCameraSize;
@@ -424,6 +425,6 @@ public class PlayerEntity : LivingEntity {
 
     public void AddRewardPoints(uint amount) {
         UpgradePoints += amount;
-
+        UI.ScoreDisplay.UpdateScore(UpgradePoints);
     }
 }

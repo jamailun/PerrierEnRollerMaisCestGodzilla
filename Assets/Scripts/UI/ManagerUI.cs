@@ -42,6 +42,10 @@ public class ManagerUI : MonoBehaviour {
 	[SerializeField] private TimerUI _timer;
 	public TimerUI Timer => _timer;
 
+	[Tooltip("Reference to the score display element")]
+	[SerializeField] private ScoreUI _score;
+	public ScoreUI ScoreDisplay => _score;
+
 	[Tooltip("Reference to the score label element")]
 	[SerializeField] private TMPro.TMP_Text _scoreLabel;
 	public TMPro.TMP_Text ScoreLabel => _scoreLabel;
