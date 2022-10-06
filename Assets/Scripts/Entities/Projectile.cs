@@ -42,12 +42,7 @@ public class Projectile : MonoBehaviour {
 		var box = collision.GetComponent<Hurtbox>();
 		if(box == null)
 			return;
-		if(damagePlayer && box.IsPlayer()) {
-			//Debug.Log("attack player " + box.name);
-			box.Damage(this);
-			Destroy(gameObject);
-		} else if(damageEnemies && !box.IsPlayer()) {
-			//Debug.Log("attack enemy " + box.name);
+		if((damagePlayer && box.IsPlayer()) || (damageEnemies && box.IsEnemy()) || box.IsBuilding()) {
 			box.Damage(this);
 			Destroy(gameObject);
 		}
@@ -56,6 +51,13 @@ public class Projectile : MonoBehaviour {
 	private void OnCollisionEnter2D(Collision2D collision) {
 		if(collision.transform == parent || collision.transform.IsChildOf(parent))
 			return;
+		var building = collision.gameObject.GetComponent<Building>();
+		if(building) {
+			building.Damage(damages);
+			Destroy(gameObject);
+			return;
+		}
+		//Debug.Log("projectile entered with " + collision.gameObject.name);
 		Destroy(gameObject);
 	}
 

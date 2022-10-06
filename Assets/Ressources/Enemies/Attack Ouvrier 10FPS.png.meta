@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e8728d6b5caa728429b25f58e5fab4da
+guid: a14e487591aed4e45863bd4b1a27a3aa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: John_W_0
+      name: Attack Ouvrier 10FPS_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,83 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f23682f14669ba4bacd5acd2bf1a17f
-      internalID: -371604563
+      spriteID: 4378c4c1fbc735f458a2f6b08c6708c7
+      internalID: 508774234
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: John_W_1
+      name: Attack Ouvrier 10FPS_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a8212accfbfa44a84343c156f9561a
+      internalID: 1598720958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Ouvrier 10FPS_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6125b49b48dad6546a7e135e59c099bc
+      internalID: 678933361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Ouvrier 10FPS_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dca7cdc4309ef141aa003f923fab984
+      internalID: -273263159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Ouvrier 10FPS_4
       rect:
         serializedVersion: 2
         x: 512
         y: 0
-        width: 512
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +203,83 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b2b093a741583e43a118edb0d06fc09
-      internalID: 223716128
+      spriteID: f77646ba58931e548aabbe683e166c2a
+      internalID: 974981821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: John_W_2
+      name: Attack Ouvrier 10FPS_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61a0a3c0840707445b0dc6b436e83240
+      internalID: 754138892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Ouvrier 10FPS_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a24a865ade1bbd94b9c229690a74e53b
+      internalID: 1269241624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Ouvrier 10FPS_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e09e1b101c6a4d43af7ac0c0726e6aa
+      internalID: 770095067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Ouvrier 10FPS_8
       rect:
         serializedVersion: 2
         x: 1024
         y: 0
-        width: 512
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +287,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c3de2a9d9fc24848919cd2848e94d4d
-      internalID: 1602616301
+      spriteID: cb38827aeff48104e83fb56d0202d6bf
+      internalID: 1443898196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: John_W_3
+      name: Attack Ouvrier 10FPS_9
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 1152
         y: 0
-        width: 512
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,8 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd42ddad32f3b104c8a9e8297a0f7e73
-      internalID: -1275347545
+      spriteID: 89d1ddd5c8b1a0441a8d1b0fb28cfdfb
+      internalID: 1983393514
       vertices: []
       indices: 
       edges: []
@@ -199,10 +325,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      John_W_2: 1602616301
-      John_W_1: 223716128
-      John_W_0: -371604563
-      John_W_3: -1275347545
+      Attack Ouvrier 10FPS_3: -273263159
+      Attack Ouvrier 10FPS_9: 1983393514
+      Attack Ouvrier 10FPS_5: 754138892
+      Attack Ouvrier 10FPS_2: 678933361
+      Attack Ouvrier 10FPS_1: 1598720958
+      Attack Ouvrier 10FPS_0: 508774234
+      Attack Ouvrier 10FPS_7: 770095067
+      Attack Ouvrier 10FPS_4: 974981821
+      Attack Ouvrier 10FPS_6: 1269241624
+      Attack Ouvrier 10FPS_8: 1443898196
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

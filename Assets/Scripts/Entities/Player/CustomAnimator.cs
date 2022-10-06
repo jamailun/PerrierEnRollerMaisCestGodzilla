@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CustomAnimator : MonoBehaviour {
 
-	private const bool DEBUG = "1" == "1";
+	[SerializeField] private bool DEBUG = false;
 
 	private readonly Dictionary<string, CustomAnimation> clips = new();
 
@@ -144,6 +144,7 @@ public class CustomAnimator : MonoBehaviour {
 
 		if(index == indexCallback) {
 			callback.Invoke();
+			indexCallback = -1;
 		}
 
 		if(index == nowPlaying.points.Length) {
@@ -167,4 +168,7 @@ public class CustomAnimator : MonoBehaviour {
 		}
 	}
 
+	public int GetClipSize(string clipName) {
+		return clips[clipName].points.Length;
+	}
 }

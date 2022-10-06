@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e017530dd75c1864eaa0ab78b848ce1c
+guid: a326abcfde0463347b95788fc02d3882
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walking Surfer_0
+      name: Walking John_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a2ed6026f4afbf489486a89cfa422d0
-      internalID: 1466259367
+      spriteID: ced573347a5b39c4f8bd1ea73dbb76dd
+      internalID: -1443034749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walking Surfer_1
+      name: Walking John_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5416e95dffa92244be2772a706834d8
+      internalID: 1514705298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking John_2
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 128
-        height: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de456dc5059e2794a84abcb02014e863
-      internalID: -1340414911
+      spriteID: f5ae210e78694e74fa1cd7520e6ac3a1
+      internalID: -2019590897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walking Surfer_2
+      name: Walking John_3
       rect:
         serializedVersion: 2
-        x: 256
+        x: 192
         y: 0
-        width: 128
-        height: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,29 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c606b558b2c1c9146b5f77d357e22b2c
-      internalID: 728649292
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walking Surfer_3
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b134a426889bbe945825fd041568d3a4
-      internalID: 1349114311
+      spriteID: d195b7662c736cd4cb33cbe848d6528f
+      internalID: -41587229
       vertices: []
       indices: 
       edges: []
@@ -199,10 +199,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Walking Surfer_3: 1349114311
-      Walking Surfer_2: 728649292
-      Walking Surfer_0: 1466259367
-      Walking Surfer_1: -1340414911
+      Walking John_2: -2019590897
+      Walking John_3: -41587229
+      Walking John_1: 1514705298
+      Walking John_0: -1443034749
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

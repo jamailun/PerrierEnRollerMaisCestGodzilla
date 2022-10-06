@@ -187,7 +187,6 @@ public class PlayerEntity : LivingEntity {
         UI.ExperienceBar.Init(previousLevelExp, nextLevelExp, ExperiencePoints);
     }
 
-
     private void LevelUp() {
         // exp variables
         level++;
@@ -422,4 +421,9 @@ public class PlayerEntity : LivingEntity {
             invincible = false;
         }));
 	}
+
+    public void AddRewardPoints(uint amount) {
+        UpgradePoints += amount;
+
+    }
 }

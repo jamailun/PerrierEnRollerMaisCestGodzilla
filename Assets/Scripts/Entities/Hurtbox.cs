@@ -15,6 +15,12 @@ public class Hurtbox : MonoBehaviour {
 	public bool IsPlayer() {
 		return _entity.IsPlayer();
 	}
+	public bool IsEnemy() {
+		return _entity.GetEntityType() == EntityType.Enemy;
+	}
+	public bool IsBuilding() {
+		return _entity.GetEntityType() == EntityType.Building;
+	}
 
 	public void Damage(Projectile proj) {
 		//Debug.Log("DAMAGE FROM " + proj + " : " + proj.damages);

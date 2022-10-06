@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e017530dd75c1864eaa0ab78b848ce1c
+guid: bd58082bea4788e4086dca8a9b8975ee
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walking Surfer_0
+      name: Walking Ouvrier_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a2ed6026f4afbf489486a89cfa422d0
-      internalID: 1466259367
+      spriteID: 495e634392a72aa47bdf888382097ea0
+      internalID: 1817311950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walking Surfer_1
+      name: Walking Ouvrier_1
       rect:
         serializedVersion: 2
         x: 128
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de456dc5059e2794a84abcb02014e863
-      internalID: -1340414911
+      spriteID: 54d53c18e7857f24c9180f407a985f72
+      internalID: -715947900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walking Surfer_2
+      name: Walking Ouvrier_2
       rect:
         serializedVersion: 2
         x: 256
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c606b558b2c1c9146b5f77d357e22b2c
-      internalID: 728649292
+      spriteID: 69163d2b6b22da24790888c3884a9dd9
+      internalID: 2028244763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walking Surfer_3
+      name: Walking Ouvrier_3
       rect:
         serializedVersion: 2
         x: 384
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b134a426889bbe945825fd041568d3a4
-      internalID: 1349114311
+      spriteID: 20c838f66b4f1f04caed2f9cebd71ca5
+      internalID: -1673892242
       vertices: []
       indices: 
       edges: []
@@ -199,10 +199,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Walking Surfer_3: 1349114311
-      Walking Surfer_2: 728649292
-      Walking Surfer_0: 1466259367
-      Walking Surfer_1: -1340414911
+      Walking Ouvrier_3: -1673892242
+      Walking Ouvrier_0: 1817311950
+      Walking Ouvrier_2: 2028244763
+      Walking Ouvrier_1: -715947900
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

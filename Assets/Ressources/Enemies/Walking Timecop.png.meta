@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0fb28b96bb16f2a4bb67cc1b56d00f5c
+guid: c13885948d2e3dc4fa44bdda8143f463
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: John_A_0
+      name: Walking Timecop_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7cafb2186fe0d74b9ef4de32773de5d
-      internalID: 83272514
+      spriteID: 5ce6728fe8ae6fc4690f82fe8f681641
+      internalID: -1005413207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: John_A_1
+      name: Walking Timecop_1
       rect:
         serializedVersion: 2
-        x: 512
+        x: 64
         y: 0
-        width: 512
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2400f0cef8310d4384e1fc8fde9d81f
-      internalID: 1628761306
+      spriteID: 3404f0ed7ac6fd8479089d27e691b50f
+      internalID: -64926203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: John_A_2
+      name: Walking Timecop_2
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 128
         y: 0
-        width: 512
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5c67850fb53b7041ba07550c7a65e90
-      internalID: -1306521992
+      spriteID: 048f030eacff79148af83fb5af8022c2
+      internalID: 1928216664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: John_A_3
+      name: Walking Timecop_3
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 192
         y: 0
-        width: 512
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,50 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fa549e643ce0e34aa92d3bcce76c1ce
-      internalID: -1000347069
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: John_A_4
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 0
-        width: 512
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99aa8d802c9985a4a82276ef1b705234
-      internalID: -2034423124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: John_A_5
-      rect:
-        serializedVersion: 2
-        x: 2560
-        y: 0
-        width: 512
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0c8276ce2919dc44bb245705cba79b31
-      internalID: -374545567
+      spriteID: fea818aac1d260d4f8b2be0ed6edf361
+      internalID: 1965010913
       vertices: []
       indices: 
       edges: []
@@ -241,12 +199,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      John_A_4: -2034423124
-      John_A_2: -1306521992
-      John_A_3: -1000347069
-      John_A_0: 83272514
-      John_A_1: 1628761306
-      John_A_5: -374545567
+      Walking Timecop_3: 1965010913
+      Walking Timecop_1: -64926203
+      Walking Timecop_0: -1005413207
+      Walking Timecop_2: 1928216664
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

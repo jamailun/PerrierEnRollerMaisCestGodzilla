@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e017530dd75c1864eaa0ab78b848ce1c
+guid: 2d5b446ec59209e40874a9d482e74a13
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walking Surfer_0
+      name: Attack John 20FPS_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 128
-        height: 128
+        y: 96
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a2ed6026f4afbf489486a89cfa422d0
-      internalID: 1466259367
+      spriteID: 578408d762876d842924cfae571f483a
+      internalID: -1826918960
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walking Surfer_1
+      name: Attack John 20FPS_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9792ac603d02ac643a8da96c542abb0e
+      internalID: 473470076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack John 20FPS_2
       rect:
         serializedVersion: 2
         x: 128
-        y: 0
-        width: 128
-        height: 128
+        y: 96
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +161,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de456dc5059e2794a84abcb02014e863
-      internalID: -1340414911
+      spriteID: 3cc39e3caf988fc49bc22ad7bef9d1de
+      internalID: 1283459115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walking Surfer_2
+      name: Attack John 20FPS_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afcbea97f1742ed4fbaef643c52c9671
+      internalID: -431193822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack John 20FPS_4
       rect:
         serializedVersion: 2
         x: 256
-        y: 0
-        width: 128
-        height: 128
+        y: 96
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c606b558b2c1c9146b5f77d357e22b2c
-      internalID: 728649292
+      spriteID: 5ebf79a998f4d6c41b3f354b1b4d3952
+      internalID: 425028308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walking Surfer_3
+      name: Attack John 20FPS_5
       rect:
         serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
+        x: 320
+        y: 96
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,8 +224,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b134a426889bbe945825fd041568d3a4
-      internalID: 1349114311
+      spriteID: 56509628dd4ef5340bdafca927045b74
+      internalID: 1975430846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack John 20FPS_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 62
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f4c33a7f0848d44c9d510372d532532
+      internalID: 848592665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack John 20FPS_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 62
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bde251cbf6cde24e939cdd82d6ee3fa
+      internalID: 1147604239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack John 20FPS_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 62
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bca7edcee2338b843b7749c25e15c3df
+      internalID: -397420509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack John 20FPS_9
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 62
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7ded38131908b9479a0280226e2aa3e
+      internalID: 1039942195
       vertices: []
       indices: 
       edges: []
@@ -199,10 +325,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Walking Surfer_3: 1349114311
-      Walking Surfer_2: 728649292
-      Walking Surfer_0: 1466259367
-      Walking Surfer_1: -1340414911
+      Attack John 20FPS_6: 848592665
+      Attack John 20FPS_0: -1826918960
+      Attack John 20FPS_8: -397420509
+      Attack John 20FPS_3: -431193822
+      Attack John 20FPS_1: 473470076
+      Attack John 20FPS_5: 1975430846
+      Attack John 20FPS_7: 1147604239
+      Attack John 20FPS_4: 425028308
+      Attack John 20FPS_2: 1283459115
+      Attack John 20FPS_9: 1039942195
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

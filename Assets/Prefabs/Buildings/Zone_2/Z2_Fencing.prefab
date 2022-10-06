@@ -58,6 +58,7 @@ MonoBehaviour:
   invincible: 0
   sprites:
   - {fileID: 21300000, guid: 5ea27b904203f814790687ba25491c7f, type: 3}
+  rewardPointPrefab: {fileID: 235053208991802325, guid: 200df7a1c32de1f4da20c6dfc381862e, type: 3}
   rewardPoints: 0
   vfx: {fileID: 0}
   vfxOverDamage:

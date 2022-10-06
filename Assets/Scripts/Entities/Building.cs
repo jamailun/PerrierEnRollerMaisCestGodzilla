@@ -6,8 +6,10 @@ public class Building : LivingEntity {
 	[Tooltip("The sprites for the building.")]
 	[SerializeField] private Sprite[] sprites;
 
+	[Tooltip("The reward prefab for breaking the building")]
+	[SerializeField] private RewardPoints rewardPointPrefab;
 	[Tooltip("The reward for breaking the building")]
-	[SerializeField] private int rewardPoints = 0;
+	[SerializeField] private uint rewardPoints = 0;
 
 	[Tooltip("Optional particle system")]
 	[SerializeField] private ParticleSystem vfx;
@@ -62,9 +64,25 @@ public class Building : LivingEntity {
 	}
 
 	protected override void Die() {
+		// Drop item before delete the gameobject
+		int c = 1;
+		uint amount = rewardPoints / 10;
+		while(amount >= 5) {
+			amount /= 5;
+			c += 1;
+		}
+		c = Mathf.Max(1, c + Random.Range(-1, 1));
+
+		uint perRewardPoints = rewardPoints / (uint) c;
+
+		for(int i = 0; i < c; i++) {
+			Vector3 pos = Random.insideUnitCircle * 1.2f;
+			var reward = Instantiate(rewardPointPrefab);
+			reward.transform.position = transform.position + pos;
+			reward.rewardAmount = perRewardPoints;
+		}
+
 		base.Die();
-		//TODO drop points on the ground.
-		Debug.LogWarning("building " + name + " dead. dropped" + rewardPoints);
 	}
 
 }

@@ -56,6 +56,10 @@ public class Enemy : LivingEntity {
     [Tooltip("The hitbox to spawn to attack")]
     [SerializeField] private Hitbox meleeAttackPrefab_side;
 
+    [SerializeIf("enemyType", EnemyType.Melee)]
+    [Tooltip("Index on the animation to spawn the hitbox. IF DEFINED !!")]
+    [SerializeField] private int melee_animation_spawn = -1;
+
     // Distance
 
     [SerializeIf("enemyType", EnemyType.Distance)]
@@ -129,15 +133,15 @@ public class Enemy : LivingEntity {
         agent.speed = _speed;
         agent.acceleration = _speed * 1.5f;
 
-        if(target == null) {
-            RefreshTarget();
-            Recalculate();
-		}
-
         animator = gameObject.GetOrAddComponent<CustomAnimator>();
         animator.SetClip(ANIM_WALK, walkAnimation);
         animator.SetClip(ANIM_ATTACK, attackAnimation);
         PlayAnimationWalk();
+
+        if(target == null) {
+            RefreshTarget();
+            Recalculate();
+        }
     }
 
     private const string ANIM_WALK = "anim_walk";
@@ -145,7 +149,7 @@ public class Enemy : LivingEntity {
 
     private void PlayAnimationWalk() {
         spriteRenderer.transform.localScale = new Vector3(walkAnimationScale, walkAnimationScale, 1f);
-        Debug.Log("(Enemy "+gameObject.name+") scale du renderer = " + walkAnimationScale);
+        //Debug.Log("(Enemy "+gameObject.name+") scale du renderer = " + walkAnimationScale);
         if(enemyType == EnemyType.Melee || enemyType == EnemyType.Distance)
             animator.PlayConditional(ANIM_WALK, PredicateWalkAnimation, walkAnimation.GetFirst());
         else
@@ -154,7 +158,7 @@ public class Enemy : LivingEntity {
 
     private void PlayAttackTemp(float duration) {
         spriteRenderer.transform.localScale = new Vector3(attackAnimationScale, attackAnimationScale, 1f);
-        Debug.Log("(Enemy " + gameObject.name + ") scale du renderer = " + walkAnimationScale);
+        //Debug.Log("(Enemy " + gameObject.name + ") scale du renderer = " + walkAnimationScale);
 
         animator.PlayOnce(ANIM_ATTACK, duration, ANIM_WALK, walkAnimationScale);
 	}
@@ -243,14 +247,13 @@ public class Enemy : LivingEntity {
         // MELEE    
         nextAttackAllowed += meleeAttackDuration;
 
-        var source = new Vector3(attack_output.position.x, attack_output.position.y, -.1f);
-
-        AttackEffect(source);
-
-        var hitbox = Instantiate(meleeAttackPrefab_side);
-        hitbox.transform.position = source;
-        hitbox.transform.localScale = new Vector3(attackScale, attackScale, 1f);
-        hitbox.Spawn(_flatDamages, meleeAttackDuration, IsFlip(), transform);
+        if(melee_animation_spawn > -1) {
+            animator.SpecifyCallback(melee_animation_spawn, () => {
+                SpawnHitboxMelee(melee_animation_spawn / (float)animator.GetClipSize(ANIM_ATTACK));
+            });
+		} else {
+            SpawnHitboxMelee(1f);
+        }
 
         // Animation
         PlayAttackTemp(meleeAttackDuration);
@@ -259,6 +262,17 @@ public class Enemy : LivingEntity {
             agent.isStopped = false;
         }));
 
+    }
+
+    private void SpawnHitboxMelee(float durationPer) {
+        var source = new Vector3(attack_output.position.x, attack_output.position.y, -.1f);
+
+        AttackEffect(source);
+
+        var hitbox = Instantiate(meleeAttackPrefab_side);
+        hitbox.transform.position = source;
+        hitbox.transform.localScale = new Vector3(attackScale, attackScale, 1f);
+        hitbox.Spawn(_flatDamages, meleeAttackDuration * durationPer, IsFlip(), transform);
     }
 
     private Vector3 GetOutput() {

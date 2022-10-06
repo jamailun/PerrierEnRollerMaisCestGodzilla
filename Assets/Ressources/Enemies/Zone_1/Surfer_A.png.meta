@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2b8ed197b3c0e404d9ebefdd6e1773af
+guid: 643dfc9adcab0c542bfbe0a87eb77ae5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,8 +110,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc3a60d3f394dcb48aef22561d8a1d88
-      internalID: 1709932850
+      spriteID: 6fe5d96447c6d924d84275399fe0b8bb
+      internalID: -2019624006
       vertices: []
       indices: 
       edges: []
@@ -129,10 +129,10 @@ TextureImporter:
       name: Attack Surfer 10FPS_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a54ebb0fa11699c4293bb0827277dc44
-      internalID: 1460550421
+      spriteID: a9dee859143a1a743971d394ac706872
+      internalID: 1213238494
       vertices: []
       indices: 
       edges: []
@@ -150,10 +150,10 @@ TextureImporter:
       name: Attack Surfer 10FPS_2
       rect:
         serializedVersion: 2
-        x: 128
+        x: 256
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af97ae1f7eb761b458409f1389474f52
-      internalID: 1549262044
+      spriteID: 680be791411e6584c831a93e8d23b082
+      internalID: 984561374
       vertices: []
       indices: 
       edges: []
@@ -171,10 +171,10 @@ TextureImporter:
       name: Attack Surfer 10FPS_3
       rect:
         serializedVersion: 2
-        x: 192
+        x: 384
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9977406599f869644b04f372a86d5462
-      internalID: 527916338
+      spriteID: 853decedfbf3666478f8ec4fe87dd3dd
+      internalID: -1176601118
       vertices: []
       indices: 
       edges: []
@@ -192,10 +192,10 @@ TextureImporter:
       name: Attack Surfer 10FPS_4
       rect:
         serializedVersion: 2
-        x: 256
+        x: 512
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40beb258c634c63419ab7a2d0e8caf17
-      internalID: -832897611
+      spriteID: 05c4b5c668e1fc54597fe0b80bd05c64
+      internalID: 876614591
       vertices: []
       indices: 
       edges: []
@@ -213,10 +213,10 @@ TextureImporter:
       name: Attack Surfer 10FPS_5
       rect:
         serializedVersion: 2
-        x: 320
+        x: 640
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c110f7539d357448b0bafc58f9445f2
-      internalID: -1948578123
+      spriteID: 34b496fde5967744aad48abeeac5996a
+      internalID: -1716168147
       vertices: []
       indices: 
       edges: []
@@ -234,10 +234,10 @@ TextureImporter:
       name: Attack Surfer 10FPS_6
       rect:
         serializedVersion: 2
-        x: 384
+        x: 768
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,8 +245,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84e61783c33105046a4e8c0d00f0cf7d
-      internalID: -1996398406
+      spriteID: 2c96c444588b12745a7ce5fd96ae2c15
+      internalID: -1638835689
       vertices: []
       indices: 
       edges: []
@@ -255,10 +255,10 @@ TextureImporter:
       name: Attack Surfer 10FPS_7
       rect:
         serializedVersion: 2
-        x: 448
+        x: 896
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82068f34a78940b4fa620047d28f6f86
-      internalID: 484240524
+      spriteID: 32c15f1ea7a0fcf45a7fa534b571233b
+      internalID: -1263162025
       vertices: []
       indices: 
       edges: []
@@ -283,14 +283,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Attack Surfer 10FPS_1: 1460550421
-      Attack Surfer 10FPS_6: -1996398406
-      Attack Surfer 10FPS_5: -1948578123
-      Attack Surfer 10FPS_3: 527916338
-      Attack Surfer 10FPS_7: 484240524
-      Attack Surfer 10FPS_4: -832897611
-      Attack Surfer 10FPS_2: 1549262044
-      Attack Surfer 10FPS_0: 1709932850
+      Attack Surfer 10FPS_1: 1213238494
+      Attack Surfer 10FPS_6: -1638835689
+      Attack Surfer 10FPS_5: -1716168147
+      Attack Surfer 10FPS_3: -1176601118
+      Attack Surfer 10FPS_7: -1263162025
+      Attack Surfer 10FPS_4: 876614591
+      Attack Surfer 10FPS_2: 984561374
+      Attack Surfer 10FPS_0: -2019624006
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
