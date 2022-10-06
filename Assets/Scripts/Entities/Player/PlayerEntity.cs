@@ -103,7 +103,7 @@ public class PlayerEntity : LivingEntity {
         UpdatePlayerForm();
 
         startedTime = Time.time;
-        TimerUI.StartTimer();
+        TimerUI.StartTimer(startedTime);
         if(DifficultyDisplayer.Instance != null) {
             DifficultyDisplayer.Instance.Init(startedTime);
 		} else {

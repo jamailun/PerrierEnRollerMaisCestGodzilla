@@ -16,12 +16,11 @@ public class TimerUI : MonoBehaviour {
 		Instance = this;
 	}
 
-	public static void StartTimer() {
-		if(Instance != null)
-			if(Instance.stopped)
-				Instance.stopped = false;
-			else
-				Instance.started = Time.time;
+	public static void StartTimer(float time) {
+		if(Instance != null) {
+			Instance.started = time;
+			Instance.stopped = false;
+		}
 	}
 
 	public static void UnpauseTimer() {

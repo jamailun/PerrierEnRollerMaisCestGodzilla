@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-	// Objectif : savoir si le joueur peut accéder aux "secrets" et "shop"
-
 	[SerializeField] private Button shopButton;
 
 	private void Start() {
@@ -24,8 +22,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void SelectedStartGame() {
-		SceneManager.LoadScene("LoadingScreen");
-		LoadingManager.Instance.NextStage(null);
+		LoadingManager.Instance.StartGame();
 	}
 
 	public void SelectedShop() {
