@@ -6,6 +6,7 @@ public class LoadingManager : MonoBehaviour {
 	public static LoadingManager Instance { private set; get; }
 
 	[SerializeField] private int stage = 0;
+	public int Stage => stage;
 	[SerializeField] private string levelSceneName = "LevelScene";
 
 	[Header("Generators")]
@@ -43,7 +44,15 @@ public class LoadingManager : MonoBehaviour {
 		};
 	}
 
+	private bool loading = false;
+
 	public void NextStage(PlayerEntity player) {
+		if(loading) {
+			Debug.LogWarning("Oskour cannot load too much !");
+			return;
+		}
+		loading = true;
+
 		if(player != null)
 			DontDestroyOnLoad(player.gameObject);
 		StartCoroutine(PreloadAsync(player));
@@ -60,7 +69,7 @@ public class LoadingManager : MonoBehaviour {
 		MapGenerator generator = GetCurrentGenerator();
 
 		Debug.Log("Creating the level layout with generator " + generator);
-		generator.Generate();
+		generator.GenerateSafe();
 
 		Debug.Log("Creating scene...");
 		StartCoroutine(LoadAsyncScene(generator, player));
@@ -106,6 +115,9 @@ public class LoadingManager : MonoBehaviour {
 		TimerUI.StartTimer(Time.time);
 		Camera.main.transform.position = new Vector3(data.player.transform.position.x, data.player.transform.position.y, Camera.main.transform.position.z);
 		Camera.main.GetComponent<CameraFollow>().target = data.player.transform;
+
+		// reset loading
+		loading = false;
 	}
 
 	public Vector2 CurrentMapDimensions() {

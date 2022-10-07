@@ -90,7 +90,7 @@ public abstract class LivingEntity : MonoBehaviour {
         }
 
         Health -= damage;
-        SpawnDamageText("-"+damage, DamageText.GetTypeFromEntityType(GetEntityType()));
+        SpawnDamageText("-"+damage.ToString("#.##"), DamageText.GetTypeFromEntityType(GetEntityType()));
 
         if(Health <= 0) {
             Health = 0;
@@ -133,7 +133,7 @@ public abstract class LivingEntity : MonoBehaviour {
 
         Health += heal;
         if(showText)
-            SpawnDamageText("+" + heal, DamageText.DamageType.PlayerHeal);
+            SpawnDamageText("+" + heal.ToString("#.##"), DamageText.DamageType.PlayerHeal);
 
         if(Health > MaxHealth)
             Health = MaxHealth;

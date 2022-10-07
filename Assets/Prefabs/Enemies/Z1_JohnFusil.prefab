@@ -246,7 +246,7 @@ MonoBehaviour:
   distance_animation_spawn: 1
   projectile_prefab: {fileID: 6147567928948659962, guid: 04076ad9d30864347a6f7a6dc609a929, type: 3}
   experiencePrefab: {fileID: 1231743013400264615, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
-  droppedExp: 50
+  droppedExp: 5
   walkAnimationScale: 8
   walkAnimation:
     frameDuration: 0.15

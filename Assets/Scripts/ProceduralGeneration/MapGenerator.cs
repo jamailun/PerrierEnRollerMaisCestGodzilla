@@ -20,6 +20,18 @@ public abstract class MapGenerator : ScriptableObject {
 	/// </summary>
 	public abstract void Generate();
 
+	public void GenerateSafe() {
+		bool success = false;
+		do {
+			try {
+				Generate();
+				success = true;
+			} catch {
+				Debug.LogWarning("Une erreur est survenue. Nouvelle génération.");
+			}
+		} while(!success);
+	}
+
 	/// <summary>
 	/// Populate a scene with the generated data.
 	/// </summary>
@@ -140,6 +152,10 @@ public abstract class MapGenerator : ScriptableObject {
 	/// <param name="radius">The radius of the building</param>
 	/// <returns></returns>
 	protected bool CanPlaceBuildingHere(Vector2 pos, float radius, BuildingSeed seed, int x, int y, float bufferY) {
+		if(x < 0 || y < 0 || x >= widthTiles || y >= heightTiles) {
+			Debug.LogError("ERROR building, invalid (x,y)=(" + x + "," + y + ")");
+			return false;
+		}
 		if(!seed.CanBePlaced(tiles[x, y]))
 			return false;
 		if(pos.x < 0.1f || pos.y <= 0.1f + bufferY || pos.y >= heightTiles*sizePerTile - 0.1f - bufferY)
