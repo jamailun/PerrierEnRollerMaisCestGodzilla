@@ -86,6 +86,10 @@ public class Enemy : LivingEntity {
     [Tooltip("Projectile to shot")]
     [SerializeField] private Projectile projectile_prefab;
 
+    [SerializeIf("enemyType", EnemyType.Distance)]
+    [Tooltip("Imprecision radius of a projectile")]
+    [SerializeField] [Range(0f, 5f)] private float projectile_imprecision = 0f;
+
     [Space]
 
     [Tooltip("The experience prefab to use.")]
@@ -312,7 +316,12 @@ public class Enemy : LivingEntity {
 
         // Projectil
         var proj = Instantiate(projectile_prefab);
-        proj.Init(source, target.position - source, transform);
+        Vector3 target = this.target.position;
+        if(projectile_imprecision > 0) {
+            var mod = Random.insideUnitCircle.normalized * projectile_imprecision;
+            target += new Vector3(mod.x, mod.y, 0);
+		}
+        proj.Init(source, target - source, transform);
         proj.transform.localScale = new Vector3(attackScale, attackScale, 1f);
         proj.damages = _flatDamages;
     }
