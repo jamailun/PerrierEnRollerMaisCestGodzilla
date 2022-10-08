@@ -12,6 +12,12 @@ public class LoadingManager : MonoBehaviour {
 	[Header("Generators")]
 	[SerializeField] private MapGenerator zone_1_generator;
 	[SerializeField] private MapGenerator zone_2_generator;
+	[SerializeField] private MapGenerator zone_3_generator;
+	[Header("Musics")]
+	[SerializeField] private AudioClip[] zone_1_musics;
+	[SerializeField] private AudioClip[] zone_2_musics;
+	[SerializeField] private AudioClip[] zone_3_musics;
+	[SerializeField] private AudioClip[] boss_musics;
 
 	private void Start() {
 		if(Instance != null) {
@@ -25,6 +31,19 @@ public class LoadingManager : MonoBehaviour {
 	public void StartGame() {
 		stage = 0;
 		NextStage(null);
+	}
+
+	public AudioClip PickNewMusic() {
+		AudioClip[] clips = stage switch {
+			1 => zone_1_musics,
+			2 => zone_2_musics,
+			3 => zone_3_musics,
+			4 => boss_musics,
+			_ => new AudioClip[0]
+		};
+		if(clips.Length == 0)
+			return null;
+		return clips[Random.Range(0, clips.Length - 1)];
 	}
 
 	public static void ResetGameAndGoMenu() {

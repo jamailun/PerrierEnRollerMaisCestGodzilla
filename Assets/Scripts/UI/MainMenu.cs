@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
 	[SerializeField] private Button shopButton;
+	[SerializeField] private AudioClip menuMusic;
+
+	private AudioSource audioSource;
 
 	private void Start() {
 		var runs = PersistentData.RunsAmount;
 		if(runs > 0)
 			shopButton.gameObject.SetActive(true);
+
+		// Music
+		audioSource = gameObject.GetOrAddComponent<AudioSource>();
+		audioSource.loop = true;
+		audioSource.clip = menuMusic;
+		audioSource.Play();
 	}
 
 	public void SelectedQuitApplication() {
@@ -22,6 +30,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void SelectedStartGame() {
+		audioSource.Stop();
 		LoadingManager.Instance.StartGame();
 	}
 
