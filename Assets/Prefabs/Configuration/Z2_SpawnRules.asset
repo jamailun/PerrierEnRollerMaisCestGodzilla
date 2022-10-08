@@ -15,22 +15,22 @@ MonoBehaviour:
   enemies:
   - enemyPrefab: {fileID: 8411166669958583151, guid: 8a65fe05f2147c7479b8ab0f5549de1c, type: 3}
     minX: 0
-    maxX: 85
+    maxX: 80
     minSpawn: 2
     maxSpawn: 4
     spawnPriority: 1
-    additionalRadius: 1
-    power: 2.5
+    additionalRadius: 1.2
+    power: 4
   - enemyPrefab: {fileID: 7020100567113897580, guid: a255640d6beb2e347add3d21f7dba69f, type: 3}
-    minX: 10
+    minX: 20
     maxX: 120
     minSpawn: 1
     maxSpawn: 1
     spawnPriority: 0.8
-    additionalRadius: 1.5
-    power: 2
+    additionalRadius: 1
+    power: 4.5
   - enemyPrefab: {fileID: 5329587854924543142, guid: 8d0d2830b998bdf46b9611e24fd7c2a2, type: 3}
-    minX: 10
+    minX: 50
     maxX: 200
     minSpawn: 1
     maxSpawn: 2
@@ -38,21 +38,29 @@ MonoBehaviour:
     additionalRadius: 1.5
     power: 3
   - enemyPrefab: {fileID: 8638718202398365612, guid: 28204d1661afca34a9c79a6a51251680, type: 3}
-    minX: 80
-    maxX: 200
+    minX: 110
+    maxX: 300
     minSpawn: 1
     maxSpawn: 3
     spawnPriority: 1.2
     additionalRadius: 1.5
     power: 4
   - enemyPrefab: {fileID: 7608875441688733380, guid: 318c3079695dbbc4ea0f4ef93cdddc12, type: 3}
-    minX: 100
-    maxX: 200
+    minX: 150
+    maxX: 300
     minSpawn: 1
     maxSpawn: 2
     spawnPriority: 1.15
-    additionalRadius: 1
-    power: 3.5
+    additionalRadius: 1.1
+    power: 4.1
+  - enemyPrefab: {fileID: 3848544198731279932, guid: 4618fa41edba1324e9122874146a4f2c, type: 3}
+    minX: 200
+    maxX: 300
+    minSpawn: 1
+    maxSpawn: 1
+    spawnPriority: 2
+    additionalRadius: 5
+    power: 10
   minWaveCooldown: 6
   maxWaveCooldown: 12
   baseRequiredPower: 10

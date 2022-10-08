@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Z3_Map_Generator
   m_EditorClassIdentifier: 
   sizePerTile: 2
-  widthTiles: 60
-  heightTiles: 30
+  widthTiles: 400
+  heightTiles: 120
   triesPerSeed: 3
   buildings: []
   waterTile: {fileID: 11400000, guid: b573ccf51946e0242a5d412bc4227c7e, type: 2}
