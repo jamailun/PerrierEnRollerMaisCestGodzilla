@@ -41,6 +41,10 @@ public class CustomAnimator : MonoBehaviour {
 		}
 	}
 
+	public bool IsPlaying(string name) {
+		return nowPlayingName == name;
+	}
+
 	private float Framerate => nextAnimation == null ? nowPlaying.frameDuration : tempFrameDuration;
 
 	public void SetClip(string name, CustomAnimation clip) {
@@ -115,6 +119,10 @@ public class CustomAnimator : MonoBehaviour {
 		this.indexCallback = indexExact;
 		this.callback = callback;
 	}
+	public void UpdateCallback(int newFrame) {
+		Debug.Log("new index! " + newFrame);
+		indexCallback = newFrame;
+	}
 
 	public void Stop() {
 		nowPlaying = null;
@@ -151,8 +159,8 @@ public class CustomAnimator : MonoBehaviour {
 		nextIndexTime += Framerate;
 
 		if(index == indexCallback) {
-			callback.Invoke();
 			indexCallback = -1;
+			callback.Invoke();
 		}
 
 		if(index == nowPlaying.points.Length) {

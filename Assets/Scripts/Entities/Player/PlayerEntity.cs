@@ -82,12 +82,14 @@ public class PlayerEntity : LivingEntity {
 
     // Reference to the animator.
     public CustomAnimator Animator { get; private set; }
+    public AudioSource AudioSource { get; private set; }
 
     public static bool shouldStart = true;
 	private void Start() {
         if(!shouldStart)
             return;
         shouldStart = false;
+        AudioSource = gameObject.GetOrAddComponent<AudioSource>();
         Animator = GetComponentInChildren<CustomAnimator>();
         if(currentForm == null) {
             Debug.LogError("Error, no Animation for player.");

@@ -15,8 +15,8 @@ public class Enemy : LivingEntity {
 
     [Space]
 
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
-    [SerializeField] private Transform target;
+    private Transform target;
+
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Time between recalculation (in seconds).")]
     [SerializeField] private float recalculateAfter = 0.2f;
@@ -33,6 +33,14 @@ public class Enemy : LivingEntity {
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Attack effect on shot")]
     [SerializeField] private ParticleSystem attackEffect;
+
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    [Tooltip("Sound effect on shot")]
+    [SerializeField] private AudioClip attackSoundEffect;
+
+    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    [Tooltip("If true, don't repeat s/vfx on multiple attacks")]
+    [SerializeField] private bool attackEffectsOnlyOnce = false;
 
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Transform to shot attacks from")]
@@ -89,6 +97,14 @@ public class Enemy : LivingEntity {
     [SerializeIf("enemyType", EnemyType.Distance)]
     [Tooltip("Imprecision radius of a projectile")]
     [SerializeField] [Range(0f, 5f)] private float projectile_imprecision = 0f;
+
+    [SerializeIf("enemyType", EnemyType.Distance)]
+    [Tooltip("Amount of projectiles to fire")]
+    [SerializeField] private int distance_projectiles_amount = 1;
+
+    [SerializeIf("enemyType", EnemyType.Distance)]
+    [Tooltip("if multiple projectiles, frame to attack at")]
+    [SerializeField] private int distance_projectiles_amount_deltaFrames = 3;
 
     [Space]
 
@@ -178,7 +194,8 @@ public class Enemy : LivingEntity {
 			return; // pas d'IA => on fait rien :)
 
         // Change direction
-        spriteRenderer.flipX = target.position.x < transform.position.x;
+        if(animator.IsPlaying(ANIM_WALK))
+            spriteRenderer.flipX = target.position.x < transform.position.x;
 
         // Change target
         if(Time.time >= nextRecalculate)
@@ -225,20 +242,21 @@ public class Enemy : LivingEntity {
         nextRecalculate = Time.time + recalculateAfter;
     }
 
+    int previous_callback;
+    int proj_n = 0;
     private void Attack(bool distance) {
         nextAttackAllowed = Time.time + (attackSpeed * (1f + Random.Range(-attackSpeedEpsilon, attackSpeedEpsilon)));
-
         agent.isStopped = true;
-
-        //Debug.Log(gameObject.name + " ATTACK !");
 
         // DISTANCE
         if(distance) {
+            proj_n = 0;
             nextAttackAllowed += distance_shot_load;
             nextRecalculate += distance_shot_load * 1.1f;
 
             StartCoroutine(Utils.DoAfter(distance_shot_load + distance_shot_postload, () => agent.isStopped = false));
             if(distance_animation_spawn >= 0) {
+                previous_callback = distance_animation_spawn;
                 PlayAttackTemp(distance_shot_load);
                 animator.SpecifyCallback(distance_animation_spawn, () => SpawnProjectile());
             } else {
@@ -253,7 +271,8 @@ public class Enemy : LivingEntity {
 
         if(melee_animation_spawn > -1) {
             animator.SpecifyCallback(melee_animation_spawn, () => {
-                SpawnHitboxMelee(melee_animation_spawn / (float)animator.GetClipSize(ANIM_ATTACK));
+                float size = animator.GetClipSize(ANIM_ATTACK);
+                SpawnHitboxMelee((size - melee_animation_spawn) / (float)size);
             });
 		} else {
             SpawnHitboxMelee(1f);
@@ -289,10 +308,16 @@ public class Enemy : LivingEntity {
 
     // Play the effects of the attack
     private void AttackEffect(Vector3 source) {
+        if(proj_n > 1 && attackEffectsOnlyOnce)
+            return;
         if(attackEffect != null) {
             var vfx = Instantiate(attackEffect);
             vfx.transform.SetPositionAndRotation(source, Quaternion.identity);
-            //TODO SFX
+        }
+        if(attackSoundEffect != null) {
+            var audio = gameObject.GetOrAddComponent<AudioSource>();
+            audio.clip = attackSoundEffect;
+            audio.Play();
         }
     }
 
@@ -308,6 +333,12 @@ public class Enemy : LivingEntity {
     }
 
     private void SpawnProjectile() {
+        proj_n++;
+        if(distance_animation_spawn > -1 && proj_n < distance_projectiles_amount) {
+            previous_callback += distance_projectiles_amount_deltaFrames;
+            animator.UpdateCallback(previous_callback);
+        }
+
         // Calculate
         var source = GetOutput();
 
