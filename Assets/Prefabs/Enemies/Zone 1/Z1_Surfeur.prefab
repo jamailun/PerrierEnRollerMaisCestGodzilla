@@ -91,22 +91,28 @@ MonoBehaviour:
   healthBar: {fileID: 8215670915141961434}
   invincible: 0
   enemyType: 1
-  target: {fileID: 0}
+  invertFlip: 0
   recalculateAfter: 0.2
   attackSpeed: 1.5
   attackSpeedEpsilon: 0.072
   attackEffect: {fileID: 0}
+  attackSoundEffect: {fileID: 8300000, guid: 946ab0082e48a504db2a3eb1cac0db7e, type: 3}
+  attackEffectsOnlyOnce: 0
   attack_output: {fileID: 6479316262711814128}
   attackScale: 1
   meleeRange: 3
   meleeAttackDuration: 0.3
   meleeAttackPrefab_side: {fileID: 7565651798990885809, guid: b4d8d3b63c9d41f4eab70efdccf3f459, type: 3}
+  melee_animation_spawn: -1
   distance_wanted: 4
   distance_epsilon: 0.5
   distance_shot_load: 0.8
   distance_shot_postload: 0
   distance_animation_spawn: -1
   projectile_prefab: {fileID: 0}
+  projectile_imprecision: 0
+  distance_projectiles_amount: 1
+  distance_projectiles_amount_deltaFrames: 3
   experiencePrefab: {fileID: 1231743013400264615, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
   droppedExp: 3
   walkAnimationScale: 8

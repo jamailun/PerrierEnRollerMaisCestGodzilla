@@ -91,11 +91,13 @@ MonoBehaviour:
   healthBar: {fileID: 7166428441277901735}
   invincible: 0
   enemyType: 2
+  invertFlip: 0
   recalculateAfter: 0.1
   attackSpeed: 0.05
   attackSpeedEpsilon: 0.009
   attackEffect: {fileID: 0}
-  attackSoundEffect: {fileID: 0}
+  attackSoundEffect: {fileID: 8300000, guid: aa79d3df879e0ae4db3d2a8e6a49a8a1, type: 3}
+  attackEffectsOnlyOnce: 0
   attack_output: {fileID: 5232213369069685389}
   attackScale: 5
   meleeRange: 2

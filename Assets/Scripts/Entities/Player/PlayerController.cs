@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
 	private void FixedUpdate() {
 		if(_player.IsDashing()) {
 			float remainnigDistance = (_player.DashTarget - _player.transform.position).sqrMagnitude;
-			if(remainnigDistance < 0.1f) {
+			if(remainnigDistance < 0.1f || _player.DashStarted - Time.time >= 2f) {
 				_player.StopDashing();
 			} else {
 				_body.velocity = _player.GetSpeed() * Time.fixedDeltaTime * _player.DashDirection;

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c3ae15ff6f10f42969fc25b58c3b6b, type: 3}
+  m_Name: Z3_SpawnRules
+  m_EditorClassIdentifier: 
+  enemies: []
+  minWaveCooldown: 8
+  maxWaveCooldown: 12
+  baseRequiredPower: 5
+  basePowerHorizontal: 0.015

@@ -312,6 +312,8 @@ public class Z1_MapGenerator : MapGenerator {
 	}
 
 	public override void Populate(SceneData scene, bool debug = true) {
+		scene.tilemap.ClearAllTiles();
+
 		// Fill the tilemap
 		for(int x = 0; x < widthTiles; x++) {
 			for(int y = 0; y < heightTiles; y++) {
@@ -330,7 +332,7 @@ public class Z1_MapGenerator : MapGenerator {
 
 		if(debug) {
 			scene.player.transform.position = GetPlayerSpawn();
-			Debug.Log("(DEBUG) Exit will be placed in " + GetLevelExit());
+			scene.exit.transform.position = GetLevelExit();
 		}
 	}
 

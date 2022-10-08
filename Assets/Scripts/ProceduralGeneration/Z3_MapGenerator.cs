@@ -1,15 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(fileName = "Z2_Map_Generator", menuName = "PERMCG/Z2_Map_Generator", order = 11)]
-public class Z2_MapGenerator : MapGenerator {
-
-	[Header("Main road")]
-
-	[SerializeField] private int parcAmountMin = 1;
-	[SerializeField] private int parcAmountMax = 2;
-	[SerializeField] private int parcCircleAmountMin = 1;
-	[SerializeField] private int parcCircleAmountMax = 2;
+[CreateAssetMenu(fileName = "Z3_Map_Generator", menuName = "PERMCG/Z3_Map_Generator", order = 12)]
+public class Z3_MapGenerator : MapGenerator {
 
 	[Header("Tiles used in zone 2")]
 	[SerializeField] private Tile waterTile;
@@ -97,118 +90,8 @@ public class Z2_MapGenerator : MapGenerator {
 		tiles = new int[widthTiles, heightTiles];
 		placeds = new();
 
-		int beginRoadX = 0;
-		int endsRoadX = beginRoadX + Random.Range(widthTiles / 6, widthTiles / 3);
-		bool firstGoDown = Random.value > 0.5f;
-		int roadYstart = firstGoDown ? Random.Range((int) (0.65f * heightTiles), heightTiles - 4) : Random.Range(4, (int) (0.35f * heightTiles));
-
-		for(int x = beginRoadX; x <= endsRoadX + 2; x++) {
-			for(int y = roadYstart - 2; y <= roadYstart + 2; y++) {
-				tiles[x, y] = TYPE_ROAD;
-			}
-		}
-
-		spawn = new Vector2(beginRoadX + 3f, roadYstart + 3f);
-
-		if(firstGoDown) {
-			// do to bottom
-			for(int y = roadYstart; y >= 0; y--) {
-				for(int x = endsRoadX - 2; x <= endsRoadX + 2; x++) {
-					tiles[x, y] = TYPE_ROAD;
-				}
-			}
-		} else {
-			// go to top
-			for(int y = roadYstart; y < heightTiles; y++) {
-				for(int x = endsRoadX - 2; x <= endsRoadX + 2; x++) {
-					tiles[x, y] = TYPE_ROAD;
-				}
-			}
-		}
-
-		int hh = heightTiles / 2;
-		int deltaHh = Random.Range(0, hh - 4);
-		hh += (firstGoDown ? -deltaHh : deltaHh);
-		int gotox = widthTiles / 2 + Random.Range(-6, 30);
-		for(int x = 0; x <= gotox; x++) {
-			for(int y = hh - 2; y <= hh + 2; y++) {
-				tiles[x, y] = TYPE_ROAD;
-			}
-		}
-
-		int deltaX = gotox - endsRoadX;
-		int sx = endsRoadX + Random.Range(5, 10);
-		bool goDown = Random.Range(0f, 1f) > 0.5f;
-		int lastSX = sx;
-		bool lastGD = goDown;
-		while(sx < gotox - 4) {
-			if(goDown) {
-				// do to bottom
-				for(int y = hh; y >= 0; y--) {
-					for(int x = sx - 2; x <= sx + 2; x++) {
-						tiles[x, y] = TYPE_ROAD;
-					}
-				}
-			} else {
-				// go to top
-				for(int y = hh; y < heightTiles; y++) {
-					for(int x = sx - 2; x <= sx + 2; x++) {
-						tiles[x, y] = TYPE_ROAD;
-					}
-				}
-			}
-			// change values
-			lastSX = sx;
-			lastGD = goDown;
-			sx += Random.Range(5, deltaX / 2);
-			goDown = (Random.Range(0f, 1f) > 0.3f) ? !goDown : goDown;
-		}
-
-
-		int sy = lastGD ? Random.Range(4, hh - 4) : Random.Range(hh + 4, heightTiles - 5);
-		for(int x = lastSX; x < widthTiles; x++) {
-			for(int y = sy - 2; y <= sy + 2; y++) {
-				tiles[x, y] = TYPE_ROAD;
-			}
-		}
-
-		exit = new Vector2(widthTiles*sizePerTile - 2.5f, sy*sizePerTile + 2f);
-
-		int nParcs = Random.Range(parcAmountMin, parcAmountMax);
-		int pcx = 0;
-		int pcy = 0;
-		for(int i = 0; i < nParcs; i++) {
-			pcx = Random.Range(endsRoadX + 6, widthTiles - 10);
-			pcy = lastGD ? Random.Range(sy, heightTiles - 5) : Random.Range(5, sy);
-			int rx = Random.Range(4, 12);
-			int ry = Random.Range(4, 8);
-			for(int px = -rx; px <= rx; px++) {
-				for(int py = -ry; py <= ry; py++) {
-					int x = pcx + px;
-					int y = pcy + py;
-					if(!IsTile(x, y, TYPE_ROAD, true))
-						tiles[x, y] = TYPE_GRASS;
-				}
-			}
-		}
-
-		int nParcsCircle = Random.Range(parcCircleAmountMin, parcCircleAmountMax);
-		for(int i = 0; i < nParcsCircle; i++) {
-			pcx = Random.Range(15, widthTiles - 10);
-			pcy = lastGD ? Random.Range(sy, heightTiles - 5) : Random.Range(5, sy);
-			int r = Random.Range(8, 15);
-			for(int px = -r; px <= r; px++) {
-				for(int py = -r; py <= r; py++) {
-					if(Vector2.Distance(new Vector2(px, py), new Vector2()) > r - 0.1f)
-						continue;
-					int x = pcx + px;
-					int y = pcy + py;
-					if(!IsTile(x, y, TYPE_ROAD, true))
-						tiles[x, y] = TYPE_GRASS;
-				}
-			}
-		}
-
+		spawn = new Vector2(2.5f, heightTiles / 2 * sizePerTile + 2f);
+		exit = new Vector2(widthTiles * sizePerTile - 2.5f, heightTiles / 2 * sizePerTile + 2f);
 
 		// DO BUILDINGS
 		GenerateBuildingsFromSeeds();

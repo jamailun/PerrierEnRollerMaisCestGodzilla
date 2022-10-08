@@ -167,6 +167,7 @@ public class PlayerEntity : LivingEntity {
             DashTarget = transform.position + new Vector3(DashDirection.x, DashDirection.y, 0) * currentForm.dashDistance;
         }
 
+        DashStarted = Time.time;
         dashVFX.Play();
     }
 
@@ -175,6 +176,7 @@ public class PlayerEntity : LivingEntity {
 	}
 	public bool IsDashing() { return dashing; }
     public void StopDashing() { dashing = false; dashVFX.Stop(); }
+    public float DashStarted { get; private set; }
 
     public float GetSpeed() {
         if(dead || attacking && !currentForm.AttackShape.CanMoveOnAttack)

@@ -11,6 +11,8 @@ public class Enemy : LivingEntity {
 	[Tooltip("Describes the IA of the Enemy.")]
 	[SerializeField] private EnemyType enemyType;
 
+    [SerializeField] private bool invertFlip = false;
+
     // -------------------------------------------------------------
 
     [Space]
@@ -195,7 +197,7 @@ public class Enemy : LivingEntity {
 
         // Change direction
         if(animator.IsPlaying(ANIM_WALK))
-            spriteRenderer.flipX = target.position.x < transform.position.x;
+            spriteRenderer.flipX = invertFlip != target.position.x < transform.position.x;
 
         // Change target
         if(Time.time >= nextRecalculate)
@@ -203,7 +205,7 @@ public class Enemy : LivingEntity {
     }
 
     private bool IsFlip() {
-        return spriteRenderer.flipX;
+        return spriteRenderer.flipX != invertFlip;
     }
 
     private void Recalculate() {
