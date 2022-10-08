@@ -2,9 +2,17 @@
 
 public class MobSpawner : MonoBehaviour {
 
-	[SerializeField] public LevelEnemiesSpawner spawnData;
+	[SerializeField] private bool debugMode = false;
+
+	[SerializeIf("debugMode", true, ComparisonType.Boolean)]
+	[SerializeField] private LevelEnemiesSpawner spawnData;
 
 	private float nextSpawn = 1f;
+
+	private void Start() {
+		if(!debugMode || spawnData == null)
+			spawnData = LoadingManager.Instance.GetSpawnData();
+	}
 
 	private void Update() {
 		if(spawnData == null)

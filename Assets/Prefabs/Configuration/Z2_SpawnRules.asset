@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c3ae15ff6f10f42969fc25b58c3b6b, type: 3}
+  m_Name: Z2_SpawnRules
+  m_EditorClassIdentifier: 
+  enemies:
+  - enemyPrefab: {fileID: 8411166669958583151, guid: 8a65fe05f2147c7479b8ab0f5549de1c, type: 3}
+    minX: 0
+    maxX: 85
+    minSpawn: 2
+    maxSpawn: 4
+    spawnPriority: 1
+    additionalRadius: 1
+    power: 2.5
+  - enemyPrefab: {fileID: 7020100567113897580, guid: a255640d6beb2e347add3d21f7dba69f, type: 3}
+    minX: 10
+    maxX: 120
+    minSpawn: 1
+    maxSpawn: 1
+    spawnPriority: 0.8
+    additionalRadius: 1.5
+    power: 2
+  - enemyPrefab: {fileID: 5329587854924543142, guid: 8d0d2830b998bdf46b9611e24fd7c2a2, type: 3}
+    minX: 10
+    maxX: 200
+    minSpawn: 1
+    maxSpawn: 2
+    spawnPriority: 1.1
+    additionalRadius: 1.5
+    power: 3
+  - enemyPrefab: {fileID: 8638718202398365612, guid: 28204d1661afca34a9c79a6a51251680, type: 3}
+    minX: 80
+    maxX: 200
+    minSpawn: 1
+    maxSpawn: 3
+    spawnPriority: 1.2
+    additionalRadius: 1.5
+    power: 4
+  - enemyPrefab: {fileID: 7608875441688733380, guid: 318c3079695dbbc4ea0f4ef93cdddc12, type: 3}
+    minX: 100
+    maxX: 200
+    minSpawn: 1
+    maxSpawn: 2
+    spawnPriority: 1.15
+    additionalRadius: 1
+    power: 3.5
+  minWaveCooldown: 6
+  maxWaveCooldown: 12
+  baseRequiredPower: 10
+  basePowerHorizontal: 0.05

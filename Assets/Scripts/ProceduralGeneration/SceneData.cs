@@ -8,12 +8,14 @@ public struct SceneData {
 	public Tilemap tilemap;
 	public PlayerEntity player;
 	public WorldBorder borders;
+	public ExitPoint exit;
 
 	public SceneData(Scene scene) {
 		navmesh = null;
 		tilemap = null;
 		player = null;
 		borders = null;
+		exit = null;
 
 		foreach(var obj in scene.GetRootGameObjects()) {
 			if(navmesh == null && obj.GetComponent<NavMeshSurface2d>() != null) {
@@ -26,9 +28,12 @@ public struct SceneData {
 			else if(borders == null && obj.GetComponent<WorldBorder>() != null) {
 				borders = obj.GetComponent<WorldBorder>();
 			}
+			else if(exit == null && obj.GetComponent<ExitPoint>() != null) {
+				exit = obj.GetComponent<ExitPoint>();
+			}
 		}
 	}
 
-	public bool IsValid { get { return navmesh != null && tilemap != null && player != null && borders != null; } }
+	public bool IsValid { get { return navmesh != null && tilemap != null && player != null && borders != null && exit != null; } }
 
 }

@@ -141,6 +141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b6ba948467a1c439c1918071588854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEBUG: 0
+  onlyDefaultClip: 0
+  defaultClip:
+    frameDuration: 0.15
+    points: []
 --- !u!1 &786004580282506677
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +227,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 10
+      value: 5
       inSlope: 1.3271433
       outSlope: 1.3271433
       tangentMode: 0
@@ -230,10 +235,46 @@ MonoBehaviour:
       inWeight: 0.61319256
       outWeight: 0
     - serializedVersion: 3
+      time: 2
+      value: 10
+      inSlope: 39.325962
+      outSlope: 39.325962
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3
+      value: 25
+      inSlope: 62.432026
+      outSlope: 62.432026
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 4
+      value: 50
+      inSlope: 85.41391
+      outSlope: 85.41391
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 5
-      value: 200
+      value: 100
       inSlope: 45.96098
       outSlope: 45.96098
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 6
+      value: 180
+      inSlope: 166.53036
+      outSlope: 166.53036
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -295,10 +336,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  maxLevel: 35
   growScaleOnNewSkill: 1.05
   growScaleOnEvolve: 1.2
+  levelupSfx: {fileID: 8300000, guid: 867f03c6fc4c154469ddde0717e20d01, type: 3}
   deathAnimation: {fileID: 7867984894950069129, guid: 4b2cc696fd96135418e4eb5b25be0378, type: 3}
   deathAnimationDuration: 1.5
+  startCameraSize: 4
   DashTarget: {x: 0, y: 0, z: 0}
   DashDirection: {x: 0, y: 0}
   dashVFX: {fileID: 8515105704419182080}

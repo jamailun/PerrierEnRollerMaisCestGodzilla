@@ -13,6 +13,12 @@ public class LoadingManager : MonoBehaviour {
 	[SerializeField] private MapGenerator zone_1_generator;
 	[SerializeField] private MapGenerator zone_2_generator;
 	[SerializeField] private MapGenerator zone_3_generator;
+
+	[Header("Spawn data")]
+	[SerializeField] private LevelEnemiesSpawner zone_1_spawns;
+	[SerializeField] private LevelEnemiesSpawner zone_2_spawns;
+	[SerializeField] private LevelEnemiesSpawner zone_3_spawns;
+
 	[Header("Musics")]
 	[SerializeField] private AudioClip[] zone_1_musics;
 	[SerializeField] private AudioClip[] zone_2_musics;
@@ -53,6 +59,16 @@ public class LoadingManager : MonoBehaviour {
 			Destroy(ManagerUI.Instance.gameObject);
 		}
 		SceneManager.LoadScene(0);
+	}
+
+	public LevelEnemiesSpawner GetSpawnData() {
+		return stage switch {
+			1 => zone_1_spawns,
+			2 => zone_2_spawns,
+			3 => zone_3_spawns,
+			4 => new(),
+			_ => throw new System.NotImplementedException("NO generator for stage " + stage)
+		};
 	}
 
 	private MapGenerator GetCurrentGenerator() {
@@ -120,6 +136,9 @@ public class LoadingManager : MonoBehaviour {
 			data.player = player;
 		}
 		data.player.transform.SetPositionAndRotation(generator.GetPlayerSpawn(), Quaternion.identity);
+
+		// Place exit
+		data.exit.transform.SetPositionAndRotation(generator.GetLevelExit(), Quaternion.identity);
 
 		// Unload the previous Scene
 		asyncLoad = SceneManager.UnloadSceneAsync("LoadingScreen");

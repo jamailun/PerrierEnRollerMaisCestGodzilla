@@ -172,6 +172,8 @@ public class Z2_MapGenerator : MapGenerator {
 			}
 		}
 
+		exit = new Vector2(widthTiles*sizePerTile - 2.5f, sy*sizePerTile + 2f);
+
 		int nParcs = Random.Range(parcAmountMin, parcAmountMax);
 		int pcx = 0;
 		int pcy = 0;

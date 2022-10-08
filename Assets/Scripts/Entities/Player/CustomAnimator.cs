@@ -120,7 +120,6 @@ public class CustomAnimator : MonoBehaviour {
 		this.callback = callback;
 	}
 	public void UpdateCallback(int newFrame) {
-		Debug.Log("new index! " + newFrame);
 		indexCallback = newFrame;
 	}
 

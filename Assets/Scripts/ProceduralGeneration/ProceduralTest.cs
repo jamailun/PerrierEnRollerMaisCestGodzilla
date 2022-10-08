@@ -16,6 +16,7 @@ public class ProceduralTest : MonoBehaviour {
 			Debug.LogError("tilemap = " + data.tilemap);
 			Debug.LogError("player = " + data.player);
 			Debug.LogError("borders = " + data.borders);
+			Debug.LogError("exit = " + data.exit);
 			throw new System.Exception("Scene data incomplete");
 		}
 		return data;

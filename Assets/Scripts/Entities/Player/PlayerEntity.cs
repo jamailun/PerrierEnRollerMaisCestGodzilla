@@ -32,6 +32,8 @@ public class PlayerEntity : LivingEntity {
     [SerializeField] private float growScaleOnNewSkill = 1f;
     [SerializeField] private float growScaleOnEvolve = 1f;
 
+    [SerializeField] private AudioClip levelupSfx;
+
     // config of death
     [Tooltip("The prefab for the death animation")]
     [SerializeField] private GameObject deathAnimation;
@@ -57,7 +59,7 @@ public class PlayerEntity : LivingEntity {
     public ulong ExperiencePoints { get; private set; }
 
     // Level variables
-    private int level = 0;
+    private int level = 1;
     private ulong nextLevelExp;
     private ulong previousLevelExp = 0;
 
@@ -197,10 +199,11 @@ public class PlayerEntity : LivingEntity {
     private void LevelUp() {
         // exp variables
         level++;
+        Debug.Log("new level : " + level);
         previousLevelExp = nextLevelExp;
-        nextLevelExp = (ulong) Mathf.FloorToInt(experienceCurve.Evaluate(level));
+        nextLevelExp = (ulong) Mathf.FloorToInt(experienceCurve.Evaluate(level+1));
         if(nextLevelExp <= previousLevelExp) {
-            Debug.LogWarning("Carefull ! Level " + level + " as smaller required exp than the preivous. +5% of the previous exp then.");
+            Debug.LogWarning("Carefull ! Level " + level + " as smaller required exp than the preivous ("+previousLevelExp + " -> " + nextLevelExp+"). +5% of the previous exp then.");
             nextLevelExp = (ulong) (((double) nextLevelExp)* 1.05);
 		}
 
@@ -245,6 +248,9 @@ public class PlayerEntity : LivingEntity {
         // Gagner un skill
         if(skillsToGet > 0) {
             Time.timeScale = 0f;
+            if(levelupSfx != null) {
+                AudioSource.PlayOneShot(levelupSfx);
+			}
             UI.NewSkillScreen.gameObject.SetActive(true);
             UI.NewSkillScreen.FindSkills(skills, Upgrade_Skill);
             return;

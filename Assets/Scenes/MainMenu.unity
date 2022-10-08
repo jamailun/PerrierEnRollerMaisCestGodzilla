@@ -157,6 +157,9 @@ MonoBehaviour:
   zone_1_generator: {fileID: 11400000, guid: 4f69d1425e9befe4c97275d64f6bcda0, type: 2}
   zone_2_generator: {fileID: 11400000, guid: 51d855bf25777ab4da07ff6b39212b05, type: 2}
   zone_3_generator: {fileID: 0}
+  zone_1_spawns: {fileID: 11400000, guid: 84608c55f82f6a243ae9647ad9d51bca, type: 2}
+  zone_2_spawns: {fileID: 11400000, guid: 8057f1100b4bd234db1b3414e0ac3bdf, type: 2}
+  zone_3_spawns: {fileID: 0}
   zone_1_musics:
   - {fileID: 8300000, guid: 8f8e89a5cdaa7f44cafc2c7c0aa5144f, type: 3}
   zone_2_musics:
