@@ -97,6 +97,16 @@ MonoBehaviour:
     bonusTries: 30
     avoidCenterY: 0
     requireTile: 0000000003000000
+  - buildingPrefab: {fileID: 2618487218002179548, guid: 58b7e3178fdb4ad4785dc05db0786571, type: 3}
+    lockRadius: 1.5
+    minX: 5
+    maxX: 150
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 20
+    bonusTries: 150
+    avoidCenterY: 0
+    requireTile: 1f000000
   parcAmountMin: 1
   parcAmountMax: 2
   parcCircleAmountMin: 1
