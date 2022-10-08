@@ -2,26 +2,37 @@ using UnityEngine;
 
 public class AoeProjectile : Projectile {
 
-	private Rigidbody2D _rb;
+	[SerializeField] private AudioClip breakSoundSfx;
+	[SerializeField] private AutoDestroy aoePrefab;
 
 	public override void Init(Vector3 sourcePosition, Vector2 direction, Transform realParent) {
 		base.Init(sourcePosition, direction, realParent);
-		_rb = GetComponent<Rigidbody2D>();
-		_rb.drag = 0.2f;
 	}
 
-	private void Update() {
-		if(_rb.velocity.magnitude < 0.1f) {
-			Debug.LogWarning("TROP RALENTI!!!");
-			Destroy(gameObject);
+	protected override void OnStart() {
+		StartCoroutine(Utils.DoAfter(lifeDuration, () => Break()));
+	}
+
+	private void Break() {
+		var aoe = Instantiate(aoePrefab);
+		aoe.transform.SetLocalPositionAndRotation(transform.position, Quaternion.identity);
+
+		if(breakSoundSfx != null) {
+			var obj = new GameObject("soundeffect_break");
+			var asnd = obj.AddComponent<AudioSource>();
+			asnd.clip = breakSoundSfx;
+			obj.AddComponent<AutoDestroy>().lifeTime = aoe.lifeTime;
+			asnd.Play();
 		}
+
+		Destroy(gameObject);
 	}
 
 
 	protected override void OnTrigger(Hurtbox box) {
 		if((damagePlayer && box.IsPlayer()) || (damageEnemies && box.IsEnemy()) || box.IsBuilding()) {
 			box.Damage(this);
-			Destroy(gameObject);
+			Break();
 		}
 	}
 
@@ -29,7 +40,7 @@ public class AoeProjectile : Projectile {
 		if(building) {
 			building.Damage(damages);
 		}
-		Destroy(gameObject);
+		Break();
 	}
 
 }

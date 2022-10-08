@@ -333,6 +333,7 @@ public class Enemy : LivingEntity {
     }
 
     private void SpawnProjectile() {
+        Debug.Log("spawn proj");
         proj_n++;
         if(distance_animation_spawn > -1 && proj_n < distance_projectiles_amount) {
             previous_callback += distance_projectiles_amount_deltaFrames;

@@ -35,6 +35,10 @@ public class Projectile : MonoBehaviour {
 
 	private void Start() {
 		// Destroy after
+		OnStart();
+	}
+
+	protected virtual void OnStart() {
 		StartCoroutine(Utils.DestroyAfter(gameObject, lifeDuration));
 	}
 
