@@ -5,6 +5,8 @@ using System.Collections;
 public class LoadingManager : MonoBehaviour {
 	public static LoadingManager Instance { private set; get; }
 
+	public static bool MainMenuAnimated = false;
+
 	[SerializeField] private int stage = 0;
 	public int Stage => stage;
 	[SerializeField] private string levelSceneName = "LevelScene";
