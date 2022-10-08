@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour {
 		horizontal = Input.GetAxisRaw("Horizontal");
 		vertical = Input.GetAxisRaw("Vertical");
 
-		_player.Animator.Play(PlayerEntity.ANIM_IDLE);
+		if(horizontal == 0 && vertical == 0)
+			_player.Animator.Play(PlayerEntity.ANIM_IDLE);
 
 		// swap renderer
 		if(horizontal != 0) { // only when it changes
