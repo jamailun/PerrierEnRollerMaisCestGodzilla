@@ -3130,7 +3130,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52.65
+  m_fontSize: 55.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4510,7 +4510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a5f259de7754d438646ae2ae63c7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doAnimation: 0
+  doAnimation: 1
   background: {fileID: 2078771978}
   shopButton: {fileID: 1371993820}
   startGameButton: {fileID: 553134116}
