@@ -19,7 +19,6 @@ MonoBehaviour:
   cooldown: 60
   activeDuration: 3
   percentageHeal: 0
-  changeStats: 1
   modifiers:
   - statistic: 0
     modifierType: 1
@@ -30,7 +29,6 @@ MonoBehaviour:
   - statistic: 9
     modifierType: 0
     modifier: 2
-  spawnObjects: 0
   spawnPrefabs: []
   vfx: {fileID: 0}
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 4f154a675ba11664594626403e96987a, type: 3}

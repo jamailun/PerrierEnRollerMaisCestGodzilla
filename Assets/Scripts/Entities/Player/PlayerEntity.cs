@@ -345,7 +345,14 @@ public class PlayerEntity : LivingEntity {
 
         // hop on devient tout mort
         dead = true;
-        // NON : base.Die();
+
+        // remove enemies IA
+        foreach(var enemy in FindObjectsOfType<Enemy>())
+            enemy.enabled = false;
+
+        // music
+        if(LevelMusicPlayer.CurrentInstance)
+            LevelMusicPlayer.CurrentInstance.PlayDeathMusic();
 
         // PUTAIIINI trop chiant si on destroy cet objet, ben la couroutine plus haut ne se lance pas car c'est D ELA MERDE
         // donc du coup je désactive les autres scripts comme un GROS CONNARD puis je supprimer mes enfats COMME UN MEC QUI FINIT EN PRISON

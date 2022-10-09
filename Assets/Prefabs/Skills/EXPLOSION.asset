@@ -23,4 +23,4 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 8709307866163244136, guid: f6819a2fc4ec96642a9fe26f9f7f0a2b, type: 3}
   vfx: {fileID: 1045134675686887537, guid: 565c3794998ea3f46a3fbfc1ccc3d930, type: 3}
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 450e95a6e5fc69b44b47cc7e40aa957f, type: 3}
