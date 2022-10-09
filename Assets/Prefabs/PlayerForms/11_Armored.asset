@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9509ddd1e297a3c4a87a485c4a74d563, type: 3}
+  m_Name: 11_Armored
+  m_EditorClassIdentifier: 
+  _name: Armored
+  _descendants: []
+  _color: {r: 0.6226415, g: 0.5727127, b: 0.57826036, a: 1}
+  _scale: 2.6
+  _hurtboxDescriptor:
+    hurtboxType: 1
+    size: {x: 1.25, y: 2.46}
+    offset: {x: 0, y: -0.04}
+    capsuleDirection: 0
+    points: []
+  magnetOffset: {x: 0, y: -0.3}
+  magnetRange: 2
+  groundCollider: 1
+  groundColliderSize: {x: 1.03, y: 0.29}
+  groundColliderOffset: {x: 0, y: -1.17}
+  _bannerImage: {fileID: 21300000, guid: a8bf581d30525b64bb1f420223cb8307, type: 3}
+  _attackScale: 1.5
+  _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
+  dashDistance: 3.5
+  dashCooldown: 2.2
+  animation_Idle:
+    frameDuration: 0.3
+    points:
+    - {fileID: 161341707, guid: ddd10d6bce4281e4a81adddb4046cf4e, type: 3}
+  animation_Right:
+    frameDuration: 0.18
+    points:
+    - {fileID: -94049265, guid: 001512ae4d5fcfb4a959bd4d192f0632, type: 3}
+    - {fileID: -2093539201, guid: 001512ae4d5fcfb4a959bd4d192f0632, type: 3}
+    - {fileID: -1530380717, guid: 001512ae4d5fcfb4a959bd4d192f0632, type: 3}
+    - {fileID: 2044326391, guid: 001512ae4d5fcfb4a959bd4d192f0632, type: 3}
+    - {fileID: 1099033651, guid: 001512ae4d5fcfb4a959bd4d192f0632, type: 3}
+  animation_Top:
+    frameDuration: 0.18
+    points:
+    - {fileID: -1694162212, guid: 57a81a9fc2d4c5d41a601700f5c93afa, type: 3}
+    - {fileID: 1800086345, guid: 57a81a9fc2d4c5d41a601700f5c93afa, type: 3}
+    - {fileID: -1808683781, guid: 57a81a9fc2d4c5d41a601700f5c93afa, type: 3}
+    - {fileID: 791251968, guid: 57a81a9fc2d4c5d41a601700f5c93afa, type: 3}
+    - {fileID: 116721288, guid: 57a81a9fc2d4c5d41a601700f5c93afa, type: 3}
+  animation_Bottom:
+    frameDuration: 0.18
+    points:
+    - {fileID: 161341707, guid: ddd10d6bce4281e4a81adddb4046cf4e, type: 3}
+    - {fileID: -1589091250, guid: ddd10d6bce4281e4a81adddb4046cf4e, type: 3}
+    - {fileID: -847592894, guid: ddd10d6bce4281e4a81adddb4046cf4e, type: 3}
+    - {fileID: 2078952693, guid: ddd10d6bce4281e4a81adddb4046cf4e, type: 3}
+    - {fileID: 1389247415, guid: ddd10d6bce4281e4a81adddb4046cf4e, type: 3}
+  frame_Attack_Right: {fileID: 0}
+  frame_Attack_Top: {fileID: 0}
+  frame_Attack_Bottom: {fileID: 0}
+  bonusMaxHealthPerLevel: 12
+  bonusAttackPerLevel: 3

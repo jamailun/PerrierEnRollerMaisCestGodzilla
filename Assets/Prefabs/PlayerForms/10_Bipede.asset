@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: 10_Bipede
   m_EditorClassIdentifier: 
   _name: Bipede
-  _descendants: []
+  _descendants:
+  - {fileID: 11400000, guid: b77fbd6e151864c4686da361bc4dab31, type: 2}
+  - {fileID: 11400000, guid: 5ef0eb4f64de80840b150ec99d3686f3, type: 2}
+  - {fileID: 11400000, guid: e8cc2d8b09bfd654a96fe663e9ce73d3, type: 2}
   _color: {r: 0.17132434, g: 0.39177006, b: 0.6603774, a: 1}
   _scale: 2.4
   _hurtboxDescriptor:
@@ -27,7 +30,7 @@ MonoBehaviour:
   groundCollider: 1
   groundColliderSize: {x: 1, y: 0.25}
   groundColliderOffset: {x: 0, y: -0.54}
-  _bannerImage: {fileID: 21300000, guid: 2ed8c09301f953648a1b60fbf06c16e2, type: 3}
+  _bannerImage: {fileID: 21300000, guid: db3bb548201ddc34fb0fe02b42874766, type: 3}
   _attackScale: 1.5
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
   dashDistance: 3.5
