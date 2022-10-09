@@ -28,8 +28,8 @@ MonoBehaviour:
   groundColliderSize: {x: 1.03, y: 0.29}
   groundColliderOffset: {x: 0, y: -1.17}
   _bannerImage: {fileID: 21300000, guid: 7378135f5335c774e8e198f458f5abf4, type: 3}
-  _attackScale: 1.5
-  _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
+  _attackScale: 0.7
+  _attackShape: {fileID: 11400000, guid: 291a438ccdb759b408d116e599acf023, type: 2}
   dashDistance: 4
   dashCooldown: 1.5
   animation_Idle:

@@ -18,6 +18,7 @@ public class AttackShape : ScriptableObject {
 	public float AttackCooldown => attackCooldown;
 
 	[Header("Shapes")]
+	[SerializeField] private AudioClip attackSfx;
 
 	[SerializeField] private Hitbox rightPrefab;
 	[SerializeField] private Vector3 rightOffset;
@@ -48,6 +49,14 @@ public class AttackShape : ScriptableObject {
 		hitbox.transform.localPosition = offset;
 		hitbox.transform.localScale = new Vector3(scale, scale, 1f);
 		hitbox.Spawn(damage, duration, (direction == Orientation.Left));
+
+		if(attackSfx != null) {
+			var obj = new GameObject("sfx_" + name);
+			obj.transform.position = hitbox.transform.position;
+			var audio = obj.AddComponent<AudioSource>();
+			audio.PlayOneShot(attackSfx);
+			Destroy(obj, attackSfx.length);
+		}
 
 		return hitbox;
 	}

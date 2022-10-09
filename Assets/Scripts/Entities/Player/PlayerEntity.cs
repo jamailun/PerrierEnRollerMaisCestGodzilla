@@ -154,7 +154,7 @@ public class PlayerEntity : LivingEntity {
 
     public void TryDash(float horizontal, float vertical) {
         if(horizontal == 0 && vertical == 0 || attacking) return;
-        if(dashing || Time.time < nextDash) return;
+        if(dashing || Time.time < nextDash || !currentForm.CanDash) return;
 
         dashing = true;
         nextDash = Time.time + currentForm.dashCooldown;

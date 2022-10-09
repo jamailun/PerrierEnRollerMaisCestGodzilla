@@ -27,11 +27,11 @@ MonoBehaviour:
   groundCollider: 1
   groundColliderSize: {x: 0.63, y: 0.13}
   groundColliderOffset: {x: 0, y: -0.58}
-  _bannerImage: {fileID: 21300000, guid: b2a59f312a635724da8e1e24cb1afc4e, type: 3}
-  _attackScale: 1.6
-  _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
-  dashDistance: 0
-  dashCooldown: 9999999
+  _bannerImage: {fileID: 21300000, guid: 5d3578096e551c3418677e82998bb9b5, type: 3}
+  _attackScale: 1
+  _attackShape: {fileID: 11400000, guid: e1d939b8a54da7d44890dbcad8e0a84b, type: 2}
+  dashDistance: -1
+  dashCooldown: -1
   animation_Idle:
     frameDuration: 0.3
     points:

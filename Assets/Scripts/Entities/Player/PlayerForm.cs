@@ -40,6 +40,8 @@ public class PlayerForm : ScriptableObject {
 	public float dashDistance = 2f;
 	public float dashCooldown = 1f;
 
+	public bool CanDash => dashCooldown > 0;
+
 	[SerializeField] public CustomAnimation animation_Idle;       // 2 frames
 	[SerializeField] public CustomAnimation animation_Right;      // 2 frames
 	[SerializeField] public CustomAnimation animation_Top;        // 2 frames
