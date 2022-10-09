@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9509ddd1e297a3c4a87a485c4a74d563, type: 3}
+  m_Name: 20_Quad
+  m_EditorClassIdentifier: 
+  _name: Quadrupede
+  _descendants: []
+  _color: {r: 0.4245283, g: 0.23979044, b: 0.1501869, a: 1}
+  _scale: 2.5
+  _hurtboxDescriptor:
+    hurtboxType: 1
+    size: {x: 0.34, y: 0.51}
+    offset: {x: 0, y: 0}
+    capsuleDirection: 0
+    points: []
+  magnetOffset: {x: 0, y: -0.2}
+  magnetRange: 1.1
+  groundCollider: 1
+  groundColliderSize: {x: 0.4, y: 0.13}
+  groundColliderOffset: {x: 0, y: -0.25}
+  _bannerImage: {fileID: 21300000, guid: 2ed8c09301f953648a1b60fbf06c16e2, type: 3}
+  _attackScale: 1.2
+  _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
+  dashDistance: 5
+  dashCooldown: 2.5
+  animation_Idle:
+    frameDuration: 0.3
+    points:
+    - {fileID: -403825718, guid: 26d2af5d8766c6f41bddb843e7bf158b, type: 3}
+  animation_Right:
+    frameDuration: 0.11
+    points:
+    - {fileID: 289941210, guid: 148423b13d80eec488697e38993a7f2a, type: 3}
+    - {fileID: 1983434939, guid: 148423b13d80eec488697e38993a7f2a, type: 3}
+    - {fileID: 289941210, guid: 148423b13d80eec488697e38993a7f2a, type: 3}
+    - {fileID: 524083135, guid: 148423b13d80eec488697e38993a7f2a, type: 3}
+  animation_Top:
+    frameDuration: 0.11
+    points:
+    - {fileID: 320540377, guid: 7511a7f74e7b48242b283ab7ac763ac1, type: 3}
+    - {fileID: 715633234, guid: 7511a7f74e7b48242b283ab7ac763ac1, type: 3}
+    - {fileID: 2012573569, guid: 7511a7f74e7b48242b283ab7ac763ac1, type: 3}
+    - {fileID: 682264528, guid: 7511a7f74e7b48242b283ab7ac763ac1, type: 3}
+  animation_Bottom:
+    frameDuration: 0.11
+    points:
+    - {fileID: -403825718, guid: 26d2af5d8766c6f41bddb843e7bf158b, type: 3}
+    - {fileID: -1454561518, guid: 26d2af5d8766c6f41bddb843e7bf158b, type: 3}
+    - {fileID: -526700716, guid: 26d2af5d8766c6f41bddb843e7bf158b, type: 3}
+    - {fileID: 1068282926, guid: 26d2af5d8766c6f41bddb843e7bf158b, type: 3}
+  frame_Attack_Right: {fileID: 0}
+  frame_Attack_Top: {fileID: 0}
+  frame_Attack_Bottom: {fileID: 0}
+  bonusMaxHealthPerLevel: 6
+  bonusAttackPerLevel: 2
