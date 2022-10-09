@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -144,6 +145,8 @@ public abstract class MapGenerator : ScriptableObject {
 		}
 		Debug.Log("Created " + placeds.Count + " buidings.");
 	}
+
+	public virtual Vector2 GetBossPos() { return new Vector2(-50, -50); }
 
 	/// <summary>
 	/// Test if a building can be placed at a point

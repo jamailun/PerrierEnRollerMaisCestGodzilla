@@ -15,6 +15,7 @@ public class LoadingManager : MonoBehaviour {
 	[SerializeField] private MapGenerator zone_1_generator;
 	[SerializeField] private MapGenerator zone_2_generator;
 	[SerializeField] private MapGenerator zone_3_generator;
+	[SerializeField] private MapGenerator zone_4_generator;
 
 	[Header("Spawn data")]
 	[SerializeField] private LevelEnemiesSpawner zone_1_spawns;
@@ -69,7 +70,7 @@ public class LoadingManager : MonoBehaviour {
 			2 => zone_2_spawns,
 			3 => zone_3_spawns,
 			4 => new(),
-			_ => throw new System.NotImplementedException("NO generator for stage " + stage)
+			_ => throw new System.NotImplementedException("No generator for stage " + stage)
 		};
 	}
 
@@ -77,7 +78,9 @@ public class LoadingManager : MonoBehaviour {
 		return stage switch {
 			1 => zone_1_generator,
 			2 => zone_2_generator,
-			_ => throw new System.NotImplementedException("NO generator for stage " + stage)
+			3 => zone_3_generator,
+			4 => zone_4_generator,
+			_ => throw new System.NotImplementedException("No generator for stage " + stage)
 		};
 	}
 
@@ -130,7 +133,7 @@ public class LoadingManager : MonoBehaviour {
 
 		// Creating tilemap
 		var data = new SceneData(target);
-		generator.Populate(data, false);
+		generator.Populate(data, true);
 
 		// Creating player
 		if(player != null) {
@@ -156,6 +159,12 @@ public class LoadingManager : MonoBehaviour {
 		Camera.main.transform.position = new Vector3(data.player.transform.position.x, data.player.transform.position.y, Camera.main.transform.position.z);
 		Camera.main.GetComponent<CameraFollow>().target = data.player.transform;
 		data.player.UpdateGrow();
+
+		// IF LEVEL 4 ON MET LE BOSS AHAHAHA JE SAIS PAS CODER ET JAI PASLE TEMPS
+		if(stage == 4) {
+			data.boss.gameObject.SetActive(true);
+			data.boss.transform.position = generator.GetBossPos();
+		}
 
 		// reset loading
 		loading = false;

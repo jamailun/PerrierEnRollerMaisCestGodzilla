@@ -65,11 +65,14 @@ public class Boss : Enemy {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        if(passIntroDebug) {
-            RealStart();
-		} else {
-            StartCoroutine(PlayIntro());
-		}
+        // laisse le temps de faire des trucs xd
+        StartCoroutine(Utils.DoAfter(1f, () => {
+            if(passIntroDebug) {
+                RealStart();
+            } else {
+                StartCoroutine(PlayIntro());
+            }
+        }));
     }
 
     private IEnumerator PlayIntro() {
@@ -94,10 +97,10 @@ public class Boss : Enemy {
             Destroy(obj, introSfx.length);
         }
 
-        while(cam.orthographicSize >= 1f) {
+        while(cam.orthographicSize >= 2f) {
             cam.orthographicSize -= Time.deltaTime * introZoomSpeed;
 
-            if(cam.orthographicSize <= 3.5f && ! bossNameText.gameObject.activeSelf)
+            if(cam.orthographicSize <= 3.5f && bossNameText!=null && ! bossNameText.gameObject.activeSelf)
                 bossNameText.gameObject.SetActive(true);
 
             yield return null;
@@ -105,7 +108,8 @@ public class Boss : Enemy {
 
         yield return new WaitForSeconds(introDuration);
 
-        bossNameText.gameObject.SetActive(false);
+        if(bossNameText != null)
+           bossNameText.gameObject.SetActive(false);
         ManagerUI.Instance.ShowAllNonBoss();
 
         cam.orthographicSize = originalSize;
@@ -251,7 +255,7 @@ public class Boss : Enemy {
         nextAttackAllowed = Time.time + (GetAttackSpeed() * (1f + Random.Range(-attackSpeedEpsilon, attackSpeedEpsilon)));
 
         var aoe = Instantiate(aoePrefab, Target.position, Quaternion.identity);
-        aoe.transform.localScale = transform.localScale / 2.5f;
+       // aoe.transform.localScale = transform.localScale / 2.5f;
         aoe.Init(_flatDamages, transform.localScale.x);
     }
 
@@ -299,15 +303,18 @@ public class Boss : Enemy {
         phase = Phase.Dead;
         dead = true;
 
+        if(Target!=null)
+            Target.GetComponent<PlayerEntity>()?.MakeInvicible();
+
         Debug.Log("FIN DU JEU BRAVOOOO");
 
         // death
         animator.PlayOnce(ANIM_DEATH, 2f);
-        StartCoroutine(Utils.DoAfter(1.95f, () => {
+        StartCoroutine(Utils.DoAfter(1f, () => {
             animator.Stop();
         }));
         LevelMusicPlayer.CurrentInstance.Stop();
-        StartCoroutine(Utils.DoAfter(5f, () => {
+        StartCoroutine(Utils.DoAfter(3f, () => {
             UnityEngine.SceneManagement.SceneManager.LoadScene("WinGameScene");
         }));
 	}

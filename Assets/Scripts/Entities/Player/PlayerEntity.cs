@@ -466,4 +466,8 @@ public class PlayerEntity : LivingEntity {
     public void UpdateGrow() {
         GrowScale(1f);
 	}
+
+    public void MakeInvicible() {
+        invincible = true;
+	}
 }

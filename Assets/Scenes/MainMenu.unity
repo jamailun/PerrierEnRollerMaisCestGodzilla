@@ -153,14 +153,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f721f1747a74948acd8161c65fdd0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 0
+  stage: 2
   levelSceneName: LevelScene
   zone_1_generator: {fileID: 11400000, guid: 4f69d1425e9befe4c97275d64f6bcda0, type: 2}
   zone_2_generator: {fileID: 11400000, guid: 51d855bf25777ab4da07ff6b39212b05, type: 2}
-  zone_3_generator: {fileID: 0}
+  zone_3_generator: {fileID: 11400000, guid: ba61b8067d8dfd749b7e250b57c0fbf8, type: 2}
+  zone_4_generator: {fileID: 11400000, guid: a3ade12d58ddd1f44831fe3197dbe125, type: 2}
   zone_1_spawns: {fileID: 11400000, guid: 84608c55f82f6a243ae9647ad9d51bca, type: 2}
   zone_2_spawns: {fileID: 11400000, guid: 8057f1100b4bd234db1b3414e0ac3bdf, type: 2}
-  zone_3_spawns: {fileID: 0}
+  zone_3_spawns: {fileID: 11400000, guid: 931bcb6cf5d1a1e449ead83697031afa, type: 2}
   zone_1_musics:
   - {fileID: 8300000, guid: 8f8e89a5cdaa7f44cafc2c7c0aa5144f, type: 3}
   zone_2_musics:
@@ -2995,7 +2996,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
+  m_fontSize: 55.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3130,7 +3131,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.65
+  m_fontSize: 69.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

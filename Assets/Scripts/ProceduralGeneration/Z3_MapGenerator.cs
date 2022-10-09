@@ -203,11 +203,11 @@ public class Z3_MapGenerator : MapGenerator {
 		// Place buildings
 		RepopulateBuildings(scene);
 
-		// Put worldborder
-		scene.borders.SetDimensions(widthTiles * 2f, heightTiles * 2f, 10f);
-
 		// recalcultate navmesh
 		scene.navmesh.BuildNavMeshAsync();
+
+		// Put worldborder
+		scene.borders.SetDimensions(widthTiles * 2f, heightTiles * 2f, 10f);
 
 		if(debug) {
 			scene.player.transform.position = GetPlayerSpawn();

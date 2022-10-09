@@ -58,7 +58,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   invincible: 0
   sprites:
-  - {fileID: 21300000, guid: e3fcf24c33c75d74398754bfe4236806, type: 3}
+  - {fileID: 21300000, guid: d419170cdfb7d3345aadb21b49e5e45a, type: 3}
   rewardPointPrefab: {fileID: 235053208991802325, guid: 200df7a1c32de1f4da20c6dfc381862e, type: 3}
   rewardPoints: 22
   vfx: {fileID: 0}

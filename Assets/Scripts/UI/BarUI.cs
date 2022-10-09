@@ -43,6 +43,8 @@ public class BarUI : MonoBehaviour {
 			else
 				label.text = value.ToString(FORMAT) + "/" + MaxValue.ToString(FORMAT);
 		}
+		if(content == null)
+			return;
 		if(MaxValue == 0) {
 			content.fillAmount = 0f;
 			return;
