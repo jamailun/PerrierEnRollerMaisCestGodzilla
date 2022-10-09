@@ -104,9 +104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePlayer: 1
   damageEnemies: 0
-  damages: 10
-  lifeDuration: 2.5
-  speed: 600
+  damages: 4
+  lifeDuration: 2
+  speed: 300
 --- !u!58 &9090282246634757309
 CircleCollider2D:
   m_ObjectHideFlags: 0

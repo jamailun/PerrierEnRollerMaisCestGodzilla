@@ -53,14 +53,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cab7dc75131f9248b521ba98ddea39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 20
+  _maxHealth: 30
   _healthRegen: 0
   _flatArmor: 2
-  _flatDamages: 15
+  _flatDamages: 10
   _speed: 3.2
   healthBar: {fileID: 6789260953148968046}
   invincible: 0
   enemyType: 1
+  invertFlip: 0
   recalculateAfter: 0.2
   attackSpeed: 2.5
   attackSpeedEpsilon: 0.3
@@ -83,7 +84,7 @@ MonoBehaviour:
   distance_projectiles_amount: 1
   distance_projectiles_amount_deltaFrames: 3
   experiencePrefab: {fileID: 1231743013400264615, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
-  droppedExp: 15
+  droppedExp: 60
   walkAnimationScale: 10
   walkAnimation:
     frameDuration: 0.19
