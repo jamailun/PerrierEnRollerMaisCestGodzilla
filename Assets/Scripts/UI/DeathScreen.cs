@@ -9,10 +9,5 @@ public class DeathScreen : MonoBehaviour {
 		//SceneManager.LoadScene(0);
 		LoadingManager.ResetGameAndGoMenu();
 	}
-
-	public void SelectedShop() {
-		Debug.Log("shop selected. mais ça n'existe pas. donc go au menu.");
-		LoadingManager.ResetGameAndGoMenu();
-	}
 	
 }

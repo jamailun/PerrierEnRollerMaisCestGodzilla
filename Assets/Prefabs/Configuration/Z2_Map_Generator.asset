@@ -15,7 +15,7 @@ MonoBehaviour:
   sizePerTile: 2
   widthTiles: 150
   heightTiles: 80
-  triesPerSeed: 3
+  triesPerSeed: 20
   buildings:
   - buildingPrefab: {fileID: 5883191073120306961, guid: 33806dfe747964c4fbe18aee93bc4722, type: 3}
     lockRadius: 6
@@ -23,19 +23,23 @@ MonoBehaviour:
     maxX: 145
     minPerGroup: 1
     maxPerGroup: 1
-    optimalAmount: 10
+    optimalAmount: 12
     bonusTries: 5
     avoidCenterY: 0
+    bonusRadiusX: 1
+    bonusRadiusY: 1
     requireTile: 0000000003000000
   - buildingPrefab: {fileID: 3356105280066521564, guid: 363efe0b2d9c9904cad51d46fdd08534, type: 3}
-    lockRadius: 4
-    minX: 1
-    maxX: 100
+    lockRadius: 5
+    minX: 0
+    maxX: 120
     minPerGroup: 1
     maxPerGroup: 2
-    optimalAmount: 25
-    bonusTries: 10
+    optimalAmount: 80
+    bonusTries: 50
     avoidCenterY: 0
+    bonusRadiusX: 2
+    bonusRadiusY: 2
     requireTile: 0000000003000000
   - buildingPrefab: {fileID: 8284264531033072361, guid: 771b8fd1cb6e921439ad871d09c025b2, type: 3}
     lockRadius: 3
@@ -43,29 +47,35 @@ MonoBehaviour:
     maxX: 100
     minPerGroup: 1
     maxPerGroup: 1
-    optimalAmount: 8
+    optimalAmount: 15
     bonusTries: 5
     avoidCenterY: 0
+    bonusRadiusX: 2
+    bonusRadiusY: 2
     requireTile: 0000000003000000
   - buildingPrefab: {fileID: 8821049738510996608, guid: f2bfa6e1c732d3e489de0bdbbf5ee549, type: 3}
-    lockRadius: 4
+    lockRadius: 6
     minX: 110
     maxX: 145
     minPerGroup: 1
     maxPerGroup: 1
-    optimalAmount: 20
+    optimalAmount: 30
     bonusTries: 5
     avoidCenterY: 0
+    bonusRadiusX: 2
+    bonusRadiusY: 2
     requireTile: 0000000003000000
   - buildingPrefab: {fileID: 1274487012664852129, guid: a857e7381ee643d4a90102f24a46e7d7, type: 3}
-    lockRadius: 2
+    lockRadius: 3
     minX: 5
     maxX: 100
     minPerGroup: 1
     maxPerGroup: 1
-    optimalAmount: 7
+    optimalAmount: 18
     bonusTries: 5
     avoidCenterY: 0
+    bonusRadiusX: 2
+    bonusRadiusY: 2
     requireTile: 0000000003000000
   - buildingPrefab: {fileID: 1512058783526695617, guid: 8485ddc2d2e054b49b6228cf5d247e7b, type: 3}
     lockRadius: 0.1
@@ -73,9 +83,11 @@ MonoBehaviour:
     maxX: 145
     minPerGroup: 1
     maxPerGroup: 1
-    optimalAmount: 20
-    bonusTries: 10
+    optimalAmount: 50
+    bonusTries: 30
     avoidCenterY: 0
+    bonusRadiusX: 0
+    bonusRadiusY: 0
     requireTile: 0000000003000000
   - buildingPrefab: {fileID: 4768356032392816039, guid: 39f669ae83b8db14993ed831d7747702, type: 3}
     lockRadius: 2
@@ -83,9 +95,11 @@ MonoBehaviour:
     maxX: 145
     minPerGroup: 1
     maxPerGroup: 1
-    optimalAmount: 7
-    bonusTries: 40
+    optimalAmount: 50
+    bonusTries: 30
     avoidCenterY: 0
+    bonusRadiusX: 0
+    bonusRadiusY: 0
     requireTile: 0000000003000000
   - buildingPrefab: {fileID: 2629330032526114526, guid: 0b62b563079639242b3e470a2ba66111, type: 3}
     lockRadius: 0.1
@@ -94,8 +108,10 @@ MonoBehaviour:
     minPerGroup: 1
     maxPerGroup: 1
     optimalAmount: 7
-    bonusTries: 30
+    bonusTries: 40
     avoidCenterY: 0
+    bonusRadiusX: 0
+    bonusRadiusY: 0
     requireTile: 0000000003000000
   - buildingPrefab: {fileID: 2618487218002179548, guid: 58b7e3178fdb4ad4785dc05db0786571, type: 3}
     lockRadius: 1.5
@@ -103,9 +119,11 @@ MonoBehaviour:
     maxX: 150
     minPerGroup: 1
     maxPerGroup: 1
-    optimalAmount: 20
+    optimalAmount: 25
     bonusTries: 150
     avoidCenterY: 0
+    bonusRadiusX: 0
+    bonusRadiusY: 0
     requireTile: 1f000000
   parcAmountMin: 1
   parcAmountMax: 2

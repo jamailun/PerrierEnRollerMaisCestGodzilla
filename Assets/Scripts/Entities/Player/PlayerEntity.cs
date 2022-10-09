@@ -314,6 +314,12 @@ public class PlayerEntity : LivingEntity {
         UpdateBufferStats();
     }
 
+    public void Conceede() {
+        TimerUI.Stop();
+        PersistentData.EndRun(Time.time - startedTime, level, UpgradePoints);
+        LoadingManager.ResetGameAndGoMenu();
+    }
+
     protected override void Die() {
         // Save data
         TimerUI.Stop();
