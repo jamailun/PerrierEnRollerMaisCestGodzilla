@@ -17,30 +17,46 @@ public class ActiveSkill : Skill {
 
 	[SerializeField] private float percentageHeal = 0f;
 
-	[SerializeField] private bool changeStats = false;
 	[SerializeField] private StatisticModifier[] modifiers;
 
-	[SerializeField] private bool spawnObjects = false;
-	[SerializeField] private GameObject[] spawnPrefabs;
+	[SerializeField] private ActiveSkillProduction[] spawnPrefabs;
 
-	public void Cast(PlayerEntity player) {
+	[Header("VFX / SFX")]
+	[SerializeField] private ParticleSystem vfx;
+	[SerializeField] private AudioClip sfx;
+
+	public void Cast(PlayerEntity player, int level) {
 		// Heal
 		if(percentageHeal > 0)
 			player.Heal(percentageHeal * player.MaxHealth);
 
 		// Stats
-		if(changeStats) {
+		if(modifiers != null && modifiers.Length > 0) {
 			foreach(var modifier in modifiers) {
-				player.Buff(modifier, activeDuration);
+				player.Buff(modifier, activeDuration * level);
 			}
 		}
 
 		// Spawn
-		if(spawnObjects) {
+		if(spawnPrefabs != null && spawnPrefabs.Length > 0) {
 			foreach(var prefab in spawnPrefabs) {
-				var obj = Instantiate(prefab);
-				obj.transform.position = player.GetOutputPosition();
+				var obj = Instantiate(prefab, player.GetOutputPosition(), Quaternion.identity);
+				obj.Init(player, level);
 			}
+		}
+
+		// VFX & SFX
+		if(vfx != null) {
+			var vfxInstance = Instantiate(vfx, player.transform.position, Quaternion.identity);
+			vfxInstance.Play();
+			Destroy(vfxInstance.gameObject, vfx.main.duration);
+		}
+		if(sfx != null) {
+			var obj = new GameObject("sfx_skill_" + name);
+			obj.transform.position = player.transform.position;
+			var audio = obj.AddComponent<AudioSource>();
+			audio.PlayOneShot(sfx);
+			Destroy(obj, sfx.length);
 		}
 
 	}

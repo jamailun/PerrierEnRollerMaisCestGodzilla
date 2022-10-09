@@ -127,8 +127,8 @@ public class PlayerEntity : LivingEntity {
         // calculate buffers
         UpdateBufferStats();
 
-        // reset camera
-        Camera.main.orthographicSize = startCameraSize;
+        // DEBUG ONLY
+        StartCoroutine(Utils.DoAfter(1f, () => AddSkill(SkillLibrairy.GetActivesSkills()[1])));
     }
 
 	public void TryAttack(Orientation orientation) {
@@ -141,8 +141,8 @@ public class PlayerEntity : LivingEntity {
 
         // Create the attack itself
         float attackDuration = currentForm.AttackShape.AttackDuration;
-        float attackDamage = stats.GetPower(Statistic.Attack, _flatDamages + currentForm.AttackShape.AttackDamageBonus);
-        float attackScale = stats.GetPower(Statistic.Range, currentForm.AttackScale);
+        float attackDamage = GetCurrentDamages();
+        float attackScale = GetCurrentRange();
         var hitbox = currentForm.AttackShape.SpawnHitbox(orientation, transform, attackDamage, attackDuration, attackScale);
         // Add additional damages
         hitbox.BonusDamagesBuilding = stats.GetPower(Statistic.AttackBonusBuildings, attackDamage) - attackDamage;
@@ -151,6 +151,13 @@ public class PlayerEntity : LivingEntity {
         // reset the boolean after some time.
         StartCoroutine(Utils.DoAfter(attackDuration, () => attacking = false));
 	}
+
+    public float GetCurrentDamages() {
+        return stats.GetPower(Statistic.Attack, _flatDamages + currentForm.AttackShape.AttackDamageBonus);
+    }
+    public float GetCurrentRange() {
+        return stats.GetPower(Statistic.Range, currentForm.AttackScale);
+    }
 
     public void TryDash(float horizontal, float vertical) {
         if(horizontal == 0 && vertical == 0 || attacking) return;

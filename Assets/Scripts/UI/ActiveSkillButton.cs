@@ -47,7 +47,7 @@ public class ActiveSkillButton : MonoBehaviour {
 				StartCoroutine(Utils.DoAfter(skillType.ActiveDuration, () => activeAnimation.gameObject.SetActive(false)));
 
 				// Cast the skill.
-				skillType.Cast(target);
+				skillType.Cast(target, skill.Level);
 			}
 		}
 

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac36ea0c26350464781f0b50c447265e, type: 3}
   m_Name: Earthquake
   m_EditorClassIdentifier: 
-  attackDuration: 1.5
+  attackDuration: 2.5
   attackDamageBonus: 10
-  attackCooldown: 2
-  attackSfx: {fileID: 8300000, guid: 0ecb996f23bba4b49a2c31d510182229, type: 3}
+  attackCooldown: 2.6
+  attackSfx: {fileID: 8300000, guid: 02865091a1a6cd74db22f58a5546e718, type: 3}
   rightPrefab: {fileID: 913630800888962560, guid: 8f6b577f026997745ba7d8601abe07ba, type: 3}
   rightOffset: {x: 0.1, y: -0.8, z: 0}
   bottomPrefab: {fileID: 913630800888962560, guid: 8f6b577f026997745ba7d8601abe07ba, type: 3}
   bottomOffset: {x: 0, y: -0.85, z: 0}
   topPrefab: {fileID: 913630800888962560, guid: 8f6b577f026997745ba7d8601abe07ba, type: 3}
   topOffset: {x: 0, y: -0.75, z: 0}
-  moveOnAttack: 0
+  moveOnAttack: 1

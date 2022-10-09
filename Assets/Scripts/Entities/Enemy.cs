@@ -132,6 +132,8 @@ public class Enemy : LivingEntity {
     private float nextRecalculate; // next time to recalulate trajectory
     private float nextAttackAllowed; // prochaine attaque.
 
+    private bool isAfraid = false;
+
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         if(spriteRenderer == null)
@@ -209,6 +211,15 @@ public class Enemy : LivingEntity {
     }
 
     private void Recalculate() {
+        if(isAfraid && enemyType != EnemyType.None) {
+            Vector3 dir = 2f * new Vector3(transform.position.x - target.position.x, transform.position.y - target.position.y, 0).normalized;
+            Vector3 newTarget = transform.position + dir;
+            Vector2 notSure = Random.insideUnitCircle * 1f;
+            agent.isStopped = false;
+            agent.SetDestination(newTarget + new Vector3(notSure.x, notSure.y, 0));
+            nextRecalculate = Time.time + recalculateAfter * 3;
+            return;
+	    }
         // Set destination according to the type
         float d = Vector2.Distance(transform.position, target.position);
         switch(enemyType) {
@@ -390,5 +401,23 @@ public class Enemy : LivingEntity {
         }
         target = player.transform;
     }
+
+    public void MakeAfraid(float duration) {
+        if(isAfraid)
+            return;
+        isAfraid = true;
+        if(spriteRenderer != null)
+            spriteRenderer.color = Color.gray;
+        float oldBreak = agent.stoppingDistance;
+        agent.stoppingDistance = 0f;
+        invertFlip = !invertFlip;
+        StartCoroutine(Utils.DoAfter(duration, () => {
+            isAfraid = false;
+            if(spriteRenderer != null)
+                spriteRenderer.color = Color.white;
+            invertFlip = !invertFlip;
+            agent.stoppingDistance = oldBreak;
+        }));
+	}
 
 }

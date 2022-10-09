@@ -10,27 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac4d18afe625cf446b1c33928e904f21, type: 3}
-  m_Name: Rage
+  m_Name: Intimidate
   m_EditorClassIdentifier: 
-  _name: Rage
-  _sprite: {fileID: 2029544153, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
+  _name: Intimidate
+  _sprite: {fileID: 1110418501, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 3
-  maxStacks: 1
-  cooldown: 60
-  activeDuration: 3
+  maxStacks: 2
+  cooldown: 20
+  activeDuration: 0.5
   percentageHeal: 0
-  changeStats: 1
-  modifiers:
-  - statistic: 0
-    modifierType: 1
-    modifier: 1
-  - statistic: 3
-    modifierType: 1
-    modifier: 1
-  - statistic: 9
-    modifierType: 0
-    modifier: 2
-  spawnObjects: 0
-  spawnPrefabs: []
+  modifiers: []
+  spawnPrefabs:
+  - {fileID: 7098126655420777292, guid: 6a392bb8a3c253041aee3437ec3a1545, type: 3}
   vfx: {fileID: 0}
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: eb0a286e675366647a086acf44e3b808, type: 3}

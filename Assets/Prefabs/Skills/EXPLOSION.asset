@@ -10,27 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac4d18afe625cf446b1c33928e904f21, type: 3}
-  m_Name: Rage
+  m_Name: EXPLOSION
   m_EditorClassIdentifier: 
-  _name: Rage
-  _sprite: {fileID: 2029544153, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
+  _name: Explosion
+  _sprite: {fileID: 391561610, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 3
   maxStacks: 1
-  cooldown: 60
-  activeDuration: 3
+  cooldown: 1
+  activeDuration: 0.1
   percentageHeal: 0
-  changeStats: 1
-  modifiers:
-  - statistic: 0
-    modifierType: 1
-    modifier: 1
-  - statistic: 3
-    modifierType: 1
-    modifier: 1
-  - statistic: 9
-    modifierType: 0
-    modifier: 2
-  spawnObjects: 0
-  spawnPrefabs: []
-  vfx: {fileID: 0}
+  modifiers: []
+  spawnPrefabs:
+  - {fileID: 8709307866163244136, guid: f6819a2fc4ec96642a9fe26f9f7f0a2b, type: 3}
+  vfx: {fileID: 1045134675686887537, guid: 565c3794998ea3f46a3fbfc1ccc3d930, type: 3}
   sfx: {fileID: 0}
