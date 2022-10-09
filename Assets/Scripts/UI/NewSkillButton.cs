@@ -40,4 +40,17 @@ public class NewSkillButton : MonoBehaviour {
 		owner.SkillChose(currentSkill);
 	}
 
+	private bool mouseOver = false;
+	public void MouseEnters() {
+		if(mouseOver || currentSkill == null)
+			return;
+		mouseOver = true;
+		Tooltip.ShowTooltip(currentSkill.Description);
+	}
+
+	public void MouseExits() {
+		mouseOver = false;
+		Tooltip.HideTooltip();
+	}
+
 }

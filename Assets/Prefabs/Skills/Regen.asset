@@ -15,7 +15,8 @@ MonoBehaviour:
   _name: Regeneration
   _sprite: {fileID: -1820412480, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 5
+  _description: Heal HP over time (+1HP/10s/lvl)
   _statistic: 1
   isMultiplicative: 0
-  _flatAddPerLevel: 1
+  _flatAddPerLevel: 0.1
   _mutlAddPerLevel: 0

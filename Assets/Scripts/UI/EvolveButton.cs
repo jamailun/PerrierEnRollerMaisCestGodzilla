@@ -16,6 +16,7 @@ public class EvolveButton : MonoBehaviour {
 			Debug.LogError("Could not find EvolveScreen parent for EvolveButton in " + gameObject.name);
 			enabled = false;
 		}
+		
 	}
 
 	public void SetPlayerForm(PlayerForm form) {
@@ -35,6 +36,20 @@ public class EvolveButton : MonoBehaviour {
 
 	public void FormClicked() {
 		owner.FormChose(currentForm);
+	}
+
+	private bool mouseOver = false;
+
+	public void MouseEnters() {
+		if(mouseOver || currentForm == null)
+			return;
+		mouseOver = true;
+		Tooltip.ShowTooltip(currentForm.Description);
+	}
+
+	public void MouseExits() {
+		mouseOver = false;
+		Tooltip.HideTooltip();
 	}
 
 }

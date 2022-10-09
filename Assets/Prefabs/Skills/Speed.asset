@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: hurry
   _sprite: {fileID: 1295508350, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 5
+  _description: Improve movement speed (+10%/lvl)
   _statistic: 0
   isMultiplicative: 1
   _flatAddPerLevel: 0

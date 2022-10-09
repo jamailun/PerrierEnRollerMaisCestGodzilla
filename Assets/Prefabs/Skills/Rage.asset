@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Rage
   _sprite: {fileID: 2029544153, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 3
+  _description: Gain +100% speed, +100% attack and 2 armor for 3 secondes.
   maxStacks: 1
   cooldown: 60
   activeDuration: 3

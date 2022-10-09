@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b8c78f9edf99fb4196a5af2f095f2d6, type: 2}
   - {fileID: 11400000, guid: de4763d1536e4474d86ba39f523dd9af, type: 2}
   - {fileID: 11400000, guid: 2d0267db7836010468ad9d21c456830f, type: 2}
+  _description: ahah j'aime les cornichons et j'ai peur de finir ma vie seul ahahahah
   _color: {r: 1, g: 1, b: 1, a: 1}
   _scale: 0.8
   _hurtboxDescriptor:

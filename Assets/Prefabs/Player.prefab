@@ -208,7 +208,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   invincible: 0
   UI: {fileID: 0}
-  currentForm: {fileID: 11400000, guid: 96df1bada9c15fc4aa39241a2fddb66a, type: 2}
+  currentForm: {fileID: 11400000, guid: f735d212ee05e3948a9e992ec19d22d6, type: 2}
   spellOutput: {fileID: 2761807075104834344}
   skillEveryNLevels: 1
   evolveEveryNLevels: 15

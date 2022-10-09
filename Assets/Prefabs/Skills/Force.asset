@@ -15,7 +15,8 @@ MonoBehaviour:
   _name: Force
   _sprite: {fileID: 955397494, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 5
+  _description: Deals more damages to everything (+7%/lvl)
   _statistic: 3
   isMultiplicative: 1
   _flatAddPerLevel: 0
-  _mutlAddPerLevel: 0.06
+  _mutlAddPerLevel: 0.07

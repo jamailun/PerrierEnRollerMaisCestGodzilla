@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Explosion
   _sprite: {fileID: 391561610, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 3
+  _description: Create a massive AoE around you (200% of your damages)
   maxStacks: 1
   cooldown: 1
   activeDuration: 0.1

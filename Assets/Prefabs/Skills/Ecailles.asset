@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Ecailles
   _sprite: {fileID: -730288133, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 5
+  _description: Augment your armor (+1/lvl)
   _statistic: 9
   isMultiplicative: 0
   _flatAddPerLevel: 1

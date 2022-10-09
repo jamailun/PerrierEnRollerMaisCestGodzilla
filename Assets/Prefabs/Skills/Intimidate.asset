@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Intimidate
   _sprite: {fileID: 1110418501, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 3
+  _description: Make all enemies around you be afraid temporarily.
   maxStacks: 2
   cooldown: 20
   activeDuration: 0.5

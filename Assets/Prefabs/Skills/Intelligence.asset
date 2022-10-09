@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Intelligence
   _sprite: {fileID: 332909997, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 5
+  _description: Gain more experience (+20%/lvl)
   _statistic: 8
   isMultiplicative: 1
   _flatAddPerLevel: 0

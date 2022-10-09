@@ -12,6 +12,9 @@ public abstract class Skill : ScriptableObject {
 	[SerializeField] private int _levelMax = 5;
 	public float LevelMax => _levelMax;
 
+	[SerializeField] private string _description;
+	public string Description => _description;
+
 	public abstract SkillType SkillType { get; }
 
 	public bool IsActive() {
