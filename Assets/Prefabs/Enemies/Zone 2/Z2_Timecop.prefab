@@ -115,7 +115,7 @@ MonoBehaviour:
   distance_projectiles_amount: 3
   distance_projectiles_amount_deltaFrames: 3
   experiencePrefab: {fileID: 1231743013400264615, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
-  droppedExp: 25
+  droppedExp: 15
   walkAnimationScale: 8
   walkAnimation:
     frameDuration: 0.15
