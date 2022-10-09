@@ -156,8 +156,17 @@ public abstract class MapGenerator : ScriptableObject {
 			Debug.LogError("ERROR building, invalid (x,y)=(" + x + "," + y + ")");
 			return false;
 		}
-		if(!seed.CanBePlaced(tiles[x, y]))
-			return false;
+		// test required tiles
+		for(int tx = x - seed.bonusRadiusX; tx <= x + seed.bonusRadiusX; tx++) {
+			for(int ty = y - seed.bonusRadiusY; ty <= y + seed.bonusRadiusY; ty++) {
+				if(tx > 0 && ty > 0 && tx < widthTiles && ty < heightTiles) {
+					if(!seed.CanBePlaced(tiles[tx, ty])) {
+						//Debug.Log("NOP pour " + seed.buildingPrefab.name + " en (" + x + "," + y + ") -> (" + tx + "," + ty + ") : " + tiles[tx, ty]);
+						return false;
+					}
+				}
+			}
+		}
 		if(pos.x < 0.1f || pos.y <= 0.1f + bufferY || pos.y >= heightTiles*sizePerTile - 0.1f - bufferY)
 			return false;
 		foreach(var b in placeds) {

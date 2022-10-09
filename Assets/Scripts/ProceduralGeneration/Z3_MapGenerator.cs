@@ -1,10 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "Z3_Map_Generator", menuName = "PERMCG/Z3_Map_Generator", order = 12)]
 public class Z3_MapGenerator : MapGenerator {
 
-	[Header("Tiles used in zone 2")]
+	[Header("Data")]
+	[SerializeField] private int minCrossX = 8;
+	[SerializeField] private int maxCrossX = 18;
+	[SerializeField] private int minCrossY = 6;
+	[SerializeField] private int maxCrossY = 12;
+	[SerializeField] private int roadSize = 2;
+	[SerializeField] [Range(0f, 1f)] private float removeCrossRoadChance = 0.15f;
+	[SerializeField] [Range(0f, 1f)] private float parcChance = 0.85f;
+	[SerializeField] [Range(0f, 1f)] private float treeChance = 0.01f;
+
+	[Header("Other")]
+	[SerializeField] private Building treePrefab;
+
+	[Header("Tiles used in zone 3")]
 	[SerializeField] private Tile waterTile;
 	[SerializeField] private Tile groundTile;
 	[SerializeField] private Tile grassTile;
@@ -89,12 +103,91 @@ public class Z3_MapGenerator : MapGenerator {
 	public override void Generate() {
 		tiles = new int[widthTiles, heightTiles];
 		placeds = new();
+		
+		List<Vector2Int> toRemove = new();
 
-		spawn = new Vector2(2.5f, heightTiles / 2 * sizePerTile + 2f);
-		exit = new Vector2(widthTiles * sizePerTile - 2.5f, heightTiles / 2 * sizePerTile + 2f);
+		int amountX = Random.Range(minCrossX, maxCrossX);
+		int amountY = Random.Range(minCrossY, maxCrossY);
+		int dx = widthTiles / amountX;
+		int dy = heightTiles / amountY;
+		bool removingX = false;
+		List<int> ly = new();
+		int rx = 0;
+		for(int x = 6; x < widthTiles - 6; x += dx) {
+			if(Random.Range(0f,1f) < removeCrossRoadChance) {
+				removingX = true;
+				rx = x;
+			}
+			for(int y = 6; y < heightTiles - 6; y += dy) {
+				CrossRoad(x, y, roadSize);
+				if(removingX) {
+					ly.Add(y);
+				}
+			}
+			if(removingX) {
+				toRemove.Add(new Vector2Int(rx, ly[Random.Range(0, ly.Count)]));
+				removingX = false;
+			}
+		}
+
+		// Remove some crossroads
+		foreach(var p in toRemove) {
+			if(Random.Range(0f,1f) < parcChance) {
+				// Put a parc
+				for(int x = p.x - dx + roadSize + 1; x <= p.x + dx - roadSize - 1; x++) {
+					for(int y = p.y - dy + roadSize + 1; y <= p.y + dy - roadSize - 1; y++) {
+						if(x > 0 && y > 0 && x < widthTiles && y < heightTiles) {
+							tiles[x, y] = TYPE_GRASS;
+							if(Random.Range(0f,1f) < treeChance) {
+								Vector2 pos = new Vector2(x, y) * sizePerTile;
+								placeds.Add(new BuildingSeed.Placed{building = treePrefab, x = pos.x, y = pos.y });
+							}
+						}
+					}
+				}
+			} else {
+				// Just remove the road
+				for(int x = p.x - dx + roadSize + 1; x <= p.x + dx - roadSize - 1; x++) {
+					for(int y = p.y - roadSize; y <= p.y + roadSize; y++) {
+						if(x > 0 && y > 0 && x < widthTiles && y < heightTiles)
+							tiles[x, y] = TYPE_GRASS;
+					}
+				}
+				for(int y = p.y - dy + roadSize + 1; y <= p.y + dy - roadSize - 1; y++) {
+					for(int x = p.x - roadSize; x <= p.x + roadSize; x++) {
+						if(x > 0 && y > 0 && x < widthTiles && y < heightTiles)
+							tiles[x, y] = TYPE_GRASS;
+					}
+				}
+			}
+		}
+
+		// Create spawn & exit
+		for(int y = heightTiles / 2 - 6; y < heightTiles - 10; y++) {
+			if(tiles[1, y] == TYPE_ROAD) {
+				spawn = new Vector2(2.5f, y * sizePerTile + 2f);
+				exit = new Vector2(widthTiles * sizePerTile - 2.5f, y * sizePerTile + 2f);
+				break;
+			}
+		}
 
 		// DO BUILDINGS
 		GenerateBuildingsFromSeeds();
+	}
+
+	private void CrossRoad(int cx, int cy, int size = 2) {
+		// Horizontal
+		for(int x = 0; x < widthTiles; x++) {
+			for(int y = cy - size; y <= cy + size; y++) {
+				tiles[x, y] = TYPE_ROAD;
+			}
+		}
+		// Vertical
+		for(int y = 0; y < heightTiles; y++) {
+			for(int x = cx - size; x <= cx + size; x++) {
+				tiles[x, y] = TYPE_ROAD;
+			}
+		}
 	}
 
 	public override void Populate(SceneData scene, bool debug = true) {
@@ -167,7 +260,7 @@ public class Z3_MapGenerator : MapGenerator {
 			// !down
 			if(right) {
 				if(left)
-					return TYPE_ROAD_B;
+					return TYPE_ROAD_T;
 				return TYPE_ROAD_TR;
 			}
 			// !right
@@ -179,7 +272,7 @@ public class Z3_MapGenerator : MapGenerator {
 		if(right) {
 			if(down) {
 				if(left)
-					return TYPE_ROAD_T;
+					return TYPE_ROAD_B;
 				return TYPE_ROAD_BR;
 			}
 			return TYPE_WATER;

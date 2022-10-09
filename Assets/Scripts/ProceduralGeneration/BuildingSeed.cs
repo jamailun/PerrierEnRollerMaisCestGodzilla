@@ -18,6 +18,9 @@ public class BuildingSeed {
 
 	public float avoidCenterY = 0;
 
+	public int bonusRadiusX = 0;
+	public int bonusRadiusY = 0;
+
 	public int[] requireTile;
 
 	public bool CanBePlaced(int tile) {

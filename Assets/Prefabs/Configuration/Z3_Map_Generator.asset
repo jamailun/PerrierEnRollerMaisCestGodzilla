@@ -13,10 +13,67 @@ MonoBehaviour:
   m_Name: Z3_Map_Generator
   m_EditorClassIdentifier: 
   sizePerTile: 2
-  widthTiles: 400
-  heightTiles: 120
-  triesPerSeed: 3
-  buildings: []
+  widthTiles: 300
+  heightTiles: 160
+  triesPerSeed: 10
+  buildings:
+  - buildingPrefab: {fileID: 5241053821688088100, guid: d265167638dea104c9d366a753858ecb, type: 3}
+    lockRadius: 4
+    minX: 0
+    maxX: 200
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 120
+    bonusTries: 50
+    avoidCenterY: 0
+    bonusRadiusX: 2
+    bonusRadiusY: 2
+    requireTile: 00000000
+  - buildingPrefab: {fileID: 4632573039023161069, guid: 877ebbfaff4dec746bbc0edcdef90503, type: 3}
+    lockRadius: 2
+    minX: 0
+    maxX: 110
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 100
+    bonusTries: 60
+    avoidCenterY: 0
+    bonusRadiusX: 1
+    bonusRadiusY: 1
+    requireTile: 00000000
+  - buildingPrefab: {fileID: 5342287555802472130, guid: 068f6465781395a47aafc87b42d4d654, type: 3}
+    lockRadius: 2
+    minX: 120
+    maxX: 300
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 120
+    bonusTries: 60
+    avoidCenterY: 0
+    bonusRadiusX: 2
+    bonusRadiusY: 1
+    requireTile: 00000000
+  - buildingPrefab: {fileID: 8786276651373203615, guid: 76e9eccc4ac4f2d42b936de776c05c30, type: 3}
+    lockRadius: 2
+    minX: 100
+    maxX: 300
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 100
+    bonusTries: 60
+    avoidCenterY: 0
+    bonusRadiusX: 1
+    bonusRadiusY: 1
+    requireTile: 00000000
+  minCrossX: 10
+  maxCrossX: 15
+  minCrossY: 6
+  maxCrossY: 9
+  roadSize: 2
+  removeCrossRoadChance: 0.513
+  parcChance: 0.935
+  treeChance: 0.005
+  treePrefab: {fileID: 2618487218002179548, guid: 58b7e3178fdb4ad4785dc05db0786571, type: 3}
   waterTile: {fileID: 11400000, guid: b573ccf51946e0242a5d412bc4227c7e, type: 2}
   groundTile: {fileID: 11400000, guid: f9d8e441c0925b2449ebdc8e71aad892, type: 2}
   grassTile: {fileID: 11400000, guid: be3d2ad18d4aa79438e0fd2c91074647, type: 2}
