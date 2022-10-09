@@ -20,7 +20,7 @@ public abstract class LivingEntity : MonoBehaviour {
     [SerializeField] protected float _speed = 8f;
 
     [Tooltip("Optional BarUI for the health.")]
-    [SerializeField] private BarUI healthBar;
+    [SerializeField] protected BarUI healthBar;
 
     [Tooltip("IF the entity can take damages or not.")]
     [SerializeField] protected bool invincible = false;

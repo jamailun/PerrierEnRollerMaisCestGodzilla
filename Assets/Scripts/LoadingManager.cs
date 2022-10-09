@@ -155,6 +155,7 @@ public class LoadingManager : MonoBehaviour {
 		TimerUI.StartTimer(Time.time);
 		Camera.main.transform.position = new Vector3(data.player.transform.position.x, data.player.transform.position.y, Camera.main.transform.position.z);
 		Camera.main.GetComponent<CameraFollow>().target = data.player.transform;
+		data.player.UpdateGrow();
 
 		// reset loading
 		loading = false;

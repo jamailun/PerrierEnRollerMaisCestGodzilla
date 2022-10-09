@@ -19,20 +19,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d0267db7836010468ad9d21c456830f, type: 2}
   _description: ahah j'aime les cornichons et j'ai peur de finir ma vie seul ahahahah
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _scale: 0.8
+  _scale: 4
   _hurtboxDescriptor:
     hurtboxType: 1
-    size: {x: 1.2, y: 2}
+    size: {x: 0.195, y: 0.3}
     offset: {x: 0, y: 0}
     capsuleDirection: 0
     points: []
-  magnetOffset: {x: 0, y: -0.5}
-  magnetRange: 3
+  magnetOffset: {x: 0, y: 0}
+  magnetRange: 0.9
   groundCollider: 1
-  groundColliderSize: {x: 1.4, y: 0.4}
-  groundColliderOffset: {x: 0, y: -1.2}
+  groundColliderSize: {x: 0.2, y: 0.06}
+  groundColliderOffset: {x: 0, y: -0.12}
   _bannerImage: {fileID: 0}
-  _attackScale: 1.2
+  _attackScale: 0.9
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
   dashDistance: 2.5
   dashCooldown: 1.5
@@ -61,8 +61,5 @@ MonoBehaviour:
     - {fileID: -2093063741, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
     - {fileID: 227598368, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
     - {fileID: -833014912, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
-  frame_Attack_Right: {fileID: 21300000, guid: edecdded5a9245441a4372df3a139a8b, type: 3}
-  frame_Attack_Top: {fileID: 21300000, guid: afe9210b81b8803439b476e5ba9c709d, type: 3}
-  frame_Attack_Bottom: {fileID: 21300000, guid: 41ed0b1f920958d45aa24888e2287f95, type: 3}
   bonusMaxHealthPerLevel: 5
   bonusAttackPerLevel: 1

@@ -17,11 +17,6 @@ public enum EnemyType {
 	Distance,
 
 	/// <summary>
-	/// Swap between Melee and Distance.
-	/// </summary>
-	Polyvalent,
-
-	/// <summary>
 	/// Boss, overriden by code.
 	/// </summary>
 	Boss

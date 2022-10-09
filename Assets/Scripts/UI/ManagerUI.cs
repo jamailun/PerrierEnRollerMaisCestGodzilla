@@ -53,6 +53,10 @@ public class ManagerUI : MonoBehaviour {
 	public TMPro.TMP_Text ScoreLabel => _scoreLabel;
 
 	[Tooltip("Reference to the experience bar")]
+	[SerializeField] private BarUI _playerHealth;
+	public BarUI PlayerHealth => _playerHealth;
+
+	[Tooltip("Reference to the experience bar")]
 	[SerializeField] private BarUI _experienceBar;
 	public BarUI ExperienceBar => _experienceBar;
 
@@ -70,6 +74,27 @@ public class ManagerUI : MonoBehaviour {
 	public struct ManagerEntry {
 		[SerializeField] public KeyCode keyCode;
 		[SerializeField] public WindowUI window;
+	}
+
+	public void HideAllNonBoss() {
+		ScoreLabel.gameObject.SetActive(false);
+		ScoreDisplay.gameObject.SetActive(false);
+		ExperienceLabel.gameObject.SetActive(false);
+		ExperienceBar.gameObject.SetActive(false);
+		Timer.gameObject.SetActive(false);
+		ActiveButtons.gameObject.SetActive(false);
+		SkillsDisplayer.gameObject.SetActive(false);
+		PlayerHealth.gameObject.SetActive(false);
+	}
+	public void ShowAllNonBoss() {
+		ScoreLabel.gameObject.SetActive(true);
+		ScoreDisplay.gameObject.SetActive(true);
+		ExperienceLabel.gameObject.SetActive(true);
+		ExperienceBar.gameObject.SetActive(true);
+		Timer.gameObject.SetActive(true);
+		ActiveButtons.gameObject.SetActive(true);
+		SkillsDisplayer.gameObject.SetActive(true);
+		PlayerHealth.gameObject.SetActive(true);
 	}
 
 	private void Awake() {

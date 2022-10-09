@@ -8,8 +8,7 @@ public class Projectile : MonoBehaviour {
 	[SerializeField] protected bool damagePlayer = true;
 	[SerializeField] protected bool damageEnemies = false;
 
-	[Tooltip("The damages of the projectile")]
-	[SerializeField] public float damages = 10f;
+	[HideInInspector] public float damages = 10f;
 
 	[Tooltip("The duration of the projectile (in seconds)")]
 	[SerializeField] protected float lifeDuration = 5f;

@@ -40,10 +40,10 @@ MonoBehaviour:
   animation_Right:
     frameDuration: 0.08
     points:
-    - {fileID: -273694835, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
-    - {fileID: -371817263, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
-    - {fileID: 327734040, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
-    - {fileID: 1052792485, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -1837417666, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -1659647994, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -306585641, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -1194882862, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
   animation_Top:
     frameDuration: 0.08
     points:
@@ -54,12 +54,9 @@ MonoBehaviour:
   animation_Bottom:
     frameDuration: 0.08
     points:
-    - {fileID: -1837417666, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
-    - {fileID: -1659647994, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
-    - {fileID: -306585641, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
-    - {fileID: -1194882862, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
-  frame_Attack_Right: {fileID: 0}
-  frame_Attack_Top: {fileID: 0}
-  frame_Attack_Bottom: {fileID: 0}
+    - {fileID: 1052792485, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -273694835, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -371817263, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: 327734040, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
   bonusMaxHealthPerLevel: 4
   bonusAttackPerLevel: 4

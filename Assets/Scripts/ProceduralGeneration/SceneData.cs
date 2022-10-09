@@ -9,6 +9,7 @@ public struct SceneData {
 	public PlayerEntity player;
 	public WorldBorder borders;
 	public ExitPoint exit;
+	public Boss boss;
 
 	public SceneData(Scene scene) {
 		navmesh = null;
@@ -16,6 +17,7 @@ public struct SceneData {
 		player = null;
 		borders = null;
 		exit = null;
+		boss = null;
 
 		foreach(var obj in scene.GetRootGameObjects()) {
 			if(navmesh == null && obj.GetComponent<NavMeshSurface2d>() != null) {
@@ -31,9 +33,12 @@ public struct SceneData {
 			else if(exit == null && obj.GetComponent<ExitPoint>() != null) {
 				exit = obj.GetComponent<ExitPoint>();
 			}
+			else if(boss == null && obj.GetComponent<Boss>() != null) {
+				boss = obj.GetComponent<Boss>();
+			}
 		}
 	}
 
-	public bool IsValid { get { return navmesh != null && tilemap != null && player != null && borders != null && exit != null; } }
+	public bool IsValid { get { return navmesh != null && tilemap != null && player != null && borders != null && exit != null && boss != null; } }
 
 }

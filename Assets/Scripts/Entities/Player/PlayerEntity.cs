@@ -463,35 +463,7 @@ public class PlayerEntity : LivingEntity {
         UI.ScoreDisplay.UpdateScore(UpgradePoints);
     }
 
-    public GameData ExportData() {
-        return new GameData {
-            currentForm = currentForm,
-            currentHealth = Health,
-            experience = ExperiencePoints,
-            level = level,
-            rewardPoints = UpgradePoints,
-            runStarted = startedTime,
-            skills = skills,
-            flatDamages = _flatDamages,
-            maxHealth = MaxHealth
-        };
-	}
-
-    public void ImportData(GameData data) {
-        Start();
-
-        currentForm = data.currentForm;
-        base.SetMaxHealth(data.maxHealth);
-        Health = data.currentHealth;
-        ExperiencePoints = data.experience;
-        level = data.level;
-        startedTime = data.runStarted;
-        UpgradePoints = data.rewardPoints;
-        skills = data.skills;
-        _flatDamages = data.flatDamages;
-
-        UpdatePlayerForm();
+    public void UpdateGrow() {
         GrowScale(1f);
-        UpdateBufferStats();
 	}
 }

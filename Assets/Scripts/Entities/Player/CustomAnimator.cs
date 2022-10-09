@@ -85,12 +85,12 @@ public class CustomAnimator : MonoBehaviour {
 	private float tempFrameDuration;
 	private float nextScale;
 
-	public void PlayOnce(string animationName, float duration, string nextAnimation, float nextScale = 1f) {
+	public void PlayOnce(string animationName, float duration, string nextAnimation = null, float nextScale = 1f) {
 		if(!clips.ContainsKey(animationName)) {
 			Debug.LogError("Could not play ONCE animation '" + animationName + "' : animation does NOT exist.");
 			return;
 		}
-		if(!clips.ContainsKey(nextAnimation)) {
+		if(nextAnimation != null && !clips.ContainsKey(nextAnimation)) {
 			Debug.LogError("Could not play NEXT animation '" + nextAnimation + "' : animation does NOT exist.");
 			return;
 		}
@@ -168,7 +168,6 @@ public class CustomAnimator : MonoBehaviour {
 			// fin de la bande.
 			if(nextAnimation != null) {
 				// il y a autre chose après.
-
 				nowPlayingName = nextAnimation;
 				nowPlaying = clips[nextAnimation];
 				nextAnimation = null;

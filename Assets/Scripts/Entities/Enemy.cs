@@ -7,6 +7,8 @@ using UnityEngine.AI;
 // Comme ça la classe boss peut override Enemy et override les méthodes qui choississent le comportement.
 public class Enemy : LivingEntity {
 
+#region parameters
+
 	[Header("Enemy attributes")]
 	[Tooltip("Describes the IA of the Enemy.")]
 	[SerializeField] private EnemyType enemyType;
@@ -14,23 +16,22 @@ public class Enemy : LivingEntity {
     [SerializeField] private bool invertFlip = false;
 
     // -------------------------------------------------------------
+    protected Transform Target { get; private set; }
 
     [Space]
 
-    private Transform target;
-
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Time between recalculation (in seconds).")]
-    [SerializeField] private float recalculateAfter = 0.2f;
+    [SerializeField] protected float recalculateAfter = 0.2f;
 
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Time between two attacks of an enemy, in seconds")]
-    [SerializeField] private float attackSpeed = 1f;
+    [SerializeField] protected float attackSpeed = 1f;
 
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Percentage of intentional error between two attacks")]
     [Range(0f, 0.5f)]
-    [SerializeField] private float attackSpeedEpsilon = 0.05f;
+    [SerializeField] protected float attackSpeedEpsilon = 0.05f;
 
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Attack effect on shot")]
@@ -46,21 +47,21 @@ public class Enemy : LivingEntity {
 
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Transform to shot attacks from")]
-    [SerializeField] private Transform attack_output;
+    [SerializeField] protected Transform attack_output;
 
     [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Geometric scale for attacks")]
-    [SerializeField] private float attackScale = 1f;
+    [SerializeField] protected float attackScale = 1f;
 
     // Melee
 
     [SerializeIf("enemyType", EnemyType.Melee)]
     [Tooltip("The range required to attack the player")]
-    [SerializeField] private float meleeRange = .5f;
+    [SerializeField] protected float meleeRange = .5f;
 
     [SerializeIf("enemyType", EnemyType.Melee)]
     [Tooltip("The duration of the attack")]
-    [SerializeField] private float meleeAttackDuration = .1f;
+    [SerializeField] protected float meleeAttackDuration = .1f;
 
     [SerializeIf("enemyType", EnemyType.Melee)]
     [Tooltip("The hitbox to spawn to attack")]
@@ -68,51 +69,53 @@ public class Enemy : LivingEntity {
 
     [SerializeIf("enemyType", EnemyType.Melee)]
     [Tooltip("Index on the animation to spawn the hitbox. IF DEFINED !!")]
-    [SerializeField] private int melee_animation_spawn = -1;
+    [SerializeField] protected int melee_animation_spawn = -1;
 
     // Distance
 
-    [SerializeIf("enemyType", EnemyType.Distance)]
+    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("The distance exact to keep from the target")]
-    [SerializeField] private float distance_wanted = 2.2f;
+    [SerializeField] protected float distance_wanted = 2.2f;
     
-    [SerializeIf("enemyType", EnemyType.Distance)]
+    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("The allowed error of distance to keep")]
     [SerializeField] private float distance_epsilon = .3f;
 
-    [SerializeIf("enemyType", EnemyType.Distance)]
+    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Time before shoot")]
     [SerializeField] private float distance_shot_load = .8f;
 
-    [SerializeIf("enemyType", EnemyType.Distance)]
+    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Time waiting after shoot")]
     [SerializeField] private float distance_shot_postload = 0f;
 
-    [SerializeIf("enemyType", EnemyType.Distance)]
+    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Index on the animation to spawn the projectile. IF DEFINED !!")]
     [SerializeField] private int distance_animation_spawn = -1;
 
-    [SerializeIf("enemyType", EnemyType.Distance)]
+    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Projectile to shot")]
-    [SerializeField] private Projectile projectile_prefab;
+    [SerializeField] protected Projectile projectile_prefab;
 
-    [SerializeIf("enemyType", EnemyType.Distance)]
+    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Imprecision radius of a projectile")]
     [SerializeField] [Range(0f, 5f)] private float projectile_imprecision = 0f;
 
-    [SerializeIf("enemyType", EnemyType.Distance)]
+    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Amount of projectiles to fire")]
     [SerializeField] private int distance_projectiles_amount = 1;
 
-    [SerializeIf("enemyType", EnemyType.Distance)]
+    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("if multiple projectiles, frame to attack at")]
     [SerializeField] private int distance_projectiles_amount_deltaFrames = 3;
 
     [Space]
 
+    [SerializeIf("enemyType", EnemyType.Boss, ComparisonType.NotEqual)]
     [Tooltip("The experience prefab to use.")]
     [SerializeField] private ExperienceBall experiencePrefab;
 
+    [SerializeIf("enemyType", EnemyType.Boss, ComparisonType.NotEqual)]
     [Tooltip("The amount of experience to drop")]
     [SerializeField] private ulong droppedExp = 10;
 
@@ -125,16 +128,18 @@ public class Enemy : LivingEntity {
     [SerializeField] private float attackAnimationScale = 1f;
     [SerializeField] private CustomAnimation attackAnimation;
 
-    private NavMeshAgent agent;
-    private SpriteRenderer spriteRenderer;
-    private CustomAnimator animator;
+    protected NavMeshAgent agent;
+    protected SpriteRenderer spriteRenderer;
+    protected CustomAnimator animator;
 
-    private float nextRecalculate; // next time to recalulate trajectory
-    private float nextAttackAllowed; // prochaine attaque.
+    protected float nextRecalculate; // next time to recalulate trajectory
+    protected float nextAttackAllowed; // prochaine attaque.
 
-    private bool isAfraid = false;
+    protected bool isAfraid = false;
 
-    private void Start() {
+#endregion
+
+	protected virtual void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         if(spriteRenderer == null)
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -162,16 +167,16 @@ public class Enemy : LivingEntity {
         animator.SetClip(ANIM_ATTACK, attackAnimation);
         PlayAnimationWalk();
 
-        if(target == null) {
+        if(Target == null) {
             RefreshTarget();
             Recalculate();
         }
     }
 
-    private const string ANIM_WALK = "anim_walk";
-    private const string ANIM_ATTACK = "anim_attack";
+    protected const string ANIM_WALK = "anim_walk";
+    protected const string ANIM_ATTACK = "anim_attack";
 
-    private void PlayAnimationWalk() {
+    protected void PlayAnimationWalk() {
         spriteRenderer.transform.localScale = new Vector3(walkAnimationScale, walkAnimationScale, 1f);
         //Debug.Log("(Enemy "+gameObject.name+") scale du renderer = " + walkAnimationScale);
         if(enemyType == EnemyType.Melee || enemyType == EnemyType.Distance)
@@ -180,26 +185,26 @@ public class Enemy : LivingEntity {
             animator.Play(ANIM_WALK);
     }
 
-    private void PlayAttackTemp(float duration) {
+    protected void PlayAttackTemp(float duration) {
         spriteRenderer.transform.localScale = new Vector3(attackAnimationScale, attackAnimationScale, 1f);
         //Debug.Log("(Enemy " + gameObject.name + ") scale du renderer = " + walkAnimationScale);
 
         animator.PlayOnce(ANIM_ATTACK, duration, ANIM_WALK, walkAnimationScale);
 	}
 
-    private bool PredicateWalkAnimation() {
-        if(target == null)
+    protected bool PredicateWalkAnimation() {
+        if(Target == null)
             return false;
         return agent.remainingDistance > 0.05f + agent.stoppingDistance;
 	}
 
     private void Update() {
-		if(enemyType == EnemyType.None || null == target)
+		if(enemyType == EnemyType.None || null == Target)
 			return; // pas d'IA => on fait rien :)
 
         // Change direction
         if(animator.IsPlaying(ANIM_WALK))
-            spriteRenderer.flipX = invertFlip != target.position.x < transform.position.x;
+            spriteRenderer.flipX = invertFlip != Target.position.x < transform.position.x;
 
         // Change target
         if(Time.time >= nextRecalculate)
@@ -210,9 +215,9 @@ public class Enemy : LivingEntity {
         return spriteRenderer.flipX != invertFlip;
     }
 
-    private void Recalculate() {
+    protected virtual void Recalculate() {
         if(isAfraid && enemyType != EnemyType.None) {
-            Vector3 dir = 2f * new Vector3(transform.position.x - target.position.x, transform.position.y - target.position.y, 0).normalized;
+            Vector3 dir = 2f * new Vector3(transform.position.x - Target.position.x, transform.position.y - Target.position.y, 0).normalized;
             Vector3 newTarget = transform.position + dir;
             Vector2 notSure = Random.insideUnitCircle * 1f;
             agent.isStopped = false;
@@ -221,7 +226,7 @@ public class Enemy : LivingEntity {
             return;
 	    }
         // Set destination according to the type
-        float d = Vector2.Distance(transform.position, target.position);
+        float d = Vector2.Distance(transform.position, Target.position);
         switch(enemyType) {
 
             // Melee always rush to the player
@@ -230,13 +235,13 @@ public class Enemy : LivingEntity {
                     Attack(false);
                     break;
 				} else {
-                    agent.SetDestination(target.position);
+                    agent.SetDestination(Target.position);
                 }
                 break;
 
             case EnemyType.Distance:
                 if((d < distance_wanted - distance_epsilon) || (d > distance_wanted + distance_epsilon)) {
-                    var vec = (transform.position - target.position);
+                    var vec = (transform.position - Target.position);
                     var movement = vec.normalized * (distance_wanted - d);
 
                     agent.SetDestination(transform.position + movement);
@@ -255,8 +260,8 @@ public class Enemy : LivingEntity {
         nextRecalculate = Time.time + recalculateAfter;
     }
 
-    int previous_callback;
-    int proj_n = 0;
+    protected int previous_callback;
+    protected int proj_n = 0;
     private void Attack(bool distance) {
         nextAttackAllowed = Time.time + (attackSpeed * (1f + Random.Range(-attackSpeedEpsilon, attackSpeedEpsilon)));
         agent.isStopped = true;
@@ -300,7 +305,7 @@ public class Enemy : LivingEntity {
 
     }
 
-    private void SpawnHitboxMelee(float durationPer) {
+    protected void SpawnHitboxMelee(float durationPer) {
         var source = new Vector3(attack_output.position.x, attack_output.position.y, -.1f);
 
         AttackEffect(source);
@@ -311,7 +316,7 @@ public class Enemy : LivingEntity {
         hitbox.Spawn(_flatDamages, meleeAttackDuration * durationPer, IsFlip(), transform);
     }
 
-    private Vector3 GetOutput() {
+    protected Vector3 GetOutput() {
         var source = new Vector3(attack_output.position.x, attack_output.position.y, -.1f);
         if(IsFlip()) {
             source.x -= 2 * attack_output.localPosition.x;
@@ -320,7 +325,7 @@ public class Enemy : LivingEntity {
     }
 
     // Play the effects of the attack
-    private void AttackEffect(Vector3 source) {
+    protected void AttackEffect(Vector3 source) {
         if(proj_n > 1 && attackEffectsOnlyOnce)
             return;
         if(attackEffect != null) {
@@ -345,7 +350,7 @@ public class Enemy : LivingEntity {
         Debug.Log("(Enemy " + gameObject.name + ") shot over.");
     }
 
-    private void SpawnProjectile() {
+    protected Projectile SpawnProjectile() {
         proj_n++;
         if(distance_animation_spawn > -1 && proj_n < distance_projectiles_amount) {
             previous_callback += distance_projectiles_amount_deltaFrames;
@@ -360,14 +365,20 @@ public class Enemy : LivingEntity {
 
         // Projectil
         var proj = Instantiate(projectile_prefab);
-        Vector3 target = this.target.position;
+        Vector3 target = this.Target.position;
         if(projectile_imprecision > 0) {
             var mod = Random.insideUnitCircle.normalized * projectile_imprecision;
             target += new Vector3(mod.x, mod.y, 0);
 		}
-        proj.Init(source, target - source, transform);
+        if(proj.GetType() == typeof(FollowProjectile)) {
+            ((FollowProjectile) proj).InitFollow(Target, transform);
+        } else {
+            proj.Init(source, target - source, transform);
+        }
         proj.transform.localScale = new Vector3(attackScale, attackScale, 1f);
         proj.damages = _flatDamages;
+
+        return proj;
     }
 
 	protected override void Die() {
@@ -399,10 +410,10 @@ public class Enemy : LivingEntity {
             agent.isStopped = true;
             return;
         }
-        target = player.transform;
+        Target = player.transform;
     }
 
-    public void MakeAfraid(float duration) {
+    public virtual void MakeAfraid(float duration) {
         if(isAfraid)
             return;
         isAfraid = true;
