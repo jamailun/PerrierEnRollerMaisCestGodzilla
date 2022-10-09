@@ -5,8 +5,6 @@ using TMPro;
 public class ShopUpgrader : MonoBehaviour {
 
 	[SerializeField] private Statistic stat;
-	[SerializeField] private int level = 0;
-	[SerializeField] private float bonusPerLevel = 0.01f;
 	[SerializeField] private bool isMultiplicative = true;
 
 	[Header("Static config")]
@@ -16,6 +14,7 @@ public class ShopUpgrader : MonoBehaviour {
 	[SerializeField] private TMP_Text label_level;
 
 	private int price;
+	private int level;
 
 	private ShopWindow shop;
 
@@ -25,7 +24,17 @@ public class ShopUpgrader : MonoBehaviour {
 		UpdateUI();
 	}
 
+
 	public void UpdateUI() {
+		level = stat switch {
+			Statistic.Attack => PersistentData.UpgradeLevelForce,
+			Statistic.Defense => PersistentData.UpgradeLevelDefense,
+			Statistic.Speed => PersistentData.UpgradeLevelSpeed,
+			Statistic.ExpGained => PersistentData.UpgradeLevelIntelligence,
+			Statistic.Range => PersistentData.UpgradeLevelRange,
+			_ => throw new System.Exception("Unexpected stat : " + stat + " for upgrader " + name)
+		};
+
 		price = Mathf.FloorToInt(Mathf.Pow(2, level));
 		up_button.interactable = PersistentData.UpgradePoints >= price;
 
@@ -41,8 +50,19 @@ public class ShopUpgrader : MonoBehaviour {
 			label_level.color = Color.white;
 			label_level.text = "Level " + level;
 
-			label_effect.text = "+" + (isMultiplicative? (bonusPerLevel * level * 100).ToString("#.##")+"%":""+ (bonusPerLevel*level));
+			label_effect.text = "+" + (isMultiplicative? (GetPerLevel() * level * 100).ToString("#.##")+"%":""+ (GetPerLevel() * level));
 		}
+	}
+
+	private float GetPerLevel() {
+		return stat switch {
+			Statistic.Attack => PersistentData.ForcePerUpgrade,
+			Statistic.Defense => PersistentData.DefenPerUpgrade,
+			Statistic.Speed => PersistentData.SpeedPerUpgrade,
+			Statistic.ExpGained => PersistentData.IntelPerUpgrade,
+			Statistic.Range => PersistentData.RangePerUpgrade,
+			_ => throw new System.Exception("Unexpected stat : " + stat + " for upgrader " + name)
+		};
 	}
 
 	public void ClickOnUpgrade() {

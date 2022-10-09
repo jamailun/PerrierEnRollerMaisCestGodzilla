@@ -4,6 +4,8 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
+	[SerializeField] private bool doAnimation = true;
+
 	[Header("Static configuration")]
 	[SerializeField] private Image background;
 	[SerializeField] private Button shopButton;
@@ -31,17 +33,15 @@ public class MainMenu : MonoBehaviour {
 	private AudioSource audioSource;
 
 	private void Start() {
-		var runs = PersistentData.RunsAmount;
-		if(runs > 0)
-			shopButton.gameObject.SetActive(true);
 		audioSource = gameObject.GetOrAddComponent<AudioSource>();
 
 		// Animation
-		if(!LoadingManager.MainMenuAnimated) {
+		if(!LoadingManager.MainMenuAnimated && doAnimation) {
 			LoadingManager.MainMenuAnimated = true;
 			background.color = backgroundGradient.Evaluate(0);
 			startGameButton.gameObject.SetActive(false);
 			quitButton.gameObject.SetActive(false);
+			shopButton.gameObject.SetActive(false);
 			credits.gameObject.SetActive(false);
 			title1.gameObject.SetActive(false);
 			title2.gameObject.SetActive(false);
@@ -55,6 +55,9 @@ public class MainMenu : MonoBehaviour {
 		audioSource.loop = true;
 		audioSource.clip = menuMusic;
 		audioSource.Play();
+		// shop
+		if(PersistentData.RunsAmount > 0)
+			shopButton.gameObject.SetActive(true);
 	}
 
 	private IEnumerator Animate() {

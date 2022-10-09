@@ -1,10 +1,22 @@
 ﻿using UnityEngine;
 
-public class PersistentData {
+public class PersistentData : MonoBehaviour {
+
+	public const float ForcePerUpgrade = 0.01f;
+	public const float DefenPerUpgrade = 1f;
+	public const float SpeedPerUpgrade = 0.03f;
+	public const float IntelPerUpgrade = 0.05f;
+	public const float RangePerUpgrade = 0.02f;
 
 	// Load data at startup. Can be replaced in a better way i guess.
-	private static PersistentData INSTANCE = new();
-	private PersistentData() {
+	private static PersistentData INSTANCE;
+	private void Awake() {
+		if(INSTANCE != null) {
+			Destroy(gameObject);
+			return;
+		}
+		INSTANCE = this;
+		DontDestroyOnLoad(gameObject);
 		Load();
 	}
 

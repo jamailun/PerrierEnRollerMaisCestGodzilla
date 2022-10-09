@@ -7,6 +7,8 @@ public class MobSpawner : MonoBehaviour {
 	[SerializeIf("debugMode", true, ComparisonType.Boolean)]
 	[SerializeField] private LevelEnemiesSpawner spawnData;
 
+	[SerializeField] private float spawnZ = 2f;
+
 	private float nextSpawn = 1f;
 
 	private void Start() {
@@ -40,7 +42,7 @@ public class MobSpawner : MonoBehaviour {
 			while(spawnedPower < requiredPower) {
 				var entry = spawnData.GetRandomEntry();
 				if( ! entry.Valid) {
-					Debug.Log("No possible spawn. cancel this wave.");
+					Debug.LogWarning("No possible spawn. cancel this wave.");
 					break;
 				}
 				int nextSpawn = entry.NextSpawnAmount();
@@ -59,8 +61,7 @@ public class MobSpawner : MonoBehaviour {
 						continue;
 					}
 
-					var mob = Instantiate(entry.enemyPrefab);
-					mob.transform.SetPositionAndRotation(pos, Quaternion.identity);
+					var mob = Instantiate(entry.enemyPrefab, new Vector3(pos.x, pos.y, spawnZ), Quaternion.identity);
 					mob.RefreshTarget();
 
 					if(entry.power < 0.1f) {

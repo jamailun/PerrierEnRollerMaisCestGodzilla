@@ -26,6 +26,12 @@ public class StatisticsSet {
 			flats[s] = 0;
 			mutls[s] = 1;
 		}
+		// hop fait à l'arrache déso pas déso
+		flats[Statistic.Defense] += PersistentData.UpgradeLevelDefense * PersistentData.DefenPerUpgrade;
+		mutls[Statistic.Attack] += PersistentData.UpgradeLevelForce * PersistentData.ForcePerUpgrade;
+		mutls[Statistic.Speed] += PersistentData.UpgradeLevelSpeed * PersistentData.SpeedPerUpgrade;
+		mutls[Statistic.ExpGained] += PersistentData.UpgradeLevelIntelligence * PersistentData.IntelPerUpgrade;
+		mutls[Statistic.Range] += PersistentData.UpgradeLevelRange * PersistentData.RangePerUpgrade;
 	}
 
 	public void ResetFrom(SkillsSet set) {

@@ -342,7 +342,7 @@ MonoBehaviour:
   levelupSfx: {fileID: 8300000, guid: 867f03c6fc4c154469ddde0717e20d01, type: 3}
   deathAnimation: {fileID: 7867984894950069129, guid: 4b2cc696fd96135418e4eb5b25be0378, type: 3}
   deathAnimationDuration: 1.5
-  startCameraSize: 4
+  startCameraSize: 5
   DashTarget: {x: 0, y: 0, z: 0}
   DashDirection: {x: 0, y: 0}
   dashVFX: {fileID: 8515105704419182080}
