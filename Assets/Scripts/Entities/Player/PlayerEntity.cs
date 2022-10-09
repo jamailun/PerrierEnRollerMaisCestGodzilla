@@ -128,7 +128,7 @@ public class PlayerEntity : LivingEntity {
         UpdateBufferStats();
 
         // DEBUG ONLY
-        StartCoroutine(Utils.DoAfter(1f, () => AddSkill(SkillLibrairy.GetActivesSkills()[1])));
+        //StartCoroutine(Utils.DoAfter(1f, () => AddSkill(SkillLibrairy.GetActivesSkills()[1])));
     }
 
 	public void TryAttack(Orientation orientation) {

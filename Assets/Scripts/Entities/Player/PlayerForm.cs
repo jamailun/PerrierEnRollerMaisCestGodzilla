@@ -14,7 +14,7 @@ public class PlayerForm : ScriptableObject {
 	public List<PlayerForm> Descendants { get { return new List<PlayerForm>(_descendants); } }
 
 	[SerializeField] private string _description;
-	public string Description => Description;
+	public string Description => _description;
 
 	[SerializeField] private Color _color = Color.white;
 	public Color Color => _color;

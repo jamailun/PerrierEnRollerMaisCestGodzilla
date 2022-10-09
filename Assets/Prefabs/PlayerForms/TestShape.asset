@@ -15,6 +15,7 @@ MonoBehaviour:
   attackDuration: 0.1
   attackDamageBonus: 0
   attackCooldown: 0.25
+  attackSfx: {fileID: 8300000, guid: a0ae04e534ff6514a95f9b4878a330ce, type: 3}
   rightPrefab: {fileID: 7759117166320640181, guid: 271baa291d06b4842939ba8a7598f89b, type: 3}
   rightOffset: {x: 0.2, y: 0, z: -0.1}
   bottomPrefab: {fileID: 5265709456636245770, guid: ad2186c8407189c47b0714be205cdfd7, type: 3}

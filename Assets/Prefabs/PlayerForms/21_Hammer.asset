@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Hammer
   _descendants: []
+  _description: tuuuuuu lu. tuuuu lu. tuulu tuulu tulutulutulutulut
   _color: {r: 0.29000536, g: 0.41602093, b: 0.46226418, a: 1}
   _scale: 3
   _hurtboxDescriptor:

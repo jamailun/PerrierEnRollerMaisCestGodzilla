@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03cce5637a52e664795ec4d7b956557f, type: 2}
   - {fileID: 11400000, guid: cf1859829c5821747b3e142935b8bf5e, type: 2}
   - {fileID: 11400000, guid: c709f06f33735e54d998ce84e38f9424, type: 2}
+  _description: An evolution path making emphasis on defense.
   _color: {r: 0.4245283, g: 0.23979044, b: 0.1501869, a: 1}
   _scale: 2.5
   _hurtboxDescriptor:

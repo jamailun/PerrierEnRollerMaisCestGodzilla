@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b77fbd6e151864c4686da361bc4dab31, type: 2}
   - {fileID: 11400000, guid: 5ef0eb4f64de80840b150ec99d3686f3, type: 2}
   - {fileID: 11400000, guid: e8cc2d8b09bfd654a96fe663e9ce73d3, type: 2}
+  _description: Polyvalent evolution path. Can become very powerful.
   _color: {r: 0.17132434, g: 0.39177006, b: 0.6603774, a: 1}
   _scale: 2.4
   _hurtboxDescriptor:

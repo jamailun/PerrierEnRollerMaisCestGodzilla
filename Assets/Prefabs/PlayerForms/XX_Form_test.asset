@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0fa55b75ea2cbd14b9e82f9ad7c072bb, type: 2}
   - {fileID: 11400000, guid: ae0eb562c1e559442a5edb359b2d845b, type: 2}
   - {fileID: 11400000, guid: d21a300f56a854e42b0205c6c061ca3d, type: 2}
+  _description: La vie a-t-elle un sens ?
   _color: {r: 1, g: 1, b: 1, a: 1}
   _scale: 2
   _hurtboxDescriptor:
@@ -33,6 +34,8 @@ MonoBehaviour:
   _bannerImage: {fileID: 0}
   _attackScale: 0.5
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
+  dashDistance: 2
+  dashCooldown: 1
   animation_Idle:
     frameDuration: 0.3
     points:

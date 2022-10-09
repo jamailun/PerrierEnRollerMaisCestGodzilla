@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Gecko
   _descendants: []
+  _description: Uh this is so ugly wtf
   _color: {r: 0.09838911, g: 0.6320754, b: 0.3100392, a: 1}
   _scale: 3
   _hurtboxDescriptor:

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Armored
   _descendants: []
+  _description: When you saw that you actually needed health points.
   _color: {r: 0.6226415, g: 0.5727127, b: 0.57826036, a: 1}
   _scale: 2.6
   _hurtboxDescriptor:

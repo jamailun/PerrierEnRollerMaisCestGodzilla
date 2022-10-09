@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Behemoth
   _descendants: []
+  _description: Become E-NOR-MOUUUUS and DESTROY THEM ALLLLL (i need help).
   _color: {r: 0.5283019, g: 0.14702742, b: 0.28239658, a: 1}
   _scale: 5
   _hurtboxDescriptor:

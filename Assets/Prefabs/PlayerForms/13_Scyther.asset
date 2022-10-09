@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Scyther
   _descendants: []
+  _description: A monsters that can attack ccross dimensions.
   _color: {r: 0, g: 0.27769956, b: 0.6698113, a: 1}
   _scale: 2.6
   _hurtboxDescriptor:

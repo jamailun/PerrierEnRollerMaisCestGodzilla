@@ -90,7 +90,7 @@ public abstract class LivingEntity : MonoBehaviour {
         }
 
         Health -= damage;
-        SpawnDamageText("-"+damage.ToString("#.##"), DamageText.GetTypeFromEntityType(GetEntityType()));
+        SpawnDamageText("-"+(damage < 1 ? "0":"")+damage.ToString("#.##"), DamageText.GetTypeFromEntityType(GetEntityType()));
 
         if(Health <= 0) {
             Health = 0;

@@ -35,6 +35,7 @@ public class NewSkillButton : MonoBehaviour {
 	}
 
 	public void SkillClicked() {
+		MouseExits();
 		if(currentSkill == null)
 			return;
 		owner.SkillChose(currentSkill);

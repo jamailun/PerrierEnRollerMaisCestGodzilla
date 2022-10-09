@@ -35,6 +35,7 @@ public class EvolveButton : MonoBehaviour {
 	}
 
 	public void FormClicked() {
+		MouseExits();
 		owner.FormChose(currentForm);
 	}
 

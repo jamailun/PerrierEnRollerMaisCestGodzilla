@@ -3,7 +3,7 @@
 public class PersistentData : MonoBehaviour {
 
 	public const float ForcePerUpgrade = 0.01f;
-	public const float DefenPerUpgrade = 1f;
+	public const float DefenPerUpgrade = 0.1f;
 	public const float SpeedPerUpgrade = 0.03f;
 	public const float IntelPerUpgrade = 0.05f;
 	public const float RangePerUpgrade = 0.02f;
