@@ -105,7 +105,7 @@ MonoBehaviour:
   damageEnemies: 0
   damages: 30
   lifeDuration: 5
-  speed: 800
+  speed: 400
 --- !u!58 &7399697681979350767
 CircleCollider2D:
   m_ObjectHideFlags: 0

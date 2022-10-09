@@ -342,7 +342,7 @@ MonoBehaviour:
   _maxHealth: 10
   _healthRegen: 0.2
   _flatArmor: 1
-  _flatDamages: 20
+  _flatDamages: 10
   _speed: 5
   healthBar: {fileID: 6892093396859103629}
   invincible: 0

@@ -87,11 +87,12 @@ MonoBehaviour:
   _maxHealth: 13
   _healthRegen: 0.15
   _flatArmor: 3
-  _flatDamages: 9
+  _flatDamages: 7
   _speed: 5.5
   healthBar: {fileID: 9103486587237326348}
   invincible: 0
   enemyType: 2
+  invertFlip: 0
   recalculateAfter: 0.1
   attackSpeed: 1
   attackSpeedEpsilon: 0.1
@@ -104,7 +105,7 @@ MonoBehaviour:
   meleeAttackDuration: 0.2
   meleeAttackPrefab_side: {fileID: 8374761818122622892, guid: 0efff4b06e9efa14784621b4719b1cd2, type: 3}
   melee_animation_spawn: -1
-  distance_wanted: 11
+  distance_wanted: 8
   distance_epsilon: 3
   distance_shot_load: 0.8
   distance_shot_postload: 0
@@ -114,7 +115,7 @@ MonoBehaviour:
   distance_projectiles_amount: 3
   distance_projectiles_amount_deltaFrames: 3
   experiencePrefab: {fileID: 1231743013400264615, guid: e95af01ce7adf5340a8b02e780af297c, type: 3}
-  droppedExp: 10
+  droppedExp: 15
   walkAnimationScale: 8
   walkAnimation:
     frameDuration: 0.15
