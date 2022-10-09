@@ -39,23 +39,28 @@ MonoBehaviour:
   animation_Idle:
     frameDuration: 0.3
     points:
-    - {fileID: -1635019570, guid: bca650b57d3a9d24ebc00a2067ffe289, type: 3}
-    - {fileID: -1635019570, guid: bca650b57d3a9d24ebc00a2067ffe289, type: 3}
+    - {fileID: -833014912, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
   animation_Right:
     frameDuration: 0.15
     points:
-    - {fileID: 145373078, guid: bca650b57d3a9d24ebc00a2067ffe289, type: 3}
-    - {fileID: -1013862808, guid: bca650b57d3a9d24ebc00a2067ffe289, type: 3}
+    - {fileID: 2053245195, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
+    - {fileID: 210740087, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
+    - {fileID: -1025935185, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
+    - {fileID: -2140761666, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
   animation_Top:
     frameDuration: 0.15
     points:
-    - {fileID: -868586953, guid: bca650b57d3a9d24ebc00a2067ffe289, type: 3}
-    - {fileID: 299651921, guid: bca650b57d3a9d24ebc00a2067ffe289, type: 3}
+    - {fileID: 1392519938, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
+    - {fileID: 1166324388, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
+    - {fileID: 989102710, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
+    - {fileID: 768136989, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
   animation_Bottom:
     frameDuration: 0.15
     points:
-    - {fileID: -1635019570, guid: bca650b57d3a9d24ebc00a2067ffe289, type: 3}
-    - {fileID: 696940663, guid: bca650b57d3a9d24ebc00a2067ffe289, type: 3}
+    - {fileID: -1124163927, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
+    - {fileID: -2093063741, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
+    - {fileID: 227598368, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
+    - {fileID: -833014912, guid: 764fa77a239d2a84f937a73b3c81afa3, type: 3}
   frame_Attack_Right: {fileID: 21300000, guid: edecdded5a9245441a4372df3a139a8b, type: 3}
   frame_Attack_Top: {fileID: 21300000, guid: afe9210b81b8803439b476e5ba9c709d, type: 3}
   frame_Attack_Bottom: {fileID: 21300000, guid: 41ed0b1f920958d45aa24888e2287f95, type: 3}

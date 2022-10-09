@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9509ddd1e297a3c4a87a485c4a74d563, type: 3}
-  m_Name: 30_Insect
+  m_Name: 31_Hornet
   m_EditorClassIdentifier: 
-  _name: Insectoid
-  _descendants:
-  - {fileID: 11400000, guid: aa78f9ef0815dad498d2ea25140170f4, type: 2}
-  - {fileID: 11400000, guid: 59605aec091fe4b4f87be401f46f859f, type: 2}
-  - {fileID: 11400000, guid: 9a1b9e6cec70a9e439f343e938ffa180, type: 2}
+  _name: Hornet
+  _descendants: []
   _description: The destroyer of all. Weak stats but buildings won't resist you.
   _color: {r: 0.6320754, g: 0.19975968, b: 0.19975968, a: 1}
-  _scale: 2.5
+  _scale: 4
   _hurtboxDescriptor:
     hurtboxType: 1
-    size: {x: 0.34, y: 0.51}
+    size: {x: 0.43, y: 1.11}
     offset: {x: 0, y: 0}
     capsuleDirection: 0
     points: []
@@ -31,38 +28,38 @@ MonoBehaviour:
   groundCollider: 0
   groundColliderSize: {x: 0.4, y: 0.13}
   groundColliderOffset: {x: 0, y: -0.25}
-  _bannerImage: {fileID: 21300000, guid: be43cfc1cc159024da4574fca182293d, type: 3}
-  _attackScale: 0.9
+  _bannerImage: {fileID: 21300000, guid: a9067e156878c234f92d8dfc1a668027, type: 3}
+  _attackScale: 1
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
   dashDistance: 1.1
   dashCooldown: 0.5
   animation_Idle:
     frameDuration: 0.3
     points:
-    - {fileID: 530439923, guid: 739a2ba7f38ad224d856767a629eb3f9, type: 3}
+    - {fileID: 1732304920, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
   animation_Right:
-    frameDuration: 0.09
+    frameDuration: 0.08
     points:
     - {fileID: -1444449454, guid: 939f37e8238621449a03ef2d87325197, type: 3}
     - {fileID: -501393286, guid: 939f37e8238621449a03ef2d87325197, type: 3}
     - {fileID: -1035980178, guid: 939f37e8238621449a03ef2d87325197, type: 3}
     - {fileID: 376373909, guid: 939f37e8238621449a03ef2d87325197, type: 3}
   animation_Top:
-    frameDuration: 0.09
+    frameDuration: 0.08
     points:
     - {fileID: 1216710101, guid: 766acc4898f1d7f47bcaa9ea6316f82f, type: 3}
     - {fileID: 884438391, guid: 766acc4898f1d7f47bcaa9ea6316f82f, type: 3}
     - {fileID: -1791394693, guid: 766acc4898f1d7f47bcaa9ea6316f82f, type: 3}
     - {fileID: 1488268656, guid: 766acc4898f1d7f47bcaa9ea6316f82f, type: 3}
   animation_Bottom:
-    frameDuration: 0.09
+    frameDuration: 0.08
     points:
-    - {fileID: 530439923, guid: 739a2ba7f38ad224d856767a629eb3f9, type: 3}
-    - {fileID: 1913623241, guid: 739a2ba7f38ad224d856767a629eb3f9, type: 3}
-    - {fileID: 1243989128, guid: 739a2ba7f38ad224d856767a629eb3f9, type: 3}
-    - {fileID: -1794228563, guid: 739a2ba7f38ad224d856767a629eb3f9, type: 3}
+    - {fileID: 708284476, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
+    - {fileID: -1065794937, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
+    - {fileID: 698606228, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
+    - {fileID: 1732304920, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
   frame_Attack_Right: {fileID: 0}
   frame_Attack_Top: {fileID: 0}
   frame_Attack_Bottom: {fileID: 0}
-  bonusMaxHealthPerLevel: 6
-  bonusAttackPerLevel: 2
+  bonusMaxHealthPerLevel: 1
+  bonusAttackPerLevel: 6

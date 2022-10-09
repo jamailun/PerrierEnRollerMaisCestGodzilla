@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9509ddd1e297a3c4a87a485c4a74d563, type: 3}
+  m_Name: 33_Stag
+  m_EditorClassIdentifier: 
+  _name: Stag
+  _descendants: []
+  _description: The destroyer of all. Weak stats but buildings won't resist you.
+  _color: {r: 0.123312294, g: 0.5188679, b: 0.061187245, a: 1}
+  _scale: 4
+  _hurtboxDescriptor:
+    hurtboxType: 1
+    size: {x: 0.4, y: 0.8}
+    offset: {x: 0, y: 0}
+    capsuleDirection: 0
+    points: []
+  magnetOffset: {x: 0, y: -0.2}
+  magnetRange: 1.5
+  groundCollider: 0
+  groundColliderSize: {x: 0.4, y: 0.13}
+  groundColliderOffset: {x: 0, y: -0.25}
+  _bannerImage: {fileID: 21300000, guid: 5b0612a18a6c6aa409da27b3bc240c12, type: 3}
+  _attackScale: 1
+  _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
+  dashDistance: 1.1
+  dashCooldown: 0.5
+  animation_Idle:
+    frameDuration: 0.3
+    points:
+    - {fileID: 1092773130, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+  animation_Right:
+    frameDuration: 0.08
+    points:
+    - {fileID: -1674743473, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+    - {fileID: -49675518, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+    - {fileID: 1945941028, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+    - {fileID: -206750068, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+  animation_Top:
+    frameDuration: 0.08
+    points:
+    - {fileID: -868560991, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+    - {fileID: 799135317, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+    - {fileID: -1035882674, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+    - {fileID: -1854191043, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+  animation_Bottom:
+    frameDuration: 0.08
+    points:
+    - {fileID: 1598555319, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+    - {fileID: 826644921, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+    - {fileID: -1673474312, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+    - {fileID: 1092773130, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
+  frame_Attack_Right: {fileID: 0}
+  frame_Attack_Top: {fileID: 0}
+  frame_Attack_Bottom: {fileID: 0}
+  bonusMaxHealthPerLevel: 6
+  bonusAttackPerLevel: 5

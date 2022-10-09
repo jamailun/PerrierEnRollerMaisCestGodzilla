@@ -50,10 +50,6 @@ public class PlayerForm : ScriptableObject {
 	[SerializeField] public CustomAnimation animation_Top;        // 2 frames
 	[SerializeField] public CustomAnimation animation_Bottom;     // 2 frames
 
-	[SerializeField] public Sprite frame_Attack_Right;		// 1 frame
-	[SerializeField] public Sprite frame_Attack_Top;		// 1 frame
-	[SerializeField] public Sprite frame_Attack_Bottom;     // 1 frame
-
 	[Header("Bonus stats per level up")]
 	[SerializeField] public float bonusMaxHealthPerLevel = 5f;
 	[SerializeField] public float bonusAttackPerLevel = 1f;

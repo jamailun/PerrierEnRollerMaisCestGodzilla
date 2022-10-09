@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9509ddd1e297a3c4a87a485c4a74d563, type: 3}
+  m_Name: 32_Moth
+  m_EditorClassIdentifier: 
+  _name: Moth
+  _descendants: []
+  _description: The destroyer of all. Weak stats but buildings won't resist you.
+  _color: {r: 0.7762831, g: 0.8301887, b: 0.34069067, a: 1}
+  _scale: 4
+  _hurtboxDescriptor:
+    hurtboxType: 1
+    size: {x: 0.43, y: 1.11}
+    offset: {x: 0, y: 0}
+    capsuleDirection: 0
+    points: []
+  magnetOffset: {x: 0, y: -0.2}
+  magnetRange: 1
+  groundCollider: 0
+  groundColliderSize: {x: 0.4, y: 0.13}
+  groundColliderOffset: {x: 0, y: -0.25}
+  _bannerImage: {fileID: 21300000, guid: 10254b48313ef4043be1a68b63b5d229, type: 3}
+  _attackScale: 1
+  _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
+  dashDistance: 1.1
+  dashCooldown: 0.5
+  animation_Idle:
+    frameDuration: 0.3
+    points:
+    - {fileID: 1052792485, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+  animation_Right:
+    frameDuration: 0.08
+    points:
+    - {fileID: -273694835, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -371817263, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: 327734040, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: 1052792485, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+  animation_Top:
+    frameDuration: 0.08
+    points:
+    - {fileID: 1198664858, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -443136993, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -723533960, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: 37240067, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+  animation_Bottom:
+    frameDuration: 0.08
+    points:
+    - {fileID: -1837417666, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -1659647994, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -306585641, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+    - {fileID: -1194882862, guid: 231206abb5b605048848bd1d4ac3ff9c, type: 3}
+  frame_Attack_Right: {fileID: 0}
+  frame_Attack_Top: {fileID: 0}
+  frame_Attack_Bottom: {fileID: 0}
+  bonusMaxHealthPerLevel: 4
+  bonusAttackPerLevel: 4
