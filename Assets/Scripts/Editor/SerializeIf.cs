@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 using System;
 
@@ -30,7 +31,7 @@ public class DrawIfPropertyDrawer : PropertyDrawer {
         comparedField = property.serializedObject.FindProperty(drawIf.comparedPropertyName);
 
         if(comparedField == null) {
-            Debug.LogError("[SERIALIZEIF] Could NOT find property \"" + drawIf.comparedPropertyName + "\" for "+property.serializedObject.GetType().Name+".");
+            Debug.LogError("//[SerializeIf] Could NOT find property \"" + drawIf.comparedPropertyName + "\" for "+property.serializedObject.GetType().Name+".");
             return;
 		}
 
@@ -49,13 +50,13 @@ public class DrawIfPropertyDrawer : PropertyDrawer {
             try {
                 comparedFieldValue = comparedField.intValue;
             } catch(Exception) {
-                Debug.LogWarning("[SERIALIZEIF] Could not get int value from field " + comparedField.name + ".");
+                Debug.LogWarning("//[SerializeIf] Could not get int value from field " + comparedField.name + ".");
                 return;
             }
             try {
                 comparedAttributeValue = (int) drawIf.comparedValue;
             } catch(Exception) {
-                Debug.LogWarning("[SERIALIZEIF] Could not get int value from compared value insinde the attribute.");
+                Debug.LogWarning("//[SerializeIf] Could not get int value from compared value insinde the attribute.");
                 return;
             }
 
@@ -108,3 +109,4 @@ public class DrawIfPropertyDrawer : PropertyDrawer {
         }
     }
 }
+#endif

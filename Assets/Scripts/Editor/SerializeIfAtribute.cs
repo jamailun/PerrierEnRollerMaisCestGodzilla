@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+#if UNITY_EDITOR
 /// <summary>
 /// Draws the field/property ONLY if the copared property compared by the comparison type with the value of comparedValue returns true.
 /// </summary>
@@ -25,4 +26,4 @@ public class SerializeIfAttribute : PropertyAttribute {
         this.disablingType = disablingType;
     }
 }
-
+#endif

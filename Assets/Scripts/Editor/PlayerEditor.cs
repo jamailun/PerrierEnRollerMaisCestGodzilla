@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -22,7 +23,18 @@ public class PlayerEditor : Editor {
 			player.ChangePlayerForm(player.PlayerForm);
 
 		}
+		if(GUILayout.Button("UPDATE SIZE")) {
+			PlayerEntity player = (PlayerEntity) target;
+			if(player.PlayerForm == null) {
+				EditorUtility.DisplayDialog("Erreur", "Pas de player form on the player.", "Pardon monsieur.");
+				return;
+			}
+
+			player.UpdateGrow();
+
+		}
 
 	}
 
 }
+#endif

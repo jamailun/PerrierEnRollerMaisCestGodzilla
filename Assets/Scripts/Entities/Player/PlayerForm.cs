@@ -19,6 +19,8 @@ public class PlayerForm : ScriptableObject {
 	[SerializeField] private Color _color = Color.white;
 	public Color Color => _color;
 
+	public float bonusCameraSize = 0f;
+
 	[SerializeField] private float _scale = 1f;
 	public float Scale => _scale;
 

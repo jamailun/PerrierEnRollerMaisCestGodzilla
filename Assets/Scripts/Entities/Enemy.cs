@@ -20,102 +20,102 @@ public class Enemy : LivingEntity {
 
     [Space]
 
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    //[SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Time between recalculation (in seconds).")]
     [SerializeField] protected float recalculateAfter = 0.2f;
 
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    //[SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Time between two attacks of an enemy, in seconds")]
     [SerializeField] protected float attackSpeed = 1f;
 
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    //[SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Percentage of intentional error between two attacks")]
     [Range(0f, 0.5f)]
     [SerializeField] protected float attackSpeedEpsilon = 0.05f;
 
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    //[SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Attack effect on shot")]
     [SerializeField] private ParticleSystem attackEffect;
 
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    //[SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Sound effect on shot")]
     [SerializeField] private AudioClip attackSoundEffect;
 
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    //[SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("If true, don't repeat s/vfx on multiple attacks")]
     [SerializeField] private bool attackEffectsOnlyOnce = false;
 
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    //[SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Transform to shot attacks from")]
     [SerializeField] protected Transform attack_output;
 
-    [SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
+    //[SerializeIf("enemyType", EnemyType.None, ComparisonType.NotEqual)]
     [Tooltip("Geometric scale for attacks")]
     [SerializeField] protected float attackScale = 1f;
 
     // Melee
 
-    [SerializeIf("enemyType", EnemyType.Melee)]
+    //[SerializeIf("enemyType", EnemyType.Melee)]
     [Tooltip("The range required to attack the player")]
     [SerializeField] protected float meleeRange = .5f;
 
-    [SerializeIf("enemyType", EnemyType.Melee)]
+    //[SerializeIf("enemyType", EnemyType.Melee)]
     [Tooltip("The duration of the attack")]
     [SerializeField] protected float meleeAttackDuration = .1f;
 
-    [SerializeIf("enemyType", EnemyType.Melee)]
+    //[SerializeIf("enemyType", EnemyType.Melee)]
     [Tooltip("The hitbox to spawn to attack")]
     [SerializeField] private Hitbox meleeAttackPrefab_side;
 
-    [SerializeIf("enemyType", EnemyType.Melee)]
+    //[SerializeIf("enemyType", EnemyType.Melee)]
     [Tooltip("Index on the animation to spawn the hitbox. IF DEFINED !!")]
     [SerializeField] protected int melee_animation_spawn = -1;
 
     // Distance
 
-    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
+    //[SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("The distance exact to keep from the target")]
     [SerializeField] protected float distance_wanted = 2.2f;
     
-    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
+    //[SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("The allowed error of distance to keep")]
     [SerializeField] private float distance_epsilon = .3f;
 
-    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
+    //[SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Time before shoot")]
     [SerializeField] private float distance_shot_load = .8f;
 
-    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
+    //[SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Time waiting after shoot")]
     [SerializeField] private float distance_shot_postload = 0f;
 
-    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
+    //[SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Index on the animation to spawn the projectile. IF DEFINED !!")]
     [SerializeField] private int distance_animation_spawn = -1;
 
-    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
+    //[SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Projectile to shot")]
     [SerializeField] protected Projectile projectile_prefab;
 
-    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
+    //[SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Imprecision radius of a projectile")]
     [SerializeField] [Range(0f, 5f)] private float projectile_imprecision = 0f;
 
-    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
+    //[SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("Amount of projectiles to fire")]
     [SerializeField] private int distance_projectiles_amount = 1;
 
-    [SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
+    //[SerializeIf("enemyType", EnemyType.Distance, ComparisonType.GreaterOrEqual)]
     [Tooltip("if multiple projectiles, frame to attack at")]
     [SerializeField] private int distance_projectiles_amount_deltaFrames = 3;
 
     [Space]
 
-    [SerializeIf("enemyType", EnemyType.Boss, ComparisonType.NotEqual)]
+    //[SerializeIf("enemyType", EnemyType.Boss, ComparisonType.NotEqual)]
     [Tooltip("The experience prefab to use.")]
     [SerializeField] private ExperienceBall experiencePrefab;
 
-    [SerializeIf("enemyType", EnemyType.Boss, ComparisonType.NotEqual)]
+    //[SerializeIf("enemyType", EnemyType.Boss, ComparisonType.NotEqual)]
     [Tooltip("The amount of experience to drop")]
     [SerializeField] private ulong droppedExp = 10;
 
@@ -342,12 +342,9 @@ public class Enemy : LivingEntity {
     private IEnumerator Cor_AttackDistance() {
         PlayAttackTemp(distance_shot_load);
 
-        Debug.Log("(Enemy "+gameObject.name+") shot wait.");
         yield return new WaitForSeconds(distance_shot_load);
 
         SpawnProjectile();
-
-        Debug.Log("(Enemy " + gameObject.name + ") shot over.");
     }
 
     protected Projectile SpawnProjectile() {

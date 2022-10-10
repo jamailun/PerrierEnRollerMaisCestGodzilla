@@ -17,7 +17,7 @@ MonoBehaviour:
   _levelMax: 3
   _description: Create a massive AoE around you (200% of your damages)
   maxStacks: 1
-  cooldown: 1
+  cooldown: 60
   activeDuration: 0.1
   percentageHeal: 0
   modifiers: []

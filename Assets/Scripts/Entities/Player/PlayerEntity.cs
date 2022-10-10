@@ -240,7 +240,7 @@ public class PlayerEntity : LivingEntity {
         float scale = currentScaleMult * currentForm.Scale;
         gameObject.transform.localScale = new Vector3(scale, scale, 1);
 
-        Camera.main.orthographicSize = startCameraSize * amount;
+        Camera.main.orthographicSize = (startCameraSize * amount * 1.5f) + currentForm.bonusCameraSize;
     }
 
     private void UpdateBufferStats() {
