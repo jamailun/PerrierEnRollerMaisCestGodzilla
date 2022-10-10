@@ -19,6 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c709f06f33735e54d998ce84e38f9424, type: 2}
   _description: An evolution path making emphasis on defense.
   _color: {r: 0.4245283, g: 0.23979044, b: 0.1501869, a: 1}
+  bonusCameraSize: -2
   _scale: 2.5
   _hurtboxDescriptor:
     hurtboxType: 1
@@ -61,8 +62,5 @@ MonoBehaviour:
     - {fileID: -1454561518, guid: 26d2af5d8766c6f41bddb843e7bf158b, type: 3}
     - {fileID: -526700716, guid: 26d2af5d8766c6f41bddb843e7bf158b, type: 3}
     - {fileID: 1068282926, guid: 26d2af5d8766c6f41bddb843e7bf158b, type: 3}
-  frame_Attack_Right: {fileID: 0}
-  frame_Attack_Top: {fileID: 0}
-  frame_Attack_Bottom: {fileID: 0}
   bonusMaxHealthPerLevel: 6
   bonusAttackPerLevel: 2

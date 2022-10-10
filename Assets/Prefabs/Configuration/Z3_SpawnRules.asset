@@ -15,7 +15,7 @@ MonoBehaviour:
   enemies:
   - enemyPrefab: {fileID: 7608875441688733380, guid: 318c3079695dbbc4ea0f4ef93cdddc12, type: 3}
     minX: 0
-    maxX: 300
+    maxX: 600
     minSpawn: 1
     maxSpawn: 1
     spawnPriority: 1
@@ -23,7 +23,7 @@ MonoBehaviour:
     power: 3
   - enemyPrefab: {fileID: 3848544198731279932, guid: 4618fa41edba1324e9122874146a4f2c, type: 3}
     minX: 0
-    maxX: 300
+    maxX: 600
     minSpawn: 1
     maxSpawn: 1
     spawnPriority: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
     power: 6
   - enemyPrefab: {fileID: 3145196308544044724, guid: 36d027a7b4f529e49badff46b29d1c0b, type: 3}
     minX: 0
-    maxX: 300
+    maxX: 600
     minSpawn: 1
     maxSpawn: 1
     spawnPriority: 1
@@ -39,7 +39,7 @@ MonoBehaviour:
     power: 10
   - enemyPrefab: {fileID: 2492932945368684045, guid: ee5b61c6c09d87f468da3cab38f8a73a, type: 3}
     minX: 0
-    maxX: 300
+    maxX: 600
     minSpawn: 1
     maxSpawn: 1
     spawnPriority: 1
@@ -47,13 +47,13 @@ MonoBehaviour:
     power: 12
   - enemyPrefab: {fileID: 5995308941300305727, guid: cc1c125aac3eff14a86cee56d07b9473, type: 3}
     minX: 0
-    maxX: 300
+    maxX: 600
     minSpawn: 1
     maxSpawn: 1
     spawnPriority: 1
     additionalRadius: 6
     power: 11
-  minWaveCooldown: 8
-  maxWaveCooldown: 12
+  minWaveCooldown: 7
+  maxWaveCooldown: 11
   baseRequiredPower: 12
   basePowerHorizontal: 0.2

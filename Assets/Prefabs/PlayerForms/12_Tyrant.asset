@@ -16,7 +16,8 @@ MonoBehaviour:
   _descendants: []
   _description: Polyvalent to the end. GOVERN THEM ALL.
   _color: {r: 1, g: 0.58246577, b: 0.4292453, a: 1}
-  _scale: 2.6
+  bonusCameraSize: 5
+  _scale: 1
   _hurtboxDescriptor:
     hurtboxType: 1
     size: {x: 0.73, y: 2.04}
@@ -31,8 +32,8 @@ MonoBehaviour:
   _bannerImage: {fileID: 21300000, guid: 7378135f5335c774e8e198f458f5abf4, type: 3}
   _attackScale: 0.7
   _attackShape: {fileID: 11400000, guid: 291a438ccdb759b408d116e599acf023, type: 2}
-  dashDistance: 4
-  dashCooldown: 1.5
+  dashDistance: 12
+  dashCooldown: 3
   animation_Idle:
     frameDuration: 0.3
     points:
@@ -58,8 +59,5 @@ MonoBehaviour:
     - {fileID: -909147447, guid: ef6e80828a285c84a8a9aecf10ba7b61, type: 3}
     - {fileID: 1085287058, guid: ef6e80828a285c84a8a9aecf10ba7b61, type: 3}
     - {fileID: 1283811720, guid: ef6e80828a285c84a8a9aecf10ba7b61, type: 3}
-  frame_Attack_Right: {fileID: 0}
-  frame_Attack_Top: {fileID: 0}
-  frame_Attack_Bottom: {fileID: 0}
   bonusMaxHealthPerLevel: 9
   bonusAttackPerLevel: 5

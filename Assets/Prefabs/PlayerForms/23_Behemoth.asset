@@ -16,7 +16,8 @@ MonoBehaviour:
   _descendants: []
   _description: Become E-NOR-MOUUUUS and DESTROY THEM ALLLLL (i need help).
   _color: {r: 0.5283019, g: 0.14702742, b: 0.28239658, a: 1}
-  _scale: 5
+  bonusCameraSize: 15
+  _scale: 2
   _hurtboxDescriptor:
     hurtboxType: 1
     size: {x: 0.87, y: 1.22}
@@ -61,8 +62,5 @@ MonoBehaviour:
     - {fileID: -82749900, guid: c2c964f296d4cff4f89655f911c93fe2, type: 3}
     - {fileID: -2083936549, guid: c2c964f296d4cff4f89655f911c93fe2, type: 3}
     - {fileID: 1763095181, guid: c2c964f296d4cff4f89655f911c93fe2, type: 3}
-  frame_Attack_Right: {fileID: 0}
-  frame_Attack_Top: {fileID: 0}
-  frame_Attack_Bottom: {fileID: 0}
   bonusMaxHealthPerLevel: 20
   bonusAttackPerLevel: 1

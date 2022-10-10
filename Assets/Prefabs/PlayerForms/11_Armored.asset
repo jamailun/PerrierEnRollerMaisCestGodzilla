@@ -16,7 +16,8 @@ MonoBehaviour:
   _descendants: []
   _description: When you saw that you actually needed health points.
   _color: {r: 0.6226415, g: 0.5727127, b: 0.57826036, a: 1}
-  _scale: 2.6
+  bonusCameraSize: 10
+  _scale: 1.5
   _hurtboxDescriptor:
     hurtboxType: 1
     size: {x: 1.25, y: 2.46}
@@ -29,9 +30,9 @@ MonoBehaviour:
   groundColliderSize: {x: 1.03, y: 0.29}
   groundColliderOffset: {x: 0, y: -1.17}
   _bannerImage: {fileID: 21300000, guid: a8bf581d30525b64bb1f420223cb8307, type: 3}
-  _attackScale: 1.5
+  _attackScale: 2
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
-  dashDistance: 3.5
+  dashDistance: 8
   dashCooldown: 2.2
   animation_Idle:
     frameDuration: 0.3
@@ -61,8 +62,5 @@ MonoBehaviour:
     - {fileID: -847592894, guid: ddd10d6bce4281e4a81adddb4046cf4e, type: 3}
     - {fileID: 2078952693, guid: ddd10d6bce4281e4a81adddb4046cf4e, type: 3}
     - {fileID: 1389247415, guid: ddd10d6bce4281e4a81adddb4046cf4e, type: 3}
-  frame_Attack_Right: {fileID: 0}
-  frame_Attack_Top: {fileID: 0}
-  frame_Attack_Bottom: {fileID: 0}
   bonusMaxHealthPerLevel: 12
   bonusAttackPerLevel: 3

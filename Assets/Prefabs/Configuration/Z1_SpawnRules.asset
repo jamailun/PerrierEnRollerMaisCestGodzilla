@@ -61,7 +61,7 @@ MonoBehaviour:
     spawnPriority: 0.5
     additionalRadius: 2
     power: 5
-  minWaveCooldown: 8
-  maxWaveCooldown: 12
+  minWaveCooldown: 6
+  maxWaveCooldown: 10
   baseRequiredPower: 5
-  basePowerHorizontal: 0.015
+  basePowerHorizontal: 0.05

@@ -16,7 +16,8 @@ MonoBehaviour:
   _descendants: []
   _description: tuuuuuu lu. tuuuu lu. tuulu tuulu tulutulutulutulut
   _color: {r: 0.29000536, g: 0.41602093, b: 0.46226418, a: 1}
-  _scale: 3
+  bonusCameraSize: 8
+  _scale: 1
   _hurtboxDescriptor:
     hurtboxType: 1
     size: {x: 0.59, y: 0.93}
@@ -31,7 +32,7 @@ MonoBehaviour:
   _bannerImage: {fileID: 21300000, guid: 21349031d34236d44bb540792e24d608, type: 3}
   _attackScale: 1.4
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
-  dashDistance: 5
+  dashDistance: 10
   dashCooldown: 2.5
   animation_Idle:
     frameDuration: 0.3
@@ -61,8 +62,5 @@ MonoBehaviour:
     - {fileID: -1317401136, guid: 6df200cea7437e741825ecec73c6d2b7, type: 3}
     - {fileID: -792690950, guid: 6df200cea7437e741825ecec73c6d2b7, type: 3}
     - {fileID: 632400625, guid: 6df200cea7437e741825ecec73c6d2b7, type: 3}
-  frame_Attack_Right: {fileID: 0}
-  frame_Attack_Top: {fileID: 0}
-  frame_Attack_Bottom: {fileID: 0}
   bonusMaxHealthPerLevel: 10
   bonusAttackPerLevel: 4

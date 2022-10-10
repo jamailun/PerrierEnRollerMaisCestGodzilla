@@ -16,7 +16,8 @@ MonoBehaviour:
   _descendants: []
   _description: The destroyer of all. Weak stats but buildings won't resist you.
   _color: {r: 0.7762831, g: 0.8301887, b: 0.34069067, a: 1}
-  _scale: 4
+  bonusCameraSize: 4
+  _scale: 2.2
   _hurtboxDescriptor:
     hurtboxType: 1
     size: {x: 0.43, y: 1.11}
@@ -31,8 +32,8 @@ MonoBehaviour:
   _bannerImage: {fileID: 21300000, guid: 10254b48313ef4043be1a68b63b5d229, type: 3}
   _attackScale: 1
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
-  dashDistance: 1.1
-  dashCooldown: 0.5
+  dashDistance: 8
+  dashCooldown: 0.7
   animation_Idle:
     frameDuration: 0.3
     points:

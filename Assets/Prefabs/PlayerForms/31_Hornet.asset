@@ -16,7 +16,8 @@ MonoBehaviour:
   _descendants: []
   _description: The destroyer of all. Weak stats but buildings won't resist you.
   _color: {r: 0.6320754, g: 0.19975968, b: 0.19975968, a: 1}
-  _scale: 4
+  bonusCameraSize: 3
+  _scale: 2
   _hurtboxDescriptor:
     hurtboxType: 1
     size: {x: 0.43, y: 1.11}
@@ -31,8 +32,8 @@ MonoBehaviour:
   _bannerImage: {fileID: 21300000, guid: a9067e156878c234f92d8dfc1a668027, type: 3}
   _attackScale: 1
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
-  dashDistance: 1.1
-  dashCooldown: 0.5
+  dashDistance: 10
+  dashCooldown: 1.5
   animation_Idle:
     frameDuration: 0.3
     points:
@@ -40,17 +41,17 @@ MonoBehaviour:
   animation_Right:
     frameDuration: 0.08
     points:
-    - {fileID: -1444449454, guid: 939f37e8238621449a03ef2d87325197, type: 3}
-    - {fileID: -501393286, guid: 939f37e8238621449a03ef2d87325197, type: 3}
-    - {fileID: -1035980178, guid: 939f37e8238621449a03ef2d87325197, type: 3}
-    - {fileID: 376373909, guid: 939f37e8238621449a03ef2d87325197, type: 3}
+    - {fileID: 2038969527, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
+    - {fileID: 994576095, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
+    - {fileID: 203546415, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
+    - {fileID: 2067167494, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
   animation_Top:
     frameDuration: 0.08
     points:
-    - {fileID: 1216710101, guid: 766acc4898f1d7f47bcaa9ea6316f82f, type: 3}
-    - {fileID: 884438391, guid: 766acc4898f1d7f47bcaa9ea6316f82f, type: 3}
-    - {fileID: -1791394693, guid: 766acc4898f1d7f47bcaa9ea6316f82f, type: 3}
-    - {fileID: 1488268656, guid: 766acc4898f1d7f47bcaa9ea6316f82f, type: 3}
+    - {fileID: -1912471831, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
+    - {fileID: 1469118013, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
+    - {fileID: 40150085, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
+    - {fileID: 27891205, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
   animation_Bottom:
     frameDuration: 0.08
     points:
@@ -58,8 +59,5 @@ MonoBehaviour:
     - {fileID: -1065794937, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
     - {fileID: 698606228, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
     - {fileID: 1732304920, guid: ecaf2d51c5178d243a4f50c97b40e76e, type: 3}
-  frame_Attack_Right: {fileID: 0}
-  frame_Attack_Top: {fileID: 0}
-  frame_Attack_Bottom: {fileID: 0}
   bonusMaxHealthPerLevel: 1
   bonusAttackPerLevel: 6

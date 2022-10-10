@@ -16,7 +16,8 @@ MonoBehaviour:
   _descendants: []
   _description: A monsters that can attack ccross dimensions.
   _color: {r: 0, g: 0.27769956, b: 0.6698113, a: 1}
-  _scale: 2.6
+  bonusCameraSize: 8
+  _scale: 1.2
   _hurtboxDescriptor:
     hurtboxType: 1
     size: {x: 0.73, y: 2.04}
@@ -58,8 +59,5 @@ MonoBehaviour:
     - {fileID: -1016100288, guid: 7107321d8bd7a184483982b774c30db2, type: 3}
     - {fileID: 1089179077, guid: 7107321d8bd7a184483982b774c30db2, type: 3}
     - {fileID: 848131654, guid: 7107321d8bd7a184483982b774c30db2, type: 3}
-  frame_Attack_Right: {fileID: 0}
-  frame_Attack_Top: {fileID: 0}
-  frame_Attack_Bottom: {fileID: 0}
   bonusMaxHealthPerLevel: 4
   bonusAttackPerLevel: 8

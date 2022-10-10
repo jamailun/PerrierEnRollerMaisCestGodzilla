@@ -19,6 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e8cc2d8b09bfd654a96fe663e9ce73d3, type: 2}
   _description: Polyvalent evolution path. Can become very powerful.
   _color: {r: 0.17132434, g: 0.39177006, b: 0.6603774, a: 1}
+  bonusCameraSize: -1
   _scale: 2.4
   _hurtboxDescriptor:
     hurtboxType: 1
@@ -61,8 +62,5 @@ MonoBehaviour:
     - {fileID: -1104548538, guid: c9ebe94ea940d9348a164089d1ead5d1, type: 3}
     - {fileID: 750329974, guid: c9ebe94ea940d9348a164089d1ead5d1, type: 3}
     - {fileID: 2113256909, guid: c9ebe94ea940d9348a164089d1ead5d1, type: 3}
-  frame_Attack_Right: {fileID: 0}
-  frame_Attack_Top: {fileID: 0}
-  frame_Attack_Bottom: {fileID: 0}
   bonusMaxHealthPerLevel: 6
   bonusAttackPerLevel: 2

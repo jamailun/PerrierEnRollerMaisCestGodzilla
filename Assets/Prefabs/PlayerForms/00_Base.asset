@@ -19,6 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d0267db7836010468ad9d21c456830f, type: 2}
   _description: ahah j'aime les cornichons et j'ai peur de finir ma vie seul ahahahah
   _color: {r: 1, g: 1, b: 1, a: 1}
+  bonusCameraSize: -4
   _scale: 4
   _hurtboxDescriptor:
     hurtboxType: 1
@@ -32,7 +33,7 @@ MonoBehaviour:
   groundColliderSize: {x: 0.2, y: 0.06}
   groundColliderOffset: {x: 0, y: -0.12}
   _bannerImage: {fileID: 0}
-  _attackScale: 0.9
+  _attackScale: 0.5
   _attackShape: {fileID: 11400000, guid: bae47235c5ce6834dad6c2cc8df39537, type: 2}
   dashDistance: 2.5
   dashCooldown: 1.5
