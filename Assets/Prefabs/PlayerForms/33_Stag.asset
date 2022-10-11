@@ -61,3 +61,4 @@ MonoBehaviour:
     - {fileID: 1092773130, guid: 45c0cfe890cdfa644aac2fb883a838ae, type: 3}
   bonusMaxHealthPerLevel: 6
   bonusAttackPerLevel: 5
+  bonusSpeedMultPerLevel: 0.04

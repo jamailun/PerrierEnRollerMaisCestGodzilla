@@ -62,6 +62,10 @@ public class StatisticsSet {
 		return (baseValue + flats[type] + temp_mutls[type]) * (mutls[type] + temp_mutls[type]);
 	}
 
+	public float GetMultiplicator(Statistic type) {
+		return mutls[type] + temp_mutls[type];
+	}
+
 	public void AddTemporaryStats(StatisticModifier modifier) {
 		if(modifier.IsMultiplicative()) {
 			temp_mutls[modifier.statistic] += modifier.modifier;
