@@ -10,6 +10,10 @@ public class Hitbox : MonoBehaviour {
 	public float BonusDamagesBuilding;
 	public float BonusDamagesEnemies;
 
+	// lifesteal
+	private LivingEntity lifeStealTarget;
+	private float lifeStealPercent = 0f;
+
 	private void Awake() {
 		_collider = GetComponent<Collider2D>();
 		_collider.enabled = false;
@@ -45,11 +49,19 @@ public class Hitbox : MonoBehaviour {
 		StartCoroutine(Utils.DestroyAfter(gameObject, duration));
 	}
 
+	public void SetLifeStealParameters(LivingEntity entity, float percent) {
+		lifeStealTarget = entity;
+		lifeStealPercent = percent;
+	}
+
 	private void OnTriggerEnter2D(Collider2D collision) {
 		var target = collision.GetComponent<Hurtbox>();
 		if(target != null) {
-			//Debug.Log("DAMAGE done  : "+collision.gameObject.name);
-			target.Damage(this);
+			float finalDamages = target.Damage(this);
+			// Try to lifesteal.
+			if(finalDamages > 0 && lifeStealTarget != null && lifeStealPercent != 0) {
+				lifeStealTarget.Heal(lifeStealPercent * finalDamages);
+			}
 		}
 	}
 

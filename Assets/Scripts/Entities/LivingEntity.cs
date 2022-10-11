@@ -80,13 +80,19 @@ public abstract class LivingEntity : MonoBehaviour {
         _maxHealth = amount;
         healthBar.Init(0, _maxHealth, Health);
 	}
-    public void Damage(float damage) {
+
+    /// <summary>
+    /// Damage an entity.
+    /// </summary>
+    /// <param name="damage">The amount of damages to deal. If negative, does nothing.</param>
+    /// <returns>The real amount of damages applied.</returns>
+    public float Damage(float damage) {
         AssertInitialized();
 
         damage -= GetDamageReduction();
         if(damage < 0 || dead || invincible) {
             SpawnDamageText("[Blocked]", DamageText.DamageType.Blocked);
-            return;
+            return 0;
         }
 
         Health -= damage;
@@ -100,6 +106,8 @@ public abstract class LivingEntity : MonoBehaviour {
 
         healthBar?.SetValue(Health);
         HealthChanged(-damage);
+
+        return damage;
     }
 
     /// <summary>

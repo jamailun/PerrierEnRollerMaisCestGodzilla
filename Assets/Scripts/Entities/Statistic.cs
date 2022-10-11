@@ -19,6 +19,10 @@ public enum Statistic : int {
 
 	ExpGained,
 
-	Defense
+	Defense,
+
+	// End of 1.0.1. Enum should be modified.
+
+	LifeSteal
 
 }
