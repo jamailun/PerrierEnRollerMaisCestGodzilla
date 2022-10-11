@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac36ea0c26350464781f0b50c447265e, type: 3}
-  m_Name: TestShape
+  m_Name: DefaultShape
   m_EditorClassIdentifier: 
   attackDuration: 0.1
   attackDamageBonus: 0

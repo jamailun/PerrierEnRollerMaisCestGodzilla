@@ -1,12 +1,10 @@
-using UnityEngine;
 using System;
 
-#if UNITY_EDITOR
 /// <summary>
 /// Draws the field/property ONLY if the copared property compared by the comparison type with the value of comparedValue returns true.
 /// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
-public class SerializeIfAttribute : PropertyAttribute {
+public class SerializeIfAttribute : UnityEngine.PropertyAttribute {
     public string comparedPropertyName { get; private set; }
     public object comparedValue { get; private set; }
     public ComparisonType comparisonType { get; private set; }
@@ -26,4 +24,3 @@ public class SerializeIfAttribute : PropertyAttribute {
         this.disablingType = disablingType;
     }
 }
-#endif

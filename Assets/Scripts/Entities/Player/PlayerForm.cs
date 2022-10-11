@@ -55,6 +55,6 @@ public class PlayerForm : ScriptableObject {
 	[Header("Bonus stats per level up")]
 	[SerializeField] public float bonusMaxHealthPerLevel = 5f;
 	[SerializeField] public float bonusAttackPerLevel = 1f;
-
+	[SerializeField] public float bonusSpeedMultPerLevel = 0f;
 
 }

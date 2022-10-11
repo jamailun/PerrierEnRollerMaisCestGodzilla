@@ -12,11 +12,11 @@ public class PassiveSkill : Skill {
 
 	// if ADDITIVE, on fait "STAT + BONUS", sinon "STAT * BONUS"
 
-	//[SerializeIf("isMultiplicative", false, ComparisonType.Boolean)]
+	[SerializeIf("isMultiplicative", false, ComparisonType.Boolean)]
 	[SerializeField] private float _flatAddPerLevel = 1f; // + 1 par level ici
 	public float AdditionPerLevel => _flatAddPerLevel;
 
-	//[SerializeIf("isMultiplicative", true, ComparisonType.Boolean)]
+	[SerializeIf("isMultiplicative", true, ComparisonType.Boolean)]
 	[SerializeField] private float _mutlAddPerLevel = 0.05f; // + 5% par level ici
 	public float MultiplicatorPerLevel => _mutlAddPerLevel;
 

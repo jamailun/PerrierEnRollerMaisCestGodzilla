@@ -4,7 +4,7 @@ public class MobSpawner : MonoBehaviour {
 
 	[SerializeField] private bool debugMode = false;
 
-	//[SerializeIf("debugMode", true, ComparisonType.Boolean)]
+	[SerializeIf("debugMode", true, ComparisonType.Boolean)]
 	[SerializeField] private LevelEnemiesSpawner spawnData;
 
 	[SerializeField] private float spawnZ = 2f;

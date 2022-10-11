@@ -47,7 +47,7 @@ public class PlayerEntity : LivingEntity {
     private readonly StatisticsSet stats = new();
     // Buffers, to not recalculate everything 200 times per second.
     private float buffer_Speed;
-
+    private float bonusSpeedMult = 1f;
 	private float buffer_Armor;
 
     // In case of multiple level up, we ave to keep track of how many skills/evolve we can get.
@@ -219,6 +219,7 @@ public class PlayerEntity : LivingEntity {
         // add stats
         AddMaxHealth(currentForm.bonusMaxHealthPerLevel);
         _flatDamages += currentForm.bonusAttackPerLevel;
+        bonusSpeedMult += currentForm.bonusSpeedMultPerLevel;
         UpdateBufferStats();
 
         // skills & evolve
@@ -244,7 +245,7 @@ public class PlayerEntity : LivingEntity {
     }
 
     private void UpdateBufferStats() {
-        buffer_Speed = stats.GetPower(Statistic.Speed, _speed);
+        buffer_Speed = stats.GetPower(Statistic.Speed, _speed) * bonusSpeedMult;
         buffer_Armor = stats.GetPower(Statistic.Defense, _flatArmor);
         _healthRegen = stats.GetPower(Statistic.HealthRegen, 0);
     }

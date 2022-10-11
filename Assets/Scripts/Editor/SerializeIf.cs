@@ -9,7 +9,6 @@ using System;
 /// 
 /// </summary>
 
-
 [CustomPropertyDrawer(typeof(SerializeIfAttribute))]
 public class DrawIfPropertyDrawer : PropertyDrawer {
     // Reference to the attribute on the property.
