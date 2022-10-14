@@ -60,6 +60,7 @@ public class PlayerEntity : LivingEntity {
 
     // Level variables
     private int level = 1;
+    public int Level => level;
     private ulong nextLevelExp;
     private ulong previousLevelExp = 0;
 
@@ -81,6 +82,7 @@ public class PlayerEntity : LivingEntity {
 
     // The start time of the player. Used to determine the length of a run.
     private float startedTime;
+    public float TimeSinceStart => Time.time - startedTime;
 
     // Reference to the animator.
     public CustomAnimator Animator { get; private set; }

@@ -303,8 +303,14 @@ public class Boss : Enemy {
         phase = Phase.Dead;
         dead = true;
 
-        if(Target!=null)
-            Target.GetComponent<PlayerEntity>()?.MakeInvicible();
+        var player = Target.GetComponent<PlayerEntity>();
+        if(player == null)
+            player = FindObjectOfType<PlayerEntity>();
+        if(player != null) {
+            player.MakeInvicible();
+            TimerUI.Stop();
+            PersistentData.EndRun(player.TimeSinceStart, player.Level, player.UpgradePoints);
+        }
 
         Debug.Log("FIN DU JEU BRAVOOOO");
 
