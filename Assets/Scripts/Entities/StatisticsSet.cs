@@ -63,6 +63,7 @@ public class StatisticsSet {
 	}
 
 	public float GetMultiplicator(Statistic type) {
+		UnityEngine.Debug.LogWarning("("+type+") : = " + mutls[type]  + " + " + temp_mutls[type]);
 		return mutls[type] + temp_mutls[type];
 	}
 

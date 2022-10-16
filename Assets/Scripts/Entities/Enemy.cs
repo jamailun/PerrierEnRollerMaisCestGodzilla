@@ -140,6 +140,8 @@ public class Enemy : LivingEntity {
 #endregion
 
 	protected virtual void Start() {
+        ChangeStatsToScale();
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         if(spriteRenderer == null)
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -172,6 +174,14 @@ public class Enemy : LivingEntity {
             Recalculate();
         }
     }
+
+    protected void ChangeStatsToScale() {
+        float mult = DifficultyDisplayer.GetDifficultyMultiplier();
+        _speed = Mathf.Min(_speed * 2f, _speed * mult);
+        attackScale *= Mathf.Max(1f, mult);
+        _flatDamages *= mult;
+        SetMaxHealth(MaxHealth * mult);
+	}
 
     protected const string ANIM_WALK = "anim_walk";
     protected const string ANIM_ATTACK = "anim_attack";

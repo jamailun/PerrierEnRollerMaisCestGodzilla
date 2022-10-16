@@ -147,11 +147,13 @@ public class PlayerEntity : LivingEntity {
         float attackScale = GetCurrentRange();
         var hitbox = currentForm.AttackShape.SpawnHitbox(orientation, transform, attackDamage, attackDuration, attackScale);
         // lifesteal
-        float lifestealPercent = stats.GetMultiplicator(Statistic.LifeSteal);
+        float lifestealPercent = stats.GetMultiplicator(Statistic.LifeSteal) - 1f;
         hitbox.SetLifeStealParameters(this, lifestealPercent);
         // Add additional damages
         hitbox.BonusDamagesBuilding = stats.GetPower(Statistic.AttackBonusBuildings, attackDamage) - attackDamage;
         hitbox.BonusDamagesEnemies = stats.GetPower(Statistic.AttackBonusEnemies, attackDamage) - attackDamage;
+
+        Debug.Log("lf = " + lifestealPercent);
 
         // reset the boolean after some time.
         StartCoroutine(Utils.DoAfter(attackDuration, () => attacking = false));
