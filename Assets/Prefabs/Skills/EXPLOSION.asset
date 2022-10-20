@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4d18afe625cf446b1c33928e904f21, type: 3}
   m_Name: EXPLOSION
   m_EditorClassIdentifier: 
-  _name: Explosion
+  _name: EXPLOOSION
   _sprite: {fileID: 391561610, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 3
   _description: Create a massive AoE around you (200% of your damages)

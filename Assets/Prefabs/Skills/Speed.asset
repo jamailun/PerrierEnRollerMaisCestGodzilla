@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75dd4f100fd6c5a418656ff9db460e70, type: 3}
   m_Name: Speed
   m_EditorClassIdentifier: 
-  _name: hurry
+  _name: Hurry
   _sprite: {fileID: 1295508350, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 5
   _description: Improve movement speed (+10%/lvl)

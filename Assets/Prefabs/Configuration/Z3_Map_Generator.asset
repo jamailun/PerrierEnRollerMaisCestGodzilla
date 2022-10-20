@@ -65,6 +65,30 @@ MonoBehaviour:
     bonusRadiusX: 1
     bonusRadiusY: 1
     requireTile: 00000000
+  - buildingPrefab: {fileID: 8456242154743726802, guid: 9f0778738894208419f5dcd7bb536cc1, type: 3}
+    lockRadius: 1.5
+    minX: 0
+    maxX: 300
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 50
+    bonusTries: 60
+    avoidCenterY: 0
+    bonusRadiusX: 1
+    bonusRadiusY: 1
+    requireTile: 04000000
+  - buildingPrefab: {fileID: 6993052438550172142, guid: 88bc0bdfa70bbdb4195b94bba6575d8a, type: 3}
+    lockRadius: 1.5
+    minX: 0
+    maxX: 300
+    minPerGroup: 1
+    maxPerGroup: 1
+    optimalAmount: 50
+    bonusTries: 60
+    avoidCenterY: 0
+    bonusRadiusX: 1
+    bonusRadiusY: 1
+    requireTile: 04000000
   minCrossX: 10
   maxCrossX: 15
   minCrossY: 6

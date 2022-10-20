@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75dd4f100fd6c5a418656ff9db460e70, type: 3}
   m_Name: Tueur
   m_EditorClassIdentifier: 
-  _name: Tueur
+  _name: Killer
   _sprite: {fileID: 802240349, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 5
   _description: Deal more damages to enemies (+5%/lvl)
