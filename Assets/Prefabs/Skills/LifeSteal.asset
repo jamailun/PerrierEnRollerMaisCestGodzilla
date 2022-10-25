@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LifeSteal
   m_EditorClassIdentifier: 
   _name: Life steal
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 1147394207, guid: 5caec31eda46ed64ba7b722147bde604, type: 3}
   _levelMax: 5
   _description: Steal 2% of your real damages per level.
   _statistic: 10

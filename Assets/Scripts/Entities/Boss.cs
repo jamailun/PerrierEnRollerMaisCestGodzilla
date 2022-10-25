@@ -97,10 +97,10 @@ public class Boss : Enemy {
             Destroy(obj, introSfx.length);
         }
 
-        while(cam.orthographicSize >= 2f) {
+        while(cam.orthographicSize >= 5f) {
             cam.orthographicSize -= Time.deltaTime * introZoomSpeed;
 
-            if(cam.orthographicSize <= 3.5f && bossNameText!=null && ! bossNameText.gameObject.activeSelf)
+            if(cam.orthographicSize <= 8.5f && bossNameText!=null && ! bossNameText.gameObject.activeSelf)
                 bossNameText.gameObject.SetActive(true);
 
             yield return null;

@@ -99,7 +99,7 @@ MonoBehaviour:
   treeChance: 0.005
   treePrefab: {fileID: 2618487218002179548, guid: 58b7e3178fdb4ad4785dc05db0786571, type: 3}
   waterTile: {fileID: 11400000, guid: b573ccf51946e0242a5d412bc4227c7e, type: 2}
-  groundTile: {fileID: 11400000, guid: f9d8e441c0925b2449ebdc8e71aad892, type: 2}
+  groundTile: {fileID: 11400000, guid: bccff9a24823ddf4589e111b5b12d0a2, type: 2}
   grassTile: {fileID: 11400000, guid: be3d2ad18d4aa79438e0fd2c91074647, type: 2}
   roadTile: {fileID: 11400000, guid: 1b1817a4dfde35a4fb092c733c2dade8, type: 2}
   road_L: {fileID: 11400000, guid: 65561a2a8d4635a4a99a778697a52bd7, type: 2}

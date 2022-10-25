@@ -180,7 +180,7 @@ public class Enemy : LivingEntity {
         _speed = Mathf.Min(_speed * 2f, _speed * mult);
         attackScale *= Mathf.Max(1f, mult);
         _flatDamages *= mult;
-        SetMaxHealth(MaxHealth * mult);
+        SetMaxHealthAndHeal(MaxHealth * mult);
 	}
 
     protected const string ANIM_WALK = "anim_walk";

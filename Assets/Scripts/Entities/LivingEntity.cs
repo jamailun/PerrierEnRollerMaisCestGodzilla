@@ -79,7 +79,12 @@ public abstract class LivingEntity : MonoBehaviour {
     public void SetMaxHealth(float amount) {
         _maxHealth = amount;
         healthBar.Init(0, _maxHealth, Health);
-	}
+    }
+    public void SetMaxHealthAndHeal(float amount) {
+        _maxHealth = amount;
+        Health = amount;
+        healthBar.Init(0, _maxHealth, Health);
+    }
 
     /// <summary>
     /// Damage an entity.
